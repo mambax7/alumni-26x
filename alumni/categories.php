@@ -41,7 +41,7 @@ if (isset($_POST['item_id'])) {
 }
 //If no access
 if (!$gpermHandler->checkRight('' . $moduleDirName . '_view', $perm_itemid, $groups, $moduleId)) {
-    $xoops->redirect(XOOPS_URL . '/index.php', 3, _NOPERM);
+    $xoops->redirect(XOOPS_URL . '/index.php', 3, XoopsLocale::E_NO_ACCESS_PERMISSION);
     exit();
 }
 if (!$gpermHandler->checkRight('' . $moduleDirName . '_premium', $perm_itemid, $groups, $moduleId)) {
