@@ -36,7 +36,7 @@
     <a href='http://<{$scurl}>' target='_blank'><{$web}></a><{/if}></td>   
   </tr>
   <{/if}>
-  <{if $subcats == "0"}>
+  <{if $subcats == "0" && $xoops_isuser}>
   <tr>
     <td class="head" align="center" style="padding:10px 10px 10px 10px;"><{$add_listing}></td>
   </tr>
