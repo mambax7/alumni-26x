@@ -122,15 +122,16 @@ class AlumniCategoryHandler extends XoopsPersistableObjectHandler {
     public function &getCategoriesForSearch() {
         global $theresult, $xoops, $alumni;
         $xoops     = Xoops::getInstance();
+        $alumni = Alumni::getInstance();
         $module_id = $alumni->getModule()->mid();
         $ret       = array();
         $criteria  = new CriteriaCompo();
         $criteria->setSort('cid');
         $criteria->setOrder('ASC');
         if (!$xoops->isAdmin()) {
-            $gperm_handler        = $xoops->gethandler('groupperm');
+  //          $gperm_handler        = $xoops->gethandler('groupperm');
             $groups               = is_object($xoops->isUser()) ? $$xoops->isUser()->getGroups() : '3';
-            $allowedCategoriesIds = $gperm_handler->getItemIds('alumni_view', $groups, $module_id);
+            $allowedCategoriesIds = $alumni->getGrouppermHandler()->getItemIds('alumni_view', $groups, $module_id);
                 $criteria->add(new Criteria('cid', '(' . implode(',', $allowedCategoriesIds) . ')', 'IN'));
         }
         $categories = $this->getAll($criteria, array('cid', 'pid', 'title'), false, false);
