@@ -32,9 +32,7 @@ class AlumniCategoryForm extends Xoops\Form\ThemeForm
 
         include_once(XOOPS_ROOT_PATH . '/class/xoopsformloader.php');
 
- //       $form = new XoopsThemeForm($title, 'form', $action, 'post', true);
        $this->setExtra('enctype="multipart/form-data"');
-
 
         include_once(XOOPS_ROOT_PATH . '/class/tree.php');
         $categoryHandler = $xoops->getModuleHandler('category', 'alumni');
@@ -43,38 +41,7 @@ class AlumniCategoryForm extends Xoops\Form\ThemeForm
 
         $this->addElement(new Xoops\Form\Label(AlumniLocale::CATEGORY_PID, $mytree->makeSelBox('pid', 'title', '-', $obj->getVar('pid'), true)));
         $this->addElement(new Xoops\Form\Text(AlumniLocale::CATEGORY_TITLE, 'title', 50, 255, $obj->getVar('title')), true);
-        //$this->addElement(new XoopsFormTextArea(_AM_TEST1_CATEGORY_DESC, 'category_desc', $obj->getVar('category_desc'), 4, 47), true);
 
-        
-        
-   /*   
-    
-        // IMAGE
-        $img = $obj->getVar("img") ? $obj->getVar("img") : 'default.gif';
-        $img_path = '/modules/alumni/images/cat';
-        $image_array = XoopsLists::getImgListAsArray( XOOPS_ROOT_PATH.$img_path );
-        $image_select = new Xoops\Form\Select(sprintf(XoopsLocale::F_FILE_EXISTS_IN, $img_path . '/'), 'img', $img);
-        //$image_select -> addOption ('-1', '---------------');
-        $image_select->addOptionArray($image_array);
-        $image_select->setExtra("onchange='showImgSelected(\"image\", \"img\", \"".$img_path."\", \"\", \"".XOOPS_URL."\")'" );
-        $image_tray = new Xoops\Form\ElementTray(_AM_ALUMNI_IMGCAT, '&nbsp;');
-        $image_tray->addElement($image_select);
-        $image_tray->addElement(new Xoops\Form\Label('', "<br /><img src='" . $img_path."/".$img . "' name='image' id='image' alt='' />"));
-     //   $image_tray->setDescription(_AM_PUBLISHER_IMAGE_DSC);
-        $this->addElement($image_tray);
-
-        // IMAGE UPLOAD
-        //$max_size = 5000000;
-        $file_box = new Xoops\Form\File(_AM_ALUMNI_FORMUPLOAD, "img");
-        $file_box->setExtra("size ='45'");
-   //     $file_box->setDescription(_AM_PUBLISHER_IMAGE_UPLOAD_DSC);
-        $this->addElement($file_box);
-    
-    
-    */
-    
-    
-    
         if ($obj->isNew()) {
             $default_img = 'default.gif';
         } else {
@@ -105,11 +72,7 @@ class AlumniCategoryForm extends Xoops\Form\ThemeForm
 	$fileseltray_category_img->addElement(new Xoops\Form\Label(''), false);
 	$imgtray_img->addElement($fileseltray_category_img);
 	$this->addElement($imgtray_img);
-	
-	
 
-	
-        
         $this->addElement(new Xoops\Form\Text(AlumniLocale::ORDER, 'ordre', 4, 4, $obj->getVar('ordre')), false);
         $this->addElement(new Xoops\Form\Label(AlumniLocale::IFSCHOOL, ''));
 
