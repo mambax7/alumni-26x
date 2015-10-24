@@ -31,7 +31,7 @@ $helper          = $xoops->getModuleHelper('alumni');
 $module_id       = $helper->getModule()->getVar('mid');
 $listing_Handler = $helper->getHandler('listing');
 $groups          = $xoops->getUserGroups();
-$alumni_ids      = $xoops->getHandlerGroupperm()->getItemIds('alumni_view', $groups, $module_id);
+$alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
 $all_ids = implode(', ', $alumni_ids);
     
 	$by_cat  = Request::getInt('by_cat', 0);
