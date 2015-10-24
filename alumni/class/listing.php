@@ -19,6 +19,8 @@
  */
 
 use Xoops\Core\Database\Connection;
+use Xoops\Core\Kernel\XoopsObject;
+use Xoops\Core\Kernel\XoopsPersistableObjectHandler;
 
 //defined('XOOPS_ROOT_PATH') or exit('XOOPS root path not defined');
 $xoops = Xoops::getInstance();
