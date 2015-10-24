@@ -93,7 +93,7 @@ $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
 
 $alumni    = Alumni::getInstance();
 $groups          = $xoops->isUser() ? $xoops->user->getGroups() : '3';
-$alumniIds      = $xoops->getHandlerGroupperm()->getItemIds('alumni_view', $groups, $moduleId);
+$alumniIds      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $moduleId);
 $catCriteria = new CriteriaCompo();
 $catCriteria->add(new Criteria('cid', $cid, '='));
 $catCriteria->add(new Criteria('cid', '(' . implode(', ', $alumniIds) . ')', 'IN'));
