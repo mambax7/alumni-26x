@@ -20,6 +20,7 @@
  * @author          John Mordo (jlm69)
  * @version         $Id$
  */
+use Xoops\Core\Kernel\Handlers\XoopsGroupPermHandler;
 
 defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
