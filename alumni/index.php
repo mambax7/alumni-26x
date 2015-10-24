@@ -52,7 +52,7 @@ if (!$gpermHandler->checkRight('' . $moduleDirName . '_premium', $perm_itemid, $
 
 	$alumni = Alumni::getInstance();
 
-$gpermHandler = $xoops->getHandlerGroupperm();
+$gpermHandler = $xoops->getHandlerGroupPermission();
 
 //        $alumni_user = $gperm_handler->getItemIds('alumni_view', $xoops->user->getGroups(), $module_id);
 //        $alumni_premium = $gperm_handler->getItemIds('alumni_submit', $xoops->user->getGroups(), $module_id);
@@ -95,7 +95,7 @@ if ($xoops->getModuleConfig('' . $moduleDirName . '_offer_search') == '1') {
     $helper          = $xoops->getModuleHelper('alumni');
     $module_id       = $helper->getModule()->getVar('mid');
     $groups          = $xoops->isUser() ? $xoops->user->getGroups() : '3';
-    $alumni_ids      = $xoops->getHandlerGroupperm()->getItemIds('alumni_view', $groups, $module_id);
+    $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
     $cat_criteria = new CriteriaCompo();
     $cat_criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));
     $cat_criteria->setOrder('' . $xoops->getModuleConfig('' . $moduleDirName . '_csortorder') . '');
