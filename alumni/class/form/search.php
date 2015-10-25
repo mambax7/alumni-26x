@@ -78,7 +78,7 @@ class AlumniSearchForm extends XoopsThemeForm {
             $mods_checkbox = new XoopsFormCheckBox(XoopsLocale::SEARCH_IN, 'mids[]', $mid);
         }
         if (empty($modules)) {
-            $gperm_handler     = $xoops->getHandlerGroupperm();
+            $gperm_handler     = $xoops->getHandlerGroupPermission();
             $available_modules = $gperm_handler->getItemIds('module_read', $xoops->getUserGroups());
             $available_plugins = Xoops\Module\Plugin::getPlugins('search');
 
