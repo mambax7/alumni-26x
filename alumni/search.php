@@ -21,6 +21,7 @@
  * @version         $Id$
  */
 use Xoops\Core\Request;
+use Xoops\Core\Kernel\Handlers\XoopsUser;
 
 include dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'mainfile.php';
 include_once __DIR__ . '/header.php';
