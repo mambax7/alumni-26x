@@ -89,7 +89,7 @@ switch ($op) {
         $xoops->tpl()->assign('category_path', $path);
 
 	$groups          = $xoops->isUser() ? $xoops->user->getGroups() : '3';
-	$alumni_ids      = $xoops->getHandlerGroupperm()->getItemIds('alumni_view', $groups, $module_id);
+	$alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
         $criteria   = new CriteriaCompo();
         $criteria->add(new Criteria('lid', $lid, '='));
         $criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));

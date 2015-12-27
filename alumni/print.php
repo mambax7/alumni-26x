@@ -1,6 +1,6 @@
 <?php
 //  -----------------------------------------------------------------------  //
-//                           Alumni for Xoops 2.3.x                             //
+//                           Alumni for Xoops 2.6.x                             //
 //                             By John Mordo                                 //
 //                                                                           //
 //                                                                           //
@@ -20,7 +20,7 @@ $lid = Request::getInt('lid', 0);
     $module_id       = $helper->getModule()->getVar('mid');
 
     $groups          = $xoops->isUser() ? $xoops->user->getGroups() : '3';
-    $alumni_ids      = $xoops->getHandlerGroupperm()->getItemIds('alumni_view', $groups, $module_id);
+    $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
     $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
     $listing_criteria       = new CriteriaCompo();
     $listing_criteria->add(new Criteria('lid', $lid, '='));

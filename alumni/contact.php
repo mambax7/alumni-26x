@@ -53,7 +53,7 @@ if (!empty($_POST['submit'])) {
     $helper          = $xoops->getModuleHelper('alumni');
     $module_id       = $helper->getModule()->getVar('mid');
     $groups          = $xoops->isUser() ? $xoops->user->getGroups() : '3';
-    $alumni_ids      = $xoops->getHandlerGroupperm()->getItemIds('alumni_view', $groups, $module_id);
+    $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
     $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
     $listing_criteria       = new CriteriaCompo();
     $listing_criteria->add(new Criteria('lid', $lid, '='));
@@ -139,7 +139,7 @@ if (!empty($_POST['submit'])) {
     $helper          = $xoops->getModuleHelper('alumni');
     $module_id       = $helper->getModule()->getVar('mid');
     $groups          = $xoops->isUser() ? $xoops->user->getGroups() : '3';
-    $alumni_ids      = $xoops->getHandlerGroupperm()->getItemIds('alumni_view', $groups, $module_id);
+    $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
     $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
     $listing_criteria       = new CriteriaCompo();
     $listing_criteria->add(new Criteria('lid', $lid, '='));

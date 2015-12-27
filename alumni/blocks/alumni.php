@@ -37,7 +37,7 @@ $helper          = $xoops->getModuleHelper('alumni');
 $module_id       = $helper->getModule()->getVar('mid');
 $listingHandler = $helper->getHandler('listing');
 $groups          = $xoops->getUserGroups();
-$alumni_ids      = $xoops->getHandlerGroupperm()->getItemIds('alumni_view', $groups, $module_id);
+$alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
     $all_ids = implode(', ', $alumni_ids);
 
 	$criteria        = new CriteriaCompo();
