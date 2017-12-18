@@ -11,7 +11,7 @@
 /**
  * Alumni module for Xoops
  *
- * @copyright       XOOPS Project http://xoops.org/
+ * @copyright       XOOPS Project https://xoops.org/
  * @license         GPL 2.0 or later
  * @package         alumni
  * @since           2.6.x
@@ -34,12 +34,12 @@ $modversion['image']       = 'images/alumni_slogo.png';
 $modversion['dirname']     = $moduleDirName;
 
 $modversion['release_date']        = '2015/06/01';
-$modversion['module_website_url']  = 'http://www.xoops.org/';
+$modversion['module_website_url']  = 'https://xoops.org/';
 $modversion['module_website_name'] = 'XOOPS';
 $modversion['module_status']       = 'ALPHA 4';
-$modversion['min_php']             = '5.3.7';
+$modversion['min_php']             = '5.6.0';
 $modversion['min_xoops']           = '2.6.0';
-$modversion['min_db']              = array('mysql' => '5.0.7', 'mysqli' => '5.0.7');
+$modversion['min_db']              = array('mysql' => '5.1');
 
 // paypal
 $modversion['paypal']                  = array();

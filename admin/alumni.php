@@ -11,7 +11,7 @@
 /**
  * Alumni module for Xoops
  *
- * @copyright       XOOPS Project http://xoops.org/
+ * @copyright       XOOPS Project https://xoops.org/
  * @license         GPL 2.0 or later
  * @package         alumni
  * @since           2.6.x
@@ -51,7 +51,7 @@ switch ($op) {
         $indexAdmin->renderButton('left', '');
 
         $listing_count = $listingHandler->countAlumni();
-        $listingArray   = $listingHandler->getall();
+        $listingArray   = $listingHandler->getAll();
 
         $xoops->tpl()->assign('listing_count', $listing_count);
         if ($listing_count > 0) {
@@ -91,7 +91,7 @@ switch ($op) {
                 $newcount   = $xoops->getModuleConfig('' . $moduleDirName . '_countday');
                 $startdate  = (time() - (86400 * $newcount));
                 if ($startdate < $date) {
-                    $newitem        = "<img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/images/newred.gif\" />";
+                    $newitem        = "<img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/images/newred.gif\">";
                     $listing['new'] = $newitem;
                 }
                 if ($xoopsUser) {
@@ -311,7 +311,7 @@ switch ($op) {
                 array('ok' => 1, 'lid' => $lid, 'op' => 'delete_listing'),
                 'alumni.php',
                 XoopsLocale::Q_ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM
-                . '<br /><span class="red">' . $obj->getvar('lname') . '<span>'
+                . '<br><span class="red">' . $obj->getVar('lname') . '<span>'
             );
          }
         break;
@@ -351,7 +351,7 @@ switch ($op) {
         $moderateCriteria->add(new Criteria('valid', 0, '='));
         $moderateCriteria->add(new Criteria('cid', '(' . implode(', ', $alumniIds) . ')', 'IN'));
         $listing_count = $listing_Handler->getCount($moderateCriteria);
-        $listingArray   = $listing_Handler->getall($moderateCriteria);
+        $listingArray   = $listing_Handler->getAll($moderateCriteria);
 
         // Assign Template variables
         $xoops->tpl()->assign('listing_count', $listing_count);
@@ -393,7 +393,7 @@ switch ($op) {
                 $newcount  = $xoops->getModuleConfig('' . $moduleDirName . '_countday');
                 $startdate = (time() - (86400 * $newcount));
                 if ($startdate < $date) {
-                    $newitem        = "<img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/images/newred.gif\" />";
+                    $newitem        = "<img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/images/newred.gif\">";
                     $listing['new'] = $newitem;
                 }
                 if ($xoopsUser) {

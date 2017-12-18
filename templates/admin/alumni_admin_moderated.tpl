@@ -86,11 +86,11 @@
           </nav>
           <nav class="right">
             <span class="prev">
-              <img src="../media/jquery/addons/pager/icons/prev.png" /> Prev&nbsp;
+              <img src="../media/jquery/addons/pager/icons/prev.png"> Prev&nbsp;
             </span>
             <span class="pagecount"></span>
             &nbsp;<span class="next">Next
-              <img src="../media/jquery/addons/pager/icons/next.png" />
+              <img src="../media/jquery/addons/pager/icons/next.png">
             </span>
           </nav>
         </div>  

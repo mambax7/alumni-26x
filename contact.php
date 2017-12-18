@@ -11,7 +11,7 @@
 /**
  * Alumni module for Xoops
  *
- * @copyright       XOOPS Project http://xoops.org/
+ * @copyright       XOOPS Project https://xoops.org/
  * @license         GPL 2.0 or later
  * @package         alumni
  * @since           2.6.x
@@ -59,7 +59,7 @@ if (!empty($_POST['submit'])) {
     $listing_criteria->add(new Criteria('lid', $lid, '='));
     $listing_criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));
     $numrows     = $listingHandler->getCount($listing_criteria);
-    $listing_arr = $listingHandler->getall($listing_criteria);
+    $listing_arr = $listingHandler->getAll($listing_criteria);
     foreach (array_keys($listing_arr) as $i) {
 
         $name      = $listing_arr[$i]->getVar('name');
@@ -145,7 +145,7 @@ if (!empty($_POST['submit'])) {
     $listing_criteria->add(new Criteria('lid', $lid, '='));
     $listing_criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));
     $numrows     = $listingHandler->getCount($listing_criteria);
-    $listing_arr = $listingHandler->getall($listing_criteria);
+    $listing_arr = $listingHandler->getAll($listing_criteria);
     unset($listing_criteria);
     foreach (array_keys($listing_arr) as $i) {
         $name      = $listing_arr[$i]->getVar('name');
@@ -170,7 +170,7 @@ if (!empty($_POST['submit'])) {
     if ($xoops->getModuleConfig('alumni_use_captcha') == '1' && !$xoops->user->isAdmin()) {
         $sendform->addElement(new XoopsFormCaptcha());
     }
-    $sendform->addElement(new XoopsFormLabel(AlumniLocale::YOUR_IP, "<img src=\"" . XOOPS_URL . "/modules/alumni/ip_image.php\" alt=\"\" /><br />" . AlumniLocale::IP_LOGGED . ""));
+    $sendform->addElement(new XoopsFormLabel(AlumniLocale::YOUR_IP, "<img src=\"" . XOOPS_URL . "/modules/alumni/ip_image.php\" alt=\"\"><br>" . AlumniLocale::IP_LOGGED . ""));
 //    $sendform->addElement(new Xoops\Form\Hidden('security', $xoops->security()->createToken()));
     $sendform->addElement(new XoopsFormHidden('listing', $listing), false);
     $sendform->addElement(new XoopsFormHidden('email', $email), false);

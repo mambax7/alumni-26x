@@ -11,7 +11,7 @@
 /**
  * Alumni module for Xoops
  *
- * @copyright       XOOPS Project http://xoops.org/
+ * @copyright       XOOPS Project https://xoops.org/
  * @license         GPL 2.0 or later
  * @package         alumni
  * @since           2.6.x
@@ -77,7 +77,7 @@ $xoops->tpl()->assign('add_from_sitename', $xoopsConfig['sitename']);
 if ($xoops->isUser()) {
     $xoops->tpl()->assign('add_listing', "<a href='listing.php?op=new_listing&amp;cid=$cid'>" . AlumniLocale::ADD_LISTING_2 . '</a>');
 }
-$cat_banner = $xoops->getbanner();
+$cat_banner = $xoops->getBanner();
 $xoops->tpl()->assign('cat_banner', $cat_banner);
 
 $cat_code_place = $xoops->getModuleConfig('' . $moduleDirName . '_code_place');
@@ -99,7 +99,7 @@ $catCriteria->add(new Criteria('cid', $cid, '='));
 $catCriteria->add(new Criteria('cid', '(' . implode(', ', $alumniIds) . ')', 'IN'));
 $catCriteria->setOrder('' . $xoops->getModuleConfig('' . $moduleDirName . '_csortorder') . '');
 $numcat       = $categoriesHandler->getCount();
-$categoryArray = $categoriesHandler->getall($catCriteria);
+$categoryArray = $categoriesHandler->getAll($catCriteria);
 
 $catObj = $categoriesHandler->get($cid);
 
@@ -110,7 +110,7 @@ $myParent = $catObj->getVar('pid');
 
 $catpathCriteria = new CriteriaCompo();
 $catpathCriteria->add(new Criteria('cid', $myParent, '='));
-$catpathArray = $categoriesHandler->getall($catpathCriteria);
+$catpathArray = $categoriesHandler->getAll($catpathCriteria);
 foreach (array_keys($catpathArray) as $i) {
     $mytitle = $catpathArray[$i]->getVar('title');
 }
@@ -119,7 +119,7 @@ if ($myParent != 0) {
     $path = "<a href='" . ALUMNI_URL . '/categories.php?cid=' . $catpathArray[$i]->getVar('cid') . "'>" . $catpathArray[$i]->getVar('title') . '</a>&nbsp;:&nbsp;';
 }
 $path = "{$homePath}{$path}{$itemPath}";
-$path = str_replace('&nbsp;:&nbsp;', " <img src='" . XOOPS_URL . "/modules/{$moduleDirName}/images/arrow.gif" . "' style='border-width: 0px;' alt='' /> ", $path);
+$path = str_replace('&nbsp;:&nbsp;', " <img src='" . XOOPS_URL . "/modules/{$moduleDirName}/images/arrow.gif" . "' style='border-width: 0px;' alt=''> ", $path);
 
 $xoops->tpl()->assign('category_path', $path);
 
@@ -154,7 +154,7 @@ foreach (array_keys($categoryArray) as $i) {
         $subcatCriteria->add(new Criteria('cid', '(' . implode(', ', $alumniIds) . ')', 'IN'));
         $subcatCriteria->setOrder('' . $xoops->getModuleConfig('' . $moduleDirName . '_csortorder') . '');
         $numsubcat  = $categoriesHandler->getCount($subcatCriteria);
-        $subcatArray = $categoriesHandler->getall($subcatCriteria);
+        $subcatArray = $categoriesHandler->getAll($subcatCriteria);
         unset($subcatCriteria);
         foreach (array_keys($subcatArray) as $i) {
             $subcat_id     = $subcatArray[$i]->getVar('cid');
@@ -182,7 +182,7 @@ foreach (array_keys($categoryArray) as $i) {
     $xoops->tpl()->assign('scfax', $scfax);
     $xoops->tpl()->assign('scmotto', $scmotto);
     $xoops->tpl()->assign('scurl', $scurl);
-    $xoops->tpl()->assign('top_scphoto', "<img src='" . XOOPS_URL . "/modules/{$moduleDirName}/photos/school_photos/$scphoto' align='middle' alt='$school_name' />");
+    $xoops->tpl()->assign('top_scphoto', "<img src='" . XOOPS_URL . "/modules/{$moduleDirName}/photos/school_photos/$scphoto' align='middle' alt='$school_name'>");
     $xoops->tpl()->assign('head_scphone', AlumniLocale::SCPHONE);
     $xoops->tpl()->assign('head_scfax', AlumniLocale::SCFAX);
     $xoops->tpl()->assign('web', AlumniLocale::WEB);
@@ -203,7 +203,7 @@ foreach (array_keys($categoryArray) as $i) {
     $listingCriteria->add(new Criteria('cid', '(' . implode(', ', $alumniIds) . ')', 'IN'));
     $numrows = $listingHandler->getCount($listingCriteria);
 
-    $listingArray = $listingHandler->getall($listingCriteria);
+    $listingArray = $listingHandler->getAll($listingCriteria);
     unset($listingCriteria);
     foreach (array_keys($listingArray) as $i) {
         $lid        = $listingArray[$i]->getVar('lid');
@@ -272,7 +272,7 @@ foreach (array_keys($categoryArray) as $i) {
             $newcount  = $xoops->getModuleConfig('' . $moduleDirName . '_countday');
             $startdate = (time() - (86400 * $newcount));
             if ($startdate < $date) {
-                $newitem       = "<img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/images/newred.gif\" />";
+                $newitem       = "<img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/images/newred.gif\">";
                 $a_item['new'] = $newitem;
             }
             if ($xoopsUser) {
@@ -287,7 +287,7 @@ foreach (array_keys($categoryArray) as $i) {
             $date = XoopsLocale::formatTimestamp($date, 's');
             if ($xoopsUser) {
                 if ($xoopsUser->isAdmin()) {
-                    $a_item['admin'] = "<a href='admin/alumni.php?op=edit_listing&amp;lid=$lid&amp;cid=$cid'><img src='images/modif.gif' border=0 alt=\"" . AlumniLocale::MODADMIN . "\" /></a>";
+                    $a_item['admin'] = "<a href='admin/alumni.php?op=edit_listing&amp;lid=$lid&amp;cid=$cid'><img src='images/modif.gif' border=0 alt=\"" . AlumniLocale::MODADMIN . "\"></a>";
                 }
             }
 
@@ -304,7 +304,7 @@ foreach (array_keys($categoryArray) as $i) {
             }
             $cat = addslashes($cid);
             if ($photo) {
-                $a_item['photo'] = "<a href=\"javascript:CLA('display-image.php?lid=$lid')\"><img src=\"images/photo.gif\" border=\"0\" width=\"15\" height=\"11\" alt='" . AlumniLocale::PHOTO_AVAILABLE . "' /></a>";
+                $a_item['photo'] = "<a href=\"javascript:CLA('display-image.php?lid=$lid')\"><img src=\"images/photo.gif\" border=\"0\" width=\"15\" height=\"11\" alt='" . AlumniLocale::PHOTO_AVAILABLE . "'></a>";
             } else {
 		$a_item['photo'] = "";
             }

@@ -11,7 +11,7 @@
 /**
  * Alumni module for Xoops
  *
- * @copyright       XOOPS Project http://xoops.org/
+ * @copyright       XOOPS Project https://xoops.org/
  * @license         GPL 2.0 or later
  * @package         alumni
  * @since           2.6.x
@@ -30,7 +30,7 @@ $xoops->header();
 $admin_page = new \Xoops\Module\Admin();
 $admin_page->displayNavigation('permissions.php');
 
-$cats     = $categoriesHandler->getall();
+$cats     = $categoriesHandler->getAll();
 $cat_rows = $categoriesHandler->getCount();
 
 include_once(XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/class/alumni_tree.php");

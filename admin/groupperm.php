@@ -14,16 +14,18 @@
  * @author          John Mordo - jlm69
  */
 
+use Xmf\Request;
+
 include __DIR__ . '/header.php';
 
 $xoops = Xoops::getInstance();
-$op    = $request->asStr('op', 'alumni_view');
+$op    = Request::getString('op', 'alumni_view');
 $xoops->header();
 $admin_page = new Xoops\Module\Admin();
 $admin_page->displayNavigation('groupperm.php');
 $moduleId          = $xoops->module->getVar('mid');
 $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
-$cats               = $categoriesHandler->getall();
+$cats               = $categoriesHandler->getAll();
 $cat_rows           = $categoriesHandler->getCount();
 
 include_once(XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/class/alumni_tree.php");

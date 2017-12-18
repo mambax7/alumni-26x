@@ -6,7 +6,7 @@
 <tr>
 
 
-    <th><{$admin|default:false}>&nbsp;&nbsp;<b><{$name}>&nbsp;<{$mname}>&nbsp;<{$lname}><br /><{$school}>&nbsp;&nbsp;<{$class_of}>&nbsp;&nbsp;<{$year}></b></th>
+    <th><{$admin|default:false}>&nbsp;&nbsp;<b><{$name}>&nbsp;<{$mname}>&nbsp;<{$lname}><br><{$school}>&nbsp;&nbsp;<{$class_of}>&nbsp;&nbsp;<{$year}></b></th>
   </tr> </table>
 <table class="outer" width='100%' cellspacing='1'>
 <tr>
@@ -15,22 +15,22 @@
 <table width='100%' cellspacing='0' cellpadding='5'> 
 <{if $studies != ""}>  
     <tr>
-    <td class="odd"><b><{$studies_head}></b>&nbsp;&nbsp;<{$studies}><br /></td>
+    <td class="odd"><b><{$studies_head}></b>&nbsp;&nbsp;<{$studies}><br></td>
   </tr>
   <{/if}>
   <{if $activities != ""}>
   <tr>
-    <td class="odd"><b><{$activities_head}></b><br /><{$activities}><br />&nbsp;&nbsp;</td>
+    <td class="odd"><b><{$activities_head}></b><br><{$activities}><br>&nbsp;&nbsp;</td>
     </tr>
     <{/if}>
     <{if $extrainfo != ""}>
   <tr>
-    <td class="odd"><b><{$extrainfo_head}></b><br /><{$extrainfo}><br />&nbsp;&nbsp;</td>
+    <td class="odd"><b><{$extrainfo_head}></b><br><{$extrainfo}><br>&nbsp;&nbsp;</td>
     </tr>
     <{/if}>
     <{if $contact_occ != ""}>
     <tr>
-    <td class="odd"><b><{$contact_occ_head}></b>&nbsp;&nbsp;<{$contact_occ}><br /></td>
+    <td class="odd"><b><{$contact_occ_head}></b>&nbsp;&nbsp;<{$contact_occ}><br></td>
     </tr>
     <{/if}>
     <{if $local_town != ""}>
@@ -50,9 +50,9 @@
 <td class="odd" align='right' width='30%'><table>
 <{if $photo != ""}>
 <tr>
-<td class="odd" colspan='2' align='center'><b><{$photo_head}></b><br /><br /><{$photo}><br /></td></tr><{/if}>
+<td class="odd" colspan='2' align='center'><b><{$photo_head}></b><br><br><{$photo}><br></td></tr><{/if}>
 <{if $photo2 != ""}>
-<tr><td class="odd" colspan='2' align='center'><br /><b><{$photo2_head}></b><br /><br /><{$photo2}>
+<tr><td class="odd" colspan='2' align='center'><br><b><{$photo2_head}></b><br><br><{$photo2}>
 </td></tr><{/if}>
 </table></td></tr></table>
 <table width='100%' cellspacing='0' cellpadding='5'>

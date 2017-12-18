@@ -11,7 +11,7 @@
 /**
  * Alumni module for Xoops
  *
- * @copyright       XOOPS Project http://xoops.org/
+ * @copyright       XOOPS Project https://xoops.org/
  * @license         GPL 2.0 or later
  * @package         alumni
  * @since           2.6.x
@@ -57,7 +57,7 @@ if (!empty($_POST['submit'])) {
     $listing_criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));
     $numrows = $listingHandler->getCount($listing_criteria);
 
-    $listing_arr = $listingHandler->getall($listing_criteria);
+    $listing_arr = $listingHandler->getAll($listing_criteria);
     unset($listing_criteria);
     foreach (array_keys($listing_arr) as $i) {
         $lid        = $listing_arr[$i]->getVar('lid');

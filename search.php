@@ -11,7 +11,7 @@
 /**
  * XOOPS global search
  *
- * @copyright       XOOPS Project http://xoops.org/
+ * @copyright       XOOPS Project https://xoops.org/
  * @license         GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
  * @package         core
  * @since           2.0.0
@@ -172,8 +172,8 @@ switch ($action) {
                     } else {
                         $res[$i]['link'] = $results[$i]['link'];
                     }
-                    $res[$i]['title']          = $myts->htmlspecialchars($results[$i]['title']);
-                    $res[$i]['title_highligh'] = preg_replace($queries_pattern, "<span class='searchHighlight'>$1</span>", $myts->htmlspecialchars($results[$i]['title']));
+                    $res[$i]['title']          = $myts->htmlSpecialChars($results[$i]['title']);
+                    $res[$i]['title_highligh'] = preg_replace($queries_pattern, "<span class='searchHighlight'>$1</span>", $myts->htmlSpecialChars($results[$i]['title']));
                     if (!empty($results[$i]['uid'])) {
                         $res[$i]['uid']   = (int)($results[$i]['uid']);
                         $res[$i]['uname'] = XoopsUser::getUnameFromId($results[$i]['uid'], true);
@@ -255,11 +255,11 @@ switch ($action) {
                 } else {
                     $res[$i]['link'] = $results[$i]['link'];
                 }
-                $res[$i]['title'] = $myts->htmlspecialchars($results[$i]['title']);
+                $res[$i]['title'] = $myts->htmlSpecialChars($results[$i]['title']);
                 if (isset($queries_pattern)) {
-                    $res[$i]['title_highligh'] = preg_replace($queries_pattern, "<span class='searchHighlight'>$1</span>", $myts->htmlspecialchars($results[$i]['title']));
+                    $res[$i]['title_highligh'] = preg_replace($queries_pattern, "<span class='searchHighlight'>$1</span>", $myts->htmlSpecialChars($results[$i]['title']));
                 } else {
-                    $res[$i]['title_highligh'] = $myts->htmlspecialchars($results[$i]['title']);
+                    $res[$i]['title_highligh'] = $myts->htmlSpecialChars($results[$i]['title']);
                 }
                 if (!empty($results[$i]['uid'])) {
                     $res[$i]['uid']   = @(int)($results[$i]['uid']);

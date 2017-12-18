@@ -11,7 +11,7 @@
 /**
  * Alumni module for Xoops
  *
- * @copyright       XOOPS Project http://xoops.org/
+ * @copyright       XOOPS Project https://xoops.org/
  * @license         GPL 2.0 or later
  * @package         alumni
  * @since           2.6.x
@@ -100,7 +100,7 @@ if ($xoops->getModuleConfig('' . $moduleDirName . '_offer_search') == '1') {
     $cat_criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));
     $cat_criteria->setOrder('' . $xoops->getModuleConfig('' . $moduleDirName . '_csortorder') . '');
     $numcat       = $categoriesHandler->getCount($cat_criteria);
-    $category_arr = $categoriesHandler->getall($cat_criteria);
+    $category_arr = $categoriesHandler->getAll($cat_criteria);
 
     foreach (array_keys($category_arr) as $i) {
         $cid      = $category_arr[$i]->getVar('cid');
@@ -135,7 +135,7 @@ if ($xoops->getModuleConfig('' . $moduleDirName . '_offer_search') == '1') {
     $xoops->tpl()->assign('category_select', $select_category);
 }
 
-$index_banner = $xoops->getbanner();
+$index_banner = $xoops->getBanner();
 $xoops->tpl()->assign('index_banner', $index_banner);
 $index_code_place = $xoops->getModuleConfig('' . $moduleDirName . '_code_place');
 $use_extra_code   = $xoops->getModuleConfig('' . $moduleDirName . '_use_code');
@@ -236,7 +236,7 @@ if ($xoops->getModuleConfig('' . $moduleDirName . '_moderated') == '1') {
     $moderate_criteria->add(new Criteria('valid', 0, '='));
     $moderate_criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));
     $moderate_rows = $listingHandler->getCount($moderate_criteria);
-    $moderate_arr  = $listingHandler->getall($moderate_criteria);
+    $moderate_arr  = $listingHandler->getAll($moderate_criteria);
 
     if ($xoops->isUser()) {
         if ($xoops->user->isAdmin()) {
@@ -246,7 +246,7 @@ if ($xoops->getModuleConfig('' . $moduleDirName . '_moderated') == '1') {
             if ($moderate_rows == 0) {
                 $xoops->tpl()->assign('confirm_alumni', AlumniLocale::NO_LISTING_TO_APPROVE);
             } else {
-                $xoops->tpl()->assign('confirm_alumni', AlumniLocale::THERE_ARE . " $moderate_rows  " . AlumniLocale::WAITING . "<br /><a href=\"admin/alumni.php?op=list_moderated\">" . constant($main_lang . '_SEEIT') . "</a>");
+                $xoops->tpl()->assign('confirm_alumni', AlumniLocale::THERE_ARE . " $moderate_rows  " . AlumniLocale::WAITING . "<br><a href=\"admin/alumni.php?op=list_moderated\">" . constant($main_lang . '_SEEIT') . "</a>");
             }
 	    $xoops->tpl()->assign('total_confirm', AlumniLocale::THIS_AND . " $moderate_rows " . AlumniLocale::WAITING);
         }
@@ -270,7 +270,7 @@ $xoops->tpl()->assign('last_head_local', AlumniLocale::TOWN_2);
 $xoops->tpl()->assign('last_head_views', AlumniLocale::HITS);
 $xoops->tpl()->assign('last_head_photo', AlumniLocale::PHOTO);
 
-$listing_arr = $listingHandler->getall($criteria);
+$listing_arr = $listingHandler->getAll($criteria);
 
 foreach (array_keys($listing_arr) as $i) {
     $lid        = $listing_arr[$i]->getVar('lid');
@@ -300,7 +300,7 @@ foreach (array_keys($listing_arr) as $i) {
     $newcount  = $xoops->getModuleConfig('' . $moduleDirName . '_countday');
     $startdate = (time() - (86400 * $newcount));
     if ($startdate < $date) {
-        $newitem       = "<img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/images/newred.gif\" />";
+        $newitem       = "<img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/images/newred.gif\">";
         $a_item['new'] = $newitem;
     }
 
@@ -319,7 +319,7 @@ foreach (array_keys($listing_arr) as $i) {
     
     if ($xoops->user) {
         if ($xoops->user->isAdmin()) {
-            $a_item['admin'] = "<a href='admin/alumni.php?op=edit_listing&amp;lid=$lid&amp;cid=$cid'><img src='images/modif.gif' border=0 alt=\"" . AlumniLocale::MODADMIN . "\" /></a>";
+            $a_item['admin'] = "<a href='admin/alumni.php?op=edit_listing&amp;lid=$lid&amp;cid=$cid'><img src='images/modif.gif' border=0 alt=\"" . AlumniLocale::MODADMIN . "\"></a>";
         }
     }
 
@@ -334,7 +334,7 @@ foreach (array_keys($listing_arr) as $i) {
     }
 
     if ($photo) {
-        $a_item['photo'] = "<a href=\"javascript:CLA('display-image.php?lid=$lid')\"><img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/images/photo.gif\" border=\"0\" width=\"15\" height=\"11\" alt='" . AlumniLocale::PHOTO_AVAILABLE . "' /></a>";
+        $a_item['photo'] = "<a href=\"javascript:CLA('display-image.php?lid=$lid')\"><img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/images/photo.gif\" border=\"0\" width=\"15\" height=\"11\" alt='" . AlumniLocale::PHOTO_AVAILABLE . "'></a>";
     } else {
     $a_item['photo'] = '';
     }

@@ -9,11 +9,11 @@
             <{/foreach}>
             </span>
             <{if $sr_showing|default:false}>
-                <br />
+                <br>
                 <{$sr_showing}>&nbsp;<{$showing_of}>
                 <{/if}>
-                 <br />
-            <br /><{$in_category}> <{$cat_name}>
+                 <br>
+            <br><{$in_category}> <{$cat_name}>
              
             
         </div>

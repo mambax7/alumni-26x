@@ -11,7 +11,7 @@
 /**
  * Alumni module for Xoops
  *
- * @copyright       XOOPS Project http://xoops.org/
+ * @copyright       XOOPS Project https://xoops.org/
  * @license         GPL 2.0 or later
  * @package         alumni
  * @since           2.6.x
@@ -101,7 +101,7 @@ class AlumniLocaleEn_US /*extends XoopsLocaleEn_US*/
     const EDIT = 'Edit';
     const ALUMNI_LISTINGS = 'Alumni Listings';
     const CLASSOF = 'Class of ';
-    const FINTRO = 'Alumni Listings for the Local Area<br />To Add a Listing click on Your School<br />Tell your Friends';
+    const FINTRO = 'Alumni Listings for the Local Area<br>To Add a Listing click on Your School<br>Tell your Friends';
     const SEARCH_LISTINGS = 'Search Listings : ';
     const ALL_WORDS = 'All Words';
     const ANY_WORDS = 'Any Words';
@@ -167,8 +167,8 @@ class AlumniLocaleEn_US /*extends XoopsLocaleEn_US*/
     const FORMSUREDEL     = 'Are you sure to delete it?';
     const FORMDELOK       = 'Deleted successfully';
     const FORMOK          = 'Added successfully';
-    const ADD_MOD          = 'Add an Alumni Listing<br />Your Listing will be queued for approval';
-    const EDIT_MOD          = 'Edit Alumni Listing<br />Your Listing will be queued for approval';
+    const ADD_MOD          = 'Add an Alumni Listing<br>Your Listing will be queued for approval';
+    const EDIT_MOD          = 'Edit Alumni Listing<br>Your Listing will be queued for approval';
     const MODERATE          = 'Your Alumni Listing will be queued for approval';
     const NO_LISTING_TO_APPROVE     = 'There are no listings waiting to be approved';
     const E_NO_LISTING             = 'There are no listings';
@@ -278,11 +278,11 @@ class AlumniLocaleEn_US /*extends XoopsLocaleEn_US*/
     const CONF_INDEX_CODE = 'Extra Index Page Code';
     const CONF_INDEX_CODE_DESC = 'Put your adsense or other code here';
     const CONF_USE_INDEX_CODE = 'Use Extra Index Page Code';
-    const CONF_USE_INDEX_CODE_DESC = 'Put additional code between listings<br />on the index page<br />and the categories page.<br /><br />Banners, Adsense code, etc...';
+    const CONF_USE_INDEX_CODE_DESC = 'Put additional code between listings<br>on the index page<br>and the categories page.<br><br>Banners, Adsense code, etc...';
     const CONF_INDEX_CODE_PLACE = 'Code will show in this place in the list ';
-    const CONF_INDEX_CODE_PLACE_DESC = 'Ex. If you choose 4 there will be 3 listings before this code.<br /> Code will be displayed in the 4th slot.';
+    const CONF_INDEX_CODE_PLACE_DESC = 'Ex. If you choose 4 there will be 3 listings before this code.<br> Code will be displayed in the 4th slot.';
     const CONF_USE_BANNER = 'Use Xoops Banner Code';
-    const CONF_USE_BANNER_DESC = 'Will allow you to insert xoopsbanners in between listings.<br />If you choose Yes<br />Do Not insert any code below';
+    const CONF_USE_BANNER_DESC = 'Will allow you to insert xoopsbanners in between listings.<br>If you choose Yes<br>Do Not insert any code below';
     const CONF_OFFER_SEARCH = 'Offer search within listings';
     const CONF_OFFER_SEARCH_DESC = 'Select yes to provide a search box';
     const CONF_LORDER = 'Alumni Listing Order :';

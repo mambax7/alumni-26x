@@ -7,7 +7,7 @@
   
   <tr>
   
-    <th align="center"><{$school_name}> <{$add_from_title}><br /></th>
+    <th align="center"><{$school_name}> <{$add_from_title}><br></th>
     
   </tr>
   
@@ -18,21 +18,21 @@
   <tr>
     <td class="head" align="center" style="padding:10px 10px 10px 10px;">
     <{if $top_scphoto != ""}>
-    <{$top_scphoto}><br /><{/if}><br />
+    <{$top_scphoto}><br><{/if}><br>
     <{if $scmotto != ""}>
     <b><i>"<{$scmotto}>"</i></b><{/if}></td>
   </tr>
   <tr>
     <td class="odd" align="left"><{$scaddress}> 
-     <{if $scaddress2 != ""}><br />
+     <{if $scaddress2 != ""}><br>
      <{$scaddress2}>
      <{/if}>
-     <br /> <{$sccity}>,&nbsp;<{$scstate}>&nbsp;<{$sczip}><br />
+     <br> <{$sccity}>,&nbsp;<{$scstate}>&nbsp;<{$sczip}><br>
     <{if $scphone != ""}>
     <{$head_scphone}> <{$scphone}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <{if $scfax != ""}>
     <{$head_scfax}> <{$scfax}><{/if}><{/if}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <{if $scurl != ""}><br />
+    <{if $scurl != ""}><br>
     <a href='http://<{$scurl}>' target='_blank'><{$web}></a><{/if}></td>   
   </tr>
   <{/if}>
@@ -43,7 +43,7 @@
    <{/if}>
 
   </table>
-  <br />
+  <br>
   <{if $showsubcat == true && $subcats}>
   
       <table border="1" style="width:100%;">
@@ -54,7 +54,7 @@
   </tr>
         <tr>
           <{foreach item=subcat from=$subcategories}>
-          <td align="left"><b><a href="categories.php?cid=<{$subcat.id}>" ><{$subcat.title}></a></b> (<{$subcat.totallinks}>)<br /></td>
+          <td align="left"><b><a href="categories.php?cid=<{$subcat.id}>" ><{$subcat.title}></a></b> (<{$subcat.totallinks}>)<br></td>
             <{if $subcat.count is div by 4}>
         </tr><tr>
             <{/if}>
@@ -62,7 +62,7 @@
         </tr>
       </table>
     
- <br />
+ <br>
   <{/if}>
         <table border="0" style="width:100%;" class="outer">
 
@@ -107,12 +107,12 @@
 	
         <td width="30%" align="center"><b><{$item.name}>&nbsp;<{$item.new}></b></td>
         <td align="center" width="15%"><{$item.year}></td>
-        <td align="center" width="25%"><{$item.studies}><br /></td>
+        <td align="center" width="25%"><{$item.studies}><br></td>
         <td align="center" width="15%"><{$item.date}></td>
         <td align="center" width="5%"><{$item.views}></td>
         <td align="center" width="5%"><{$item.photo}></td>
 	<{/foreach}>
-	 <br /><br />
+	 <br><br>
         </tr></tbody>
     </table>
         
@@ -131,11 +131,11 @@
           </nav>
           <nav class="right">
             <span class="prev">
-              <img src="media/jquery/addons/pager/icons/prev.png" /> Prev&nbsp;
+              <img src="media/jquery/addons/pager/icons/prev.png"> Prev&nbsp;
             </span>
             <span class="pagecount"></span>
             &nbsp;<span class="next">Next
-              <img src="media/jquery/addons/pager/icons/next.png" />
+              <img src="media/jquery/addons/pager/icons/next.png">
             </span>
           </nav>
         </div>
@@ -144,8 +144,8 @@
 </td></tr></table>
 
 <{else}>
-<br /><br />
-<br /><br />
+<br><br>
+<br><br>
 
 <table><tr><td>
 

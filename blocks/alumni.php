@@ -11,7 +11,7 @@
 /**
  * Alumni module for Xoops
  *
- * @copyright       XOOPS Project http://xoops.org/
+ * @copyright       XOOPS Project https://xoops.org/
  * @license         GPL 2.0 or later
  * @package         alumni
  * @since           2.6.x
@@ -59,7 +59,7 @@ $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view'
         
 	$a_item = array();
         $a_item['school'] = $school;
-        $a_item['link']   = '<a href="' . XOOPS_URL . "/modules/alumni/listing.php?lid=" . addslashes($block_listings[$i]->getVar('lid')) . "\"><b>$year&nbsp;-&nbsp;$name $mname $lname</b><br /></a>";
+        $a_item['link']   = '<a href="' . XOOPS_URL . "/modules/alumni/listing.php?lid=" . addslashes($block_listings[$i]->getVar('lid')) . "\"><b>$year&nbsp;-&nbsp;$name $mname $lname</b><br></a>";
 
         $block['items'][] = $a_item;
     }
@@ -91,7 +91,7 @@ function alumni_edit($options) {
     $form .= '>' . AlumniLocale::BLOCKS_HITS . '</option>';
     $form .= "</select>\n";
     $form .= '&nbsp;' . AlumniLocale::BLOCKS_DISPLAY . "&nbsp;<input type='text' name='options[]' value='" . $options[1] . "'/>&nbsp;" . AlumniLocale::BLOCKS_LISTINGS;
-    $form .= "&nbsp;<br /><br />" . AlumniLocale::BLOCKS_LENGTH . "&nbsp;<input type='text' name='options[]' value='" . $options[2] . "'/>&nbsp;" . AlumniLocale::BLOCKS_CHARS . '<br /><br />';
+    $form .= "&nbsp;<br><br>" . AlumniLocale::BLOCKS_LENGTH . "&nbsp;<input type='text' name='options[]' value='" . $options[2] . "'/>&nbsp;" . AlumniLocale::BLOCKS_CHARS . '<br><br>';
 
     return $form;
 }

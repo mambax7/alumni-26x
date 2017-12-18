@@ -16,7 +16,7 @@
         <{foreach item=item from=$items}>
 		<tr class="<{cycle values="odd,even"}>">
 		  <{if $xoops_isadmin}><td><{$item.admin}></td><{/if}>
-          <td><b><{$item.name}></b><br /></td>
+          <td><b><{$item.name}></b><br></td>
 	  <td><{$item.school}></td>
 	   <td><{$item.year}></td>
           <td><{$item.photo}></td>

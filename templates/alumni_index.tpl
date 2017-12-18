@@ -36,21 +36,21 @@
 		<td class="even" align="center">
 		<table border="0" style="width:100%;" align="center">
 		<form name='search' id='search' action='search.php' method='post' onsubmit='return xoopsFormValidate_search();'>
-		<input type='hidden' name='mids[]' value='<{$xmid}>' />
-		<td width='15%' align="center"><br /><b><{$search_listings}></b></td></tr><tr>
-		<td align="center"><br /><{$keywords}><br /><input type='text' name='query' id='query' size='15' maxlength='255' value='' /></td>
+		<input type='hidden' name='mids[]' value='<{$xmid}>'>
+		<td width='15%' align="center"><br><b><{$search_listings}></b></td></tr><tr>
+		<td align="center"><br><{$keywords}><br><input type='text' name='query' id='query' size='15' maxlength='255' value=''></td>
 
-	<!--	<td><br /><select  size='1' name='andor' id='andor'>
+	<!--	<td><br><select  size='1' name='andor' id='andor'>
 		<option value='AND' selected='selected'><{$all_words}></option>
 		<option value='OR'><{$any_words}></option>
 		<option value='exact'><{$exact_match}></option>
 		</select></td>   -->
 	</tr><tr>
 
-		<td align="center"> <{$bycategory}><br /><{$category_select}><br /></td></tr>
-		<td align="center"><input type='submit' class='formButton' name='submit'  id='submit' value='Search' /></td></tr>
-		<input type='hidden' name='issearch' value='1' />
-		<input type='hidden' name='action' id='action' value='results' />
+		<td align="center"> <{$bycategory}><br><{$category_select}><br></td></tr>
+		<td align="center"><input type='submit' class='formButton' name='submit'  id='submit' value='Search'></td></tr>
+		<input type='hidden' name='issearch' value='1'>
+		<input type='hidden' name='action' id='action' value='results'>
 		</form>
 		</table>
 		</td>
@@ -68,7 +68,7 @@
       <table border="0" style="width:100%;">
       
       
-      <br />
+      <br>
  
       
 <{if count($categories) gt 0}>
@@ -83,15 +83,15 @@
     		<td valign="top" width="33%" align="center">
     		
     		
-    		<a href="<{$xoops_url}>/modules/<{$moduleDirName}>/categories.php?cid=<{$category.id}>"><img src="<{$category.image}>" /></a><br /><br />
+    		<a href="<{$xoops_url}>/modules/<{$moduleDirName}>/categories.php?cid=<{$category.id}>"><img src="<{$category.image}>"></a><br><br>
     		
-						<a href="<{$xoops_url}>/modules/<{$moduleDirName}>/categories.php?cid=<{$category.id}>"><b><{$category.title}></b></a><br />(<{$category.totalcats}>)<br />
+						<a href="<{$xoops_url}>/modules/<{$moduleDirName}>/categories.php?cid=<{$category.id}>"><b><{$category.title}></b></a><br>(<{$category.totalcats}>)<br>
 			
 						<{if $category.subcategories}>
 							<{foreach item=subcat from=$category.subcategories}>
 								<div style="margin-bottom: 3px; margin-left: 16px;">
 									<small><a href="<{$xoops_url}>/modules/<{$moduleDirName}>/categories.php?cid=<{$subcat.id}>"><{$subcat.title}>&nbsp;(<{$subcat.count}>)</a></small>
-								</div><br />
+								</div><br>
 							<{/foreach}>
     					<{/if}>
 			</td>
@@ -105,8 +105,8 @@
 
 <{/if}>
  <tr><td><tr>
- <td class="even" align="center"><br /><{$total_listings}><br /><{$total_confirm}></td></tr></table></td></tr></table>
-<br />
+ <td class="even" align="center"><br><{$total_listings}><br><{$total_confirm}></td></tr></table></td></tr></table>
+<br>
 
 
 
@@ -133,7 +133,7 @@
  <{if $use_extra_code == 1}>
   <{if ($smarty.foreach.items.index % $index_code_place == 0) && !($smarty.foreach.items.first)}>
 	<{if $use_banner == 1}>
-  <table><tr><td align="center"><br /><{$index_banner}></td></tr></table>
+  <table><tr><td align="center"><br><{$index_banner}></td></tr></table>
 <{else}>
  <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
  <tr><td align="center"><{$index_extra_code}></td></tr></table>
@@ -142,11 +142,11 @@
 <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
 	<tr class=<{cycle values="odd,even"}>>
 	<{if $xoops_isadmin}><td width="5%"><{$item.admin}></td><{/if}>
-        <td align="center" width="30%"><b><{$item.name}>&nbsp;<{$item.new}></b><br /></td>
-        <td align="center" width="15%"><{$item.school}><br /></td>
+        <td align="center" width="30%"><b><{$item.name}>&nbsp;<{$item.new}></b><br></td>
+        <td align="center" width="15%"><{$item.school}><br></td>
         <td align="center" width="15%"><{$item.studies}></td>
         <td align="center" width="30%"><{$item.year}></td>
-        <td align="center" width="5%"><{$item.photo}></td><br />
+        <td align="center" width="5%"><{$item.photo}></td><br>
         </tr>
     
     
@@ -154,7 +154,7 @@
 <{/foreach}>
 
 
-<br /><br />
+<br><br>
 <{include file='module:notifications/select.tpl'}>
-<br /><br />
+<br><br>
 

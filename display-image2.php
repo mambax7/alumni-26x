@@ -23,8 +23,8 @@ $numrows     = $alumni_listing_Handler->getCount($listing_criteria);
 $listing_arr = $alumni_listing_Handler->get($lid);
 
 if ($numrows > '0') {
-    $photo2 = $listing_arr->getvar('photo2');
-    echo '<center><br /><br /><img src="photos/now_photo/'.$photo.'" border=0></center>';
+    $photo2 = $listing_arr->getVar('photo2');
+    echo '<center><br><br><img src="photos/now_photo/'.$photo.'" border=0></center>';
 }
 
 echo '<center><table><tr><td><a href=#  onClick="window.close()">' . AlumniLocale::CLOSEF . '</a></td></tr></table></center>';

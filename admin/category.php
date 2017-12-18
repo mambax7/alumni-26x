@@ -11,7 +11,7 @@
 /**
  * Alumni module for Xoops
  *
- * @copyright       XOOPS Project http://xoops.org/
+ * @copyright       XOOPS Project https://xoops.org/
  * @license         GPL 2.0 or later
  * @package         alumni
  * @since           2.6.x
@@ -43,7 +43,7 @@ switch ($op) {
         $catCriteria->setStart($start);
         $catCriteria->setLimit($limit);
         $numrows = $categoriesHandler->getCount();
-        $categoryArray = $categoriesHandler->getall($catCriteria);
+        $categoryArray = $categoriesHandler->getAll($catCriteria);
 
         //Function that allows display child categories
         function alumniCategoryDisplayChildren($cid = 0, $categoryArray, $prefix = '', $order = '', &$class) {
@@ -106,7 +106,7 @@ switch ($op) {
             $class  = "odd";
             $prefix = "<img src='" . XOOPS_URL . "/modules/{$moduleDirName}/images/arrow.gif'>";
 
-            $categoryArray2 = $categoriesHandler->getall($catCriteria);
+            $categoryArray2 = $categoriesHandler->getAll($catCriteria);
 
             foreach (array_keys($categoryArray2) as $i) {
                 if ($categoryArray2[$i]->getVar('pid') == 0) {
@@ -132,7 +132,7 @@ switch ($op) {
                     $criteria3->add(new Criteria("pid", $cid));
                     $criteria3->setSort("title");
                     $criteria3->setOrder("ASC");
-                    $pid     = $categoriesHandler->getall($criteria3);
+                    $pid     = $categoriesHandler->getAll($criteria3);
                     $num_pid = $categoriesHandler->getCount();
 
                     if ($pid != 0) {
@@ -140,7 +140,7 @@ switch ($op) {
                     }
                 }
             }
-            echo '</table><br /><br />';
+            echo '</table><br><br>';
         }
 
         break;
@@ -280,7 +280,7 @@ switch ($op) {
                 array('ok' => 1, 'cid' => $cid, 'op' => 'delete_category'),
                 'category.php',
                 XoopsLocale::Q_ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM
-                . '<br /><span class="red">' . $obj->getvar('title') . '<span>'
+                . '<br><span class="red">' . $obj->getVar('title') . '<span>'
             );
         }
         break;

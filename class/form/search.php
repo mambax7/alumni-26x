@@ -11,7 +11,7 @@
 /**
  * Alumni module for Xoops
  *
- * @copyright       XOOPS Project http://xoops.org/
+ * @copyright       XOOPS Project https://xoops.org/
  * @license         GPL 2.0 or later
  * @package         alumni
  * @since           2.6.x
@@ -55,7 +55,7 @@ class AlumniSearchForm extends XoopsThemeForm {
         $criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));
         $criteria->setOrder($xoops->getModuleConfig('alumni_csortorder'));
 
-        $category_arr = $categoriesHandler->getall($criteria);
+        $category_arr = $categoriesHandler->getAll($criteria);
 
         foreach (array_keys($category_arr) as $i) {
             $cid   = $category_arr[$i]->getVar('cid');
