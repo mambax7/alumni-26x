@@ -27,7 +27,7 @@ class AlumniCategoryForm extends Xoops\Form\ThemeForm
 	$moduleDirName  = basename(dirname(__DIR__));
         $admin_lang = '_AM_' . strtoupper($moduleDirName);
     
-	$title = $obj->isNew() ? sprintf(AlumniLocale::ADD_CAT) : sprintf(AlumniLocale::EDIT_CAT);
+	$title = sprintf($obj->isNew() ? AlumniLocale::ADD_CAT : AlumniLocale::EDIT_CAT);
 	parent::__construct($title, 'form', false, 'post', true);
 
         include_once(XOOPS_ROOT_PATH . '/class/xoopsformloader.php');

@@ -30,9 +30,9 @@ class AlumniListingForm extends Xoops\Form\ThemeForm
 	$xoops = Xoops::getInstance();
 
 	if ('1' == $xoops->getModuleConfig('alumni_moderated')) {
-        $title = $obj->isNew() ? sprintf(AlumniLocale::ADD_MOD) : sprintf(AlumniLocale::EDIT_MOD);
+        $title = sprintf($obj->isNew() ? AlumniLocale::ADD_MOD : AlumniLocale::EDIT_MOD);
         } else {
-	$title = $obj->isNew() ? sprintf(AlumniLocale::ADD_LISTING) : sprintf(AlumniLocale::EDIT_LISTING);
+	$title = sprintf($obj->isNew() ? AlumniLocale::ADD_LISTING : AlumniLocale::EDIT_LISTING);
 	}
 
 	parent::__construct($title, 'form', false, 'post', true);
