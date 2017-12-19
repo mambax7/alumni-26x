@@ -35,7 +35,7 @@ $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view'
 $all_ids = implode(', ', $alumni_ids);
     
 	$by_cat  = Request::getInt('by_cat', 0);
-        $andor = strtolower($andor)=='and' ? 'and' : 'or';
+        $andor = 'and' == strtolower($andor) ? 'and' : 'or';
 
         $qb = \Xoops::getInstance()->db()->createXoopsQueryBuilder();
         $eb = $qb->expr();
@@ -63,7 +63,7 @@ $all_ids = implode(', ', $alumni_ids);
             if ($by_cat) {
 	    $qb->andWhere($eb->eq('cid', $by_cat));
             }
-            if ($andor == 'and') {
+            if ('and' == $andor) {
                 $qb->andWhere(call_user_func_array([$eb, 'andX'], $queryParts));
             } else {
                 $qb->andWhere(call_user_func_array([$eb, 'orX'], $queryParts));

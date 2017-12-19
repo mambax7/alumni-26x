@@ -29,7 +29,7 @@ class AlumniListingForm extends Xoops\Form\ThemeForm
     {
 	$xoops = Xoops::getInstance();
 
-	if ($xoops->getModuleConfig('alumni_moderated') == '1') {
+	if ('1' == $xoops->getModuleConfig('alumni_moderated')) {
         $title = $obj->isNew() ? sprintf(AlumniLocale::ADD_MOD) : sprintf(AlumniLocale::EDIT_MOD);
         } else {
 	$title = $obj->isNew() ? sprintf(AlumniLocale::ADD_LISTING) : sprintf(AlumniLocale::EDIT_LISTING);
@@ -132,7 +132,7 @@ class AlumniListingForm extends Xoops\Form\ThemeForm
         if ($xoops->user->isAdmin()) {
 	$this->addElement(new Xoops\Form\RadioYesNo(AlumniLocale::APPROVE_2, 'valid', $obj->getVar('valid'), XoopsLocale::YES, XoopsLocale::NO));
         }
-        if ($xoops->getModuleConfig('alumni_use_captcha') == '1') {
+        if ('1' == $xoops->getModuleConfig('alumni_use_captcha')) {
             $this->addElement(new Xoops\Form\Captcha());
         }
         

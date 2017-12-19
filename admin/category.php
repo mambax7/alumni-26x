@@ -68,7 +68,7 @@ switch ($op) {
                      . "'><img src='../images/edit.gif' alt='" . XoopsLocale::A_EDIT . "' title='" . XoopsLocale::A_EDIT . "'></a>
 						<a href='category.php?op=delete_category&cid=" . $categoryArray[$i]->getVar('cid')
                      . "'><img src='../images/dele.gif' alt='" . XoopsLocale::A_DELETE . "' title='" . XoopsLocale::A_DELETE . "'></a></td></tr>";
-                $class = ($class == 'even') ? 'odd' : 'even';
+                $class = ('even' == $class) ? 'odd' : 'even';
 
                 $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
                 $criteria2                 = new CriteriaCompo();
@@ -77,7 +77,7 @@ switch ($op) {
                 $criteria2->setOrder('ASC');
                 $cat_pid = $categoriesHandler->getAll($criteria2);
                 $num_pid = $categoriesHandler->getCount();
-                if ($num_pid != 0) {
+                if (0 != $num_pid) {
                     alumniCategoryDisplayChildren($cid, $cat_pid, $prefix, $order, $class);
                 }
             }
@@ -109,7 +109,7 @@ switch ($op) {
             $categoryArray2 = $categoriesHandler->getAll($catCriteria);
 
             foreach (array_keys($categoryArray2) as $i) {
-                if ($categoryArray2[$i]->getVar('pid') == 0) {
+                if (0 == $categoryArray2[$i]->getVar('pid')) {
                     $cid   = $categoryArray2[$i]->getVar('cid');
                     $img   = $categoryArray2[$i]->getVar('img');
                     $title = $categoryArray2[$i]->getVar('title');
@@ -127,7 +127,7 @@ switch ($op) {
 				<a href='category.php?op=delete_category&cid="
                          . $categoryArray2[$i]->getVar('cid') . "'><img src='../images/dele.gif' alt='"
                          . XoopsLocale::A_DELETE . "' title='" . XoopsLocale::A_DELETE . "'></a></td></tr>";
-                    $class     = ($class == 'even') ? 'odd' : 'even';
+                    $class     = ('even' == $class) ? 'odd' : 'even';
                     $criteria3 = new CriteriaCompo();
                     $criteria3->add(new Criteria('pid', $cid));
                     $criteria3->setSort('title');
@@ -135,7 +135,7 @@ switch ($op) {
                     $pid     = $categoriesHandler->getAll($criteria3);
                     $num_pid = $categoriesHandler->getCount();
 
-                    if ($pid != 0) {
+                    if (0 != $pid) {
                         alumniCategoryDisplayChildren($cid, $pid, $prefix, 'title', $class);
                     }
                 }
@@ -173,7 +173,7 @@ switch ($op) {
         $destination = XOOPS_ROOT_PATH . "/uploads/{$moduleDirName}/photos/school_photos";
 	$del_photo = Request::getInt('del_photo', 0);
         if (isset($del_photo)) {
-        if ($del_photo == '1') {
+        if ('1' == $del_photo) {
             if (@file_exists('' . $destination . '/' . $photo_old) . '') {
                 unlink('' . $destination . '/' . $photo_old . '');
             }
@@ -266,7 +266,7 @@ switch ($op) {
         $cid = Request::getInt('cid', 0);
         $ok = Request::getInt('ok', 0);
         $obj = $categoriesHandler->get($cid);
-        if (isset($ok) && $ok == 1) {
+        if (isset($ok) && 1 == $ok) {
             if (!$xoops->security()->check()) {
                 $xoops->redirect('category.php', 3, implode(',', $xoops->security()->getErrors()));
             }

@@ -45,7 +45,7 @@ $all_ids = implode(', ', $alumni_ids);
     $criteria->add(new Criteria('valid', 1, '='));
   //  $criteria->add(new Criteria('date', time(), '<='));
     $criteria->add(new Criteria('cid', '('.$all_ids.')', 'IN'));
-    if ($userid != 0) {
+    if (0 != $userid) {
         $criteria->add(new Criteria('usid', $userid, '='));
     }
     if ($by_cat) {

@@ -81,12 +81,12 @@ function alumni_edit($options) {
 
     $form = AlumniLocale::BLOCKS_ORDER . "&nbsp;<select name='options[]'>";
     $form .= "<option value='date'";
-    if ($options[0] == 'date') {
+    if ('date' == $options[0]) {
         $form .= " selected='selected'";
     }
     $form .= '>' . AlumniLocale::BLOCKS_DATE . "</option>\n";
     $form .= "<option value='view'";
-    if ($options[0] == 'view') {
+    if ('view' == $options[0]) {
         $form .= " selected='selected'";
     }
     $form .= '>' . AlumniLocale::BLOCKS_HITS . '</option>';

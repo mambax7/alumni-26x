@@ -60,7 +60,7 @@ class AlumniGroupPermHandler extends XoopsGroupPermHandler {
 
 
         // delete alumni_view
-        if (count($groups_delete) != 0) {
+        if (0 != count($groups_delete)) {
             $criteria = $criteria = new CriteriaCompo();
             $criteria->add(new Criteria('gperm_itemid', $cid));
             $criteria->add(new Criteria('gperm_modid', $module_id));
@@ -72,7 +72,7 @@ class AlumniGroupPermHandler extends XoopsGroupPermHandler {
 
 
         // delete alumni_view
-        if (count($groups1_delete) != 0) {
+        if (0 != count($groups1_delete)) {
             $criteria = $criteria = new CriteriaCompo();
             $criteria->add(new Criteria('gperm_itemid', $cid));
             $criteria->add(new Criteria('gperm_modid', $module_id));
@@ -83,7 +83,7 @@ class AlumniGroupPermHandler extends XoopsGroupPermHandler {
         }
 
         // delete alumni_view
-        if (count($groups2_delete) != 0) {
+        if (0 != count($groups2_delete)) {
             $criteria = $criteria = new CriteriaCompo();
             $criteria->add(new Criteria('gperm_itemid', $cid));
             $criteria->add(new Criteria('gperm_modid', $module_id));
@@ -94,21 +94,21 @@ class AlumniGroupPermHandler extends XoopsGroupPermHandler {
         }
 
         // Add alumni_view
-        if (count($groups_add) != 0) {
+        if (0 != count($groups_add)) {
             foreach ($groups_add as $group_id) {
                 parent::addRight('alumni_view', $cid, $group_id, $module_id);
             }
         }
 
         // Add alumni_submit
-        if (count($groups1_add) != 0) {
+        if (0 != count($groups1_add)) {
             foreach ($groups1_add as $group_id) {
                 parent::addRight('alumni_submit', $cid, $group_id, $module_id);
             }
         }
 
         // Add alumni_submit
-        if (count($groups2_add) != 0) {
+        if (0 != count($groups2_add)) {
             foreach ($groups2_add as $group_id) {
                 parent::addRight('alumni_premium', $cid, $group_id, $module_id);
             }

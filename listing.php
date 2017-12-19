@@ -79,7 +79,7 @@ switch ($op) {
             $mytitle = $catpath_arr[$i]->getVar('title');
         }
 
-        if ($myParent != 0) {
+        if (0 != $myParent) {
             $path = "<a href='" . ALUMNI_URL . '/categories.php?cid=' . $catpath_arr[$i]->getVar('cid') . "'>" . $catpath_arr[$i]->getVar('title') . "</a>&nbsp;:&nbsp;{$path}";
         }
 
@@ -121,7 +121,7 @@ switch ($op) {
 
             $recordexist = false;
 
-            if ($lid != 0) {
+            if (0 != $lid) {
                 $recordexist = true;
                 $listingHandler->updateCounter($lid);
             }
@@ -241,7 +241,7 @@ switch ($op) {
         if (!$xoops->security()->check()) {
             $xoops->redirect('index.php', 3, implode(',', $xoops->security()->getErrors()));
         }
-        if ($xoops->getModuleConfig('alumni_use_captcha') == '1' & !$xoops->user->isAdmin()) {
+        if ('1' == $xoops->getModuleConfig('alumni_use_captcha') & !$xoops->user->isAdmin()) {
             $xoopsCaptcha = XoopsCaptcha::getInstance();
             if (!$xoopsCaptcha->verify()) {
                 $xoops->redirect('javascript:history.go(-1)', 4, $xoopsCaptcha->getMessage());
@@ -262,7 +262,7 @@ switch ($op) {
         $destination = XOOPS_ROOT_PATH . "/uploads/{$moduleDirName}/photos/grad_photo";
         $del_photo = Request::getInt('del_photo', 0);
         if (isset($del_photo)) {
-            if ($del_photo == '1') {
+            if ('1' == $del_photo) {
                 if (@file_exists('' . $destination . '/' . $photo_old . '')) {
                     unlink('' . $destination . '/' . $photo_old . '');
                 }
@@ -274,7 +274,7 @@ switch ($op) {
         $destination2 = XOOPS_ROOT_PATH . "/uploads/{$moduleDirName}/photos/now_photo";
         $del_photo2 = Request::getInt('del_photo2', 0);
         if (isset($del_photo2)) {
-            if ($del_photo2 == '1') {
+            if ('1' == $del_photo2) {
                 if (@file_exists('' . $destination2 . '/' . $photo2_old . '')) {
                     unlink('' . $destination2 . '/' . $photo2_old . '');
                 }
@@ -309,7 +309,7 @@ switch ($op) {
         $obj->setVar('usid', Request::getInt('usid'));
         $obj->setVar('town', Request::getString('town'));
 
-        if ($xoops->getModuleConfig('alumni_moderated') == '1') {
+        if ('1' == $xoops->getModuleConfig('alumni_moderated')) {
             $obj->setVar('valid', '0');
         } else {
             $obj->setVar('valid', '1');
@@ -360,13 +360,13 @@ switch ($op) {
         }
 
         if ($new_id = $listingHandler->insert($obj)) {
-            if ($xoops->getModuleConfig('alumni_moderated') == '1') {
+            if ('1' == $xoops->getModuleConfig('alumni_moderated')) {
                 $xoops->redirect('index.php', 3, AlumniLocale::MODERATE);
             } else {
                 $xoops->redirect('listing.php?lid=' .$new_id. '', 3, XoopsLocale::S_DATABASE_UPDATED);
             }
             //notifications
-            if ($lid == 0 && $xoops->isActiveModule('notifications')) {
+            if (0 == $lid && $xoops->isActiveModule('notifications')) {
                 $notification_handler = Notifications::getInstance()->getHandlerNotification();
                 $tags                 = [];
                 $tags['MODULE_NAME']  = 'alumni';
@@ -396,7 +396,7 @@ switch ($op) {
         $ok = Request::getInt('ok', 0);
 
         $obj = $listingHandler->get($lid);
-        if ($ok == 1) {
+        if (1 == $ok) {
             if (!$xoops->security()->check()) {
                 $xoops->redirect('index.php', 3, implode(',', $xoops->security()->getErrors()));
             }

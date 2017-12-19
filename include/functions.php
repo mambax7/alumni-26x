@@ -102,40 +102,40 @@ function alumni_convertorderbytrans($orderby) {
 
     global $main_lang;
 
-    if ($orderby == 'view ASC') {
+    if ('view ASC' == $orderby) {
         $orderbyTrans = '' . constant($main_lang . '_POPULARITYLTOM') . '';
     }
-    if ($orderby == 'view DESC') {
+    if ('view DESC' == $orderby) {
         $orderbyTrans = '' . constant($main_lang . '_POPULARITYMTOL') . '';
     }
-    if ($orderby == 'lname ASC') {
+    if ('lname ASC' == $orderby) {
         $orderbyTrans = '' . constant($main_lang . '_NAMEATOZ') . '';
     }
-    if ($orderby == 'lname DESC') {
+    if ('lname DESC' == $orderby) {
         $orderbyTrans = '' . constant($main_lang . '_NAMEZTOA') . '';
     }
-    if ($orderby == 'school ASC') {
+    if ('school ASC' == $orderby) {
         $orderbyTrans = '' . constant($main_lang . '_SCHOOLATOZ') . '';
     }
-    if ($orderby == 'school DESC') {
+    if ('school DESC' == $orderby) {
         $orderbyTrans = '' . constant($main_lang . '_SCHOOLZTOA') . '';
     }
-    if ($orderby == 'studies ASC') {
+    if ('studies ASC' == $orderby) {
         $orderbyTrans = '' . constant($main_lang . '_STUDIESATOZ') . '';
     }
-    if ($orderby == 'studies DESC') {
+    if ('studies DESC' == $orderby) {
         $orderbyTrans = '' . constant($main_lang . '_STUDIESZTOA') . '';
     }
-    if ($orderby == 'year ASC') {
+    if ('year ASC' == $orderby) {
         $orderbyTrans = '' . constant($main_lang . '_YEAROLD') . '';
     }
-    if ($orderby == 'year DESC') {
+    if ('year DESC' == $orderby) {
         $orderbyTrans = '' . constant($main_lang . '_YEARNEW') . '';
     }
-    if ($orderby == 'date ASC') {
+    if ('date ASC' == $orderby) {
         $orderbyTrans = '' . constant($main_lang . '_DATEOLD') . '';
     }
-    if ($orderby == 'date DESC') {
+    if ('date DESC' == $orderby) {
         $orderbyTrans = '' . constant($main_lang . '_DATENEW') . '';
     }
 
@@ -143,40 +143,40 @@ function alumni_convertorderbytrans($orderby) {
 }
 
 function alumni_convertorderbyout($orderby) {
-    if ($orderby == 'lname ASC') {
+    if ('lname ASC' == $orderby) {
         $orderby = 'nameA';
     }
-    if ($orderby == 'school ASC') {
+    if ('school ASC' == $orderby) {
         $orderby = 'schoolA';
     }
-    if ($orderby == 'studies ASC') {
+    if ('studies ASC' == $orderby) {
         $orderby = 'studiesA';
     }
-    if ($orderby == 'year ASC') {
+    if ('year ASC' == $orderby) {
         $orderby = 'yearA';
     }
-    if ($orderby == 'date ASC') {
+    if ('date ASC' == $orderby) {
         $orderby = 'dateA';
     }
-    if ($orderby == 'view ASC') {
+    if ('view ASC' == $orderby) {
         $orderby = 'viewA';
     }
-    if ($orderby == 'lname DESC') {
+    if ('lname DESC' == $orderby) {
         $orderby = 'nameD';
     }
-    if ($orderby == 'school DESC') {
+    if ('school DESC' == $orderby) {
         $orderby = 'schoolD';
     }
-    if ($orderby == 'studies DESC') {
+    if ('studies DESC' == $orderby) {
         $orderby = 'studiesD';
     }
-    if ($orderby == 'year DESC') {
+    if ('year DESC' == $orderby) {
         $orderby = 'yearD';
     }
-    if ($orderby == 'date DESC') {
+    if ('date DESC' == $orderby) {
         $orderby = 'dateD';
     }
-    if ($orderby == 'view DESC') {
+    if ('view DESC' == $orderby) {
         $orderby = 'viewD';
     }
 

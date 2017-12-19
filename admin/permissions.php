@@ -36,7 +36,7 @@ $cat_rows = $categoriesHandler->getCount();
 include_once(XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/class/alumni_tree.php");
 $cattree = new AlumniObjectTree($cats, 'cid', 'pid');
 
-if ($cat_rows == '0') {
+if ('0' == $cat_rows) {
     echo AlumniLocale::MUST_ADD_CAT;
 } else {
     $perm_desc = '';

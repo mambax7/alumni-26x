@@ -47,17 +47,17 @@ $mids    = Request::getArray('mids', []);
 $xmid    = $xoops->module->getVar('mid');
 $queries = [];
 
-if ($action == 'results') {
-    if ($query == ''  && ($by_cat == '')) {
+if ('results' == $action) {
+    if ('' == $query && ('' == $by_cat)) {
         $xoops->redirect('index.php', 1, _MD_SEARCH_PLZENTER);
     }
 } else {
-    if ($action == 'showall') {
-        if ($query == '' || empty($mid)) {
+    if ('showall' == $action) {
+        if ('' == $query || empty($mid)) {
             $xoops->redirect('index.php', 1, _MD_SEARCH_PLZENTER);
         }
     } else {
-        if ($action == 'showallbyuser') {
+        if ('showallbyuser' == $action) {
             if (empty($mid) || empty($uid)) {
                 $xoops->redirect('index.php', 1, _MD_SEARCH_PLZENTER);
             }
@@ -69,7 +69,7 @@ $gperm_handler     = $xoops->getHandlerGroupPermission();
 $available_modules = $gperm_handler->getItemIds('module_read', $xoops->getUserGroups());
 $available_plugins = \Xoops\Module\Plugin::getPlugins('search');
 
-if ($action == 'search') {
+if ('search' == $action) {
     $xoops->header();
     /* @var $formHandler SearchSearchForm */
     $formHandler = $alumni->getForm(null, 'search');
@@ -77,15 +77,15 @@ if ($action == 'search') {
     $form->display();
     $xoops->footer();
 }
-if ($andor != 'OR' && $andor != 'exact' && $andor != 'AND') {
+if ('OR' != $andor && 'exact' != $andor && 'AND' != $andor) {
     $andor = 'AND';
 }
 
 $ignored_queries = []; // holds kewords that are shorter than allowed minmum length
 $queries_pattern = [];
 $myts = \Xoops\Core\Text\Sanitizer::getInstance();
-if ($action != 'showallbyuser') {
-    if ($andor != 'exact') {
+if ('showallbyuser' != $action) {
+    if ('exact' != $andor) {
         $temp_queries = str_getcsv($query, ' ', '"');
         foreach ($temp_queries as $q) {
             $q = trim($q);
@@ -96,7 +96,7 @@ if ($action != 'showallbyuser') {
                 $ignored_queries[] = $q;
             }
         }
-        if (count($queries) == 0  && ($by_cat == '')){
+        if (0 == count($queries) && ('' == $by_cat)){
             $xoops->redirect('index.php', 2, sprintf(XoopsLocale::EF_KEYWORDS_MUST_BE_GREATER_THAN, $search->getConfig('keyword_min')));
         }
     } else {
@@ -228,7 +228,7 @@ switch ($action) {
             $next_results = $plugin->search($queries, $andor, 1, $start + 20, $uid);
             $next_count   = count($next_results);
             $has_next     = false;
-            if (is_array($next_results) && $next_count == 1) {
+            if (is_array($next_results) && 1 == $next_count) {
                 $has_next = true;
             }
             $xoops->tpl()->assign('sr_showing', sprintf(XoopsLocale::F_SHOWING_RESULTS, $start + 1, $start + $count));
@@ -245,7 +245,7 @@ switch ($action) {
 
             $res = [];
             for ($i = 0; $i < $count; ++$i) {
-                if (isset($results[$i]['image']) && $results[$i]['image'] != '') {
+                if (isset($results[$i]['image']) && '' != $results[$i]['image']) {
                     $res[$i]['image'] = $xoops->url('modules/' . $module->getVar('dirname') . '/' . $results[$i]['image']);
                 } else {
                     $res[$i]['image'] = $xoops->url('images/icons/posticon2.gif');
@@ -274,7 +274,7 @@ switch ($action) {
 
             $search_url = XOOPS_URL . '/modules/alumni/search.php?query=' . urlencode(stripslashes(implode(' ', $queries)));
             $search_url .= "&mid={$mid}&action={$action}&andor={$andor}&by_cat=$by_cat";
-            if ($action == 'showallbyuser') {
+            if ('showallbyuser' == $action) {
                 $search_url .= "&uid={$uid}";
             }
             if ($start > 0) {

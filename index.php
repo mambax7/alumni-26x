@@ -63,7 +63,7 @@ $gpermHandler = $xoops->getHandlerGroupPermission();
 $totalCategories = $alumni->getCategoryHandler()->getCategoriesCount(0);
 
 // if there ain't no category to display, let's get out of here
-if ($totalCategories == 0) {
+if (0 == $totalCategories) {
     $xoops->redirect(\XoopsBaseConfig::get('url'), 12, _NOPERM);
 }
 
@@ -76,7 +76,7 @@ $xoops->tpl()->assign('add_from_title', AlumniLocale::ALUMNI_LISTINGS);
 $xoops->tpl()->assign('class_of', AlumniLocale::CLASSOF);
 $xoops->tpl()->assign('front_intro', AlumniLocale::FINTRO);
 
-if ($xoops->getModuleConfig('' . $moduleDirName . '_offer_search') == '1') {
+if ('1' == $xoops->getModuleConfig('' . $moduleDirName . '_offer_search')) {
 
     $xoops->tpl()->assign('offer_search', true);
     $xoops->tpl()->assign('search_listings', AlumniLocale::SEARCH_LISTINGS);
@@ -120,7 +120,7 @@ if ($xoops->getModuleConfig('' . $moduleDirName . '_offer_search') == '1') {
     $by_cat          = Request::getInt('by_cat');
     $select_category = '<select name="by_cat">';
     $select_category .= '<option value="all"';
-    if (empty($by_cat) || count($by_cat) == 0) {
+    if (empty($by_cat) || 0 == count($by_cat)) {
         $select_category .= 'selected="selected"';
     }
     $select_category .= '>' . XoopsLocale::ALL . '</option>';
@@ -154,7 +154,7 @@ $count = 0;
 foreach (array_keys($cats) as $i) {
     if (in_array($cats[$i]->getVar('cid'), $alumni_ids)) {
         $cat_img = $cats[$i]->getVar('img');
-        if ($cat_img != 'http://') {
+        if ('http://' != $cat_img) {
             $cat_img = XOOPS_URL . "/modules/{$moduleDirName}/assets/images/cat/$cat_img";
         } else {
             $cat_img = '';
@@ -199,14 +199,14 @@ foreach (array_keys($cats) as $i) {
                 $sub_count_criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));
                 $alumni_subcount = $listingHandler->getCount($sub_count_criteria);
 
-                if ($xoops->getModuleConfig('alumni_showsubcat') == 1 AND $all_subcats[$k]->getVar('pid') == $cats[$i]->getVar('cid')) { // if we are collecting subcat info for displaying, and this subcat is a first level child...
+                if (1 == $xoops->getModuleConfig('alumni_showsubcat') AND $all_subcats[$k]->getVar('pid') == $cats[$i]->getVar('cid')) { // if we are collecting subcat info for displaying, and this subcat is a first level child...
                     $subcategories[] = ['id' => $all_subcats[$k]->getVar('cid'), 'title' => $all_subcats[$k]->getVar('title'), 'count' => $alumni_subcount];
                 }
             }
         }
     }
 
-    if ($xoops->getModuleConfig('alumni_showsubcat') != 1) {
+    if (1 != $xoops->getModuleConfig('alumni_showsubcat')) {
         unset($subcategories);
 
         $xoops->tpl()->append('categories', [
@@ -232,7 +232,7 @@ $xoops->tpl()->assign('total_confirm', '');
 $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
 
 $xoops->tpl()->assign('moderated', false);
-if ($xoops->getModuleConfig('' . $moduleDirName . '_moderated') == '1') {
+if ('1' == $xoops->getModuleConfig('' . $moduleDirName . '_moderated')) {
     $xoops->tpl()->assign('moderated', true);
     $moderate_criteria = new CriteriaCompo();
     $moderate_criteria->add(new Criteria('valid', 0, '='));
@@ -245,7 +245,7 @@ if ($xoops->getModuleConfig('' . $moduleDirName . '_moderated') == '1') {
             $xoops->tpl()->assign('user_admin', true);
 
             $xoops->tpl()->assign('admin_block', AlumniLocale::ADMIN_PANEL);
-            if ($moderate_rows == 0) {
+            if (0 == $moderate_rows) {
                 $xoops->tpl()->assign('confirm_alumni', AlumniLocale::NO_LISTING_TO_APPROVE);
             } else {
                 $xoops->tpl()->assign('confirm_alumni', AlumniLocale::THERE_ARE . " $moderate_rows  " . AlumniLocale::WAITING . '<br><a href="admin/alumni.php?op=list_moderated">' . constant($main_lang . '_SEEIT') . '</a>');

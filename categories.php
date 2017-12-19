@@ -115,7 +115,7 @@ foreach (array_keys($catpathArray) as $i) {
     $mytitle = $catpathArray[$i]->getVar('title');
 }
 
-if ($myParent != 0) {
+if (0 != $myParent) {
     $path = "<a href='" . ALUMNI_URL . '/categories.php?cid=' . $catpathArray[$i]->getVar('cid') . "'>" . $catpathArray[$i]->getVar('title') . '</a>&nbsp;:&nbsp;';
 }
 $path = "{$homePath}{$path}{$itemPath}";
@@ -143,11 +143,11 @@ foreach (array_keys($categoryArray) as $i) {
     $order      = $categoryArray[$i]->getVar('ordre');
 
     $xoops->tpl()->assign('moderated', '');
-    if ($xoops->getModuleConfig('alumni_moderated') == 1) {
+    if (1 == $xoops->getModuleConfig('alumni_moderated')) {
         $xoops->tpl()->assign('moderated', '1');
     }
     $xoops->tpl()->assign('lang_subcat', '');
-    if ($xoops->getModuleConfig('alumni_showsubcat') == 1) {
+    if (1 == $xoops->getModuleConfig('alumni_showsubcat')) {
 
         $subcatCriteria = new CriteriaCompo();
         $subcatCriteria->add(new Criteria('pid', $cid, '='));

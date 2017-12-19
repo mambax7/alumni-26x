@@ -27,7 +27,7 @@ if (!empty($_POST['submit'])) {
 
     global $xoopsConfig, $xoopsDB, $myts, $meta;
 
-    if ($xoops->getModuleConfig('alumni_use_captcha') == '1' && !$xoops->user->isAdmin()) {
+    if ('1' == $xoops->getModuleConfig('alumni_use_captcha') && !$xoops->user->isAdmin()) {
         $xoopsCaptcha = XoopsCaptcha::getInstance();
         if (!$xoopsCaptcha->verify()) {
             $xoops->redirect('javascript:history.go(-1)', 3, $xoopsCaptcha->getMessage());
@@ -158,7 +158,7 @@ if (!empty($_POST['submit'])) {
 
     if ($xoops->user) {
         $sname = $xoops->user->getVar('uname');
-        $sname = ($sname == '') ? $xoops->user->getVar('name') : $sname;
+        $sname = ('' == $sname) ? $xoops->user->getVar('name') : $sname;
 
         $semail = $xoops->user->getVar('email');
     }
@@ -167,7 +167,7 @@ if (!empty($_POST['submit'])) {
     $sendform->addElement(new XoopsFormText(XoopsLocale::C_YOUR_NAME, 'sname', 50, 100, $sname), true);
     $sendform->addElement(new XoopsFormText(XoopsLocale::C_YOUR_EMAIL, 'semail', 50, 50, $semail), true);
     $sendform->addElement(new XoopsFormTextArea(AlumniLocale::YOURMESSAGE, 'body', '', 5, 50, ''));
-    if ($xoops->getModuleConfig('alumni_use_captcha') == '1' && !$xoops->user->isAdmin()) {
+    if ('1' == $xoops->getModuleConfig('alumni_use_captcha') && !$xoops->user->isAdmin()) {
         $sendform->addElement(new XoopsFormCaptcha());
     }
     $sendform->addElement(new XoopsFormLabel(AlumniLocale::YOUR_IP, '<img src="' . XOOPS_URL . '/modules/alumni/ip_image.php" alt=""><br>' . AlumniLocale::IP_LOGGED . ''));

@@ -27,7 +27,7 @@ $moduleDirName = basename(__DIR__);
 
 //if (!empty($_POST['submit'])) {
 if (Request::getString('submit', '', 'POST')){
-    if ($xoops->getModuleConfig('alumni_use_captcha') == '1' && !$xoops->user->isAdmin()) {
+    if ('1' == $xoops->getModuleConfig('alumni_use_captcha') && !$xoops->user->isAdmin()) {
         $xoopsCaptcha = XoopsCaptcha::getInstance();
         if (!$xoopsCaptcha->verify()) {
             $xoops->redirect(XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/index.php', 4, $xoopsCaptcha->getMessage());
@@ -174,7 +174,7 @@ if (Request::getString('submit', '', 'POST')){
     $form->addElement(new Xoops\Form\Text(AlumniLocale::NAMEFR, 'fname', 30, 60, ''), true);
     $form->addElement(new Xoops\Form\Text(AlumniLocale::MAILFR, 'fmail', 30, 60, ''), true);
 
-    if ($xoops->getModuleConfig('alumni_use_captcha') == '1' && !$xoops->user->isAdmin()) {
+    if ('1' == $xoops->getModuleConfig('alumni_use_captcha') && !$xoops->user->isAdmin()) {
         $form->addElement(new XoopsFormCaptcha());
     }
  //   $form->addElement(new Xoops\Form\Hidden('security', $xoops->security()->createToken()));
