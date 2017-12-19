@@ -37,7 +37,7 @@ class AlumniNotificationsPlugin extends Xoops\Module\Plugin\PluginAbstract imple
         $item    = [];
         $item_id = (int)$item_id;
 
-        if ('global' == $category) {
+        if ('global' === $category) {
             $item['name'] = '';
             $item['url']  = '';
 
@@ -46,7 +46,7 @@ class AlumniNotificationsPlugin extends Xoops\Module\Plugin\PluginAbstract imple
 
         global $xoopsDB;
 
-        if ('category' == $category) {
+        if ('category' === $category) {
 
             // Assume we have a valid topid id
             $sql = 'SELECT title  FROM ' . $xoopsDB->prefix('alumni_categories') . ' WHERE cid = ' . $item_id . ' limit 1';
@@ -58,7 +58,7 @@ class AlumniNotificationsPlugin extends Xoops\Module\Plugin\PluginAbstract imple
             return $item;
         }
 
-        if ('listing' == $category) {
+        if ('listing' === $category) {
             // Assume we have a valid post id
             $sql          = 'SELECT title FROM ' . $xoopsDB->prefix('alumni_listing') . ' WHERE lid = ' . $item_id . ' LIMIT 1';
             $result       = $xoopsDB->query($sql);

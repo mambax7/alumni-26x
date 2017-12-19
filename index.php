@@ -154,7 +154,7 @@ $count = 0;
 foreach (array_keys($cats) as $i) {
     if (in_array($cats[$i]->getVar('cid'), $alumni_ids)) {
         $cat_img = $cats[$i]->getVar('img');
-        if ('http://' != $cat_img) {
+        if ('http://' !== $cat_img) {
             $cat_img = XOOPS_URL . "/modules/{$moduleDirName}/assets/images/cat/$cat_img";
         } else {
             $cat_img = '';

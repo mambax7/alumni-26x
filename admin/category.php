@@ -75,7 +75,7 @@ switch ($op) {
                      . "'><img src='../images/edit.gif' alt='" . XoopsLocale::A_EDIT . "' title='" . XoopsLocale::A_EDIT . "'></a>
 						<a href='category.php?op=delete_category&cid=" . $categoryArray[$i]->getVar('cid')
                      . "'><img src='../images/dele.gif' alt='" . XoopsLocale::A_DELETE . "' title='" . XoopsLocale::A_DELETE . "'></a></td></tr>";
-                $class = ('even' == $class) ? 'odd' : 'even';
+                $class = ('even' === $class) ? 'odd' : 'even';
 
                 $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
                 $criteria2                 = new CriteriaCompo();
@@ -134,7 +134,7 @@ switch ($op) {
 				<a href='category.php?op=delete_category&cid="
                          . $categoryArray2[$i]->getVar('cid') . "'><img src='../images/dele.gif' alt='"
                          . XoopsLocale::A_DELETE . "' title='" . XoopsLocale::A_DELETE . "'></a></td></tr>";
-                    $class     = ('even' == $class) ? 'odd' : 'even';
+                    $class     = ('even' === $class) ? 'odd' : 'even';
                     $criteria3 = new CriteriaCompo();
                     $criteria3->add(new Criteria('pid', $cid));
                     $criteria3->setSort('title');

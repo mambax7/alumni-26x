@@ -47,17 +47,17 @@ $mids    = Request::getArray('mids', []);
 $xmid    = $xoops->module->getVar('mid');
 $queries = [];
 
-if ('results' == $action) {
+if ('results' === $action) {
     if ('' == $query && ('' == $by_cat)) {
         $xoops->redirect('index.php', 1, _MD_SEARCH_PLZENTER);
     }
 } else {
-    if ('showall' == $action) {
+    if ('showall' === $action) {
         if ('' == $query || empty($mid)) {
             $xoops->redirect('index.php', 1, _MD_SEARCH_PLZENTER);
         }
     } else {
-        if ('showallbyuser' == $action) {
+        if ('showallbyuser' === $action) {
             if (empty($mid) || empty($uid)) {
                 $xoops->redirect('index.php', 1, _MD_SEARCH_PLZENTER);
             }
@@ -69,7 +69,7 @@ $gperm_handler     = $xoops->getHandlerGroupPermission();
 $available_modules = $gperm_handler->getItemIds('module_read', $xoops->getUserGroups());
 $available_plugins = \Xoops\Module\Plugin::getPlugins('search');
 
-if ('search' == $action) {
+if ('search' === $action) {
     $xoops->header();
     /* @var $formHandler SearchSearchForm */
     $formHandler = $alumni->getForm(null, 'search');
@@ -77,15 +77,15 @@ if ('search' == $action) {
     $form->display();
     $xoops->footer();
 }
-if ('OR' != $andor && 'exact' != $andor && 'AND' != $andor) {
+if ('OR' !== $andor && 'exact' !== $andor && 'AND' !== $andor) {
     $andor = 'AND';
 }
 
 $ignored_queries = []; // holds kewords that are shorter than allowed minmum length
 $queries_pattern = [];
 $myts = \Xoops\Core\Text\Sanitizer::getInstance();
-if ('showallbyuser' != $action) {
-    if ('exact' != $andor) {
+if ('showallbyuser' !== $action) {
+    if ('exact' !== $andor) {
         $temp_queries = str_getcsv($query, ' ', '"');
         foreach ($temp_queries as $q) {
             $q = trim($q);
@@ -274,7 +274,7 @@ switch ($action) {
 
             $search_url = XOOPS_URL . '/modules/alumni/search.php?query=' . urlencode(stripslashes(implode(' ', $queries)));
             $search_url .= "&mid={$mid}&action={$action}&andor={$andor}&by_cat=$by_cat";
-            if ('showallbyuser' == $action) {
+            if ('showallbyuser' === $action) {
                 $search_url .= "&uid={$uid}";
             }
             if ($start > 0) {
