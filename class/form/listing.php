@@ -93,7 +93,7 @@ class AlumniListingForm extends Xoops\Form\ThemeForm
 
         $this->addElement(new Xoops\Form\Editor(AlumniLocale::EXTRAINFO, 'extrainfo', $editor_configs), false);
         $photo_old            = $obj->getVar('photo') ? $obj->getVar('photo') : '';
-        $uploadirectory_photo = XOOPS_ROOT_PATH . "/modules/alumni/photos/grad_photo";
+        $uploadirectory_photo = XOOPS_ROOT_PATH . '/modules/alumni/photos/grad_photo';
         $imgtray_photo        = new Xoops\Form\ElementTray(AlumniLocale::GRAD_PHOTO, '<br>');
         $imgpath_photo        = sprintf(AlumniLocale::FORMIMAGE_PATH, $uploadirectory_photo);
         $fileseltray_photo    = new Xoops\Form\ElementTray('', '<br>');
@@ -110,7 +110,7 @@ class AlumniListingForm extends Xoops\Form\ThemeForm
         $this->addElement(new Xoops\Form\Hidden('photo_old', $photo_old));
 
         $photo2_old            = $obj->getVar('photo2') ? $obj->getVar('photo2') : '';
-        $uploadirectory_photo2 = XOOPS_ROOT_PATH . "/modules/alumni/photos/now_photo";
+        $uploadirectory_photo2 = XOOPS_ROOT_PATH . '/modules/alumni/photos/now_photo';
         $imgtray_photo2        = new Xoops\Form\ElementTray(AlumniLocale::NOW_PHOTO, '<br>');
         $imgpath_photo2        = sprintf(AlumniLocale::FORMIMAGE_PATH, $uploadirectory_photo2);
         $fileseltray_photo2    = new Xoops\Form\ElementTray('', '<br>');

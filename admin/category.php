@@ -68,7 +68,7 @@ switch ($op) {
                      . "'><img src='../images/edit.gif' alt='" . XoopsLocale::A_EDIT . "' title='" . XoopsLocale::A_EDIT . "'></a>
 						<a href='category.php?op=delete_category&cid=" . $categoryArray[$i]->getVar('cid')
                      . "'><img src='../images/dele.gif' alt='" . XoopsLocale::A_DELETE . "' title='" . XoopsLocale::A_DELETE . "'></a></td></tr>";
-                $class = ($class == "even") ? "odd" : "even";
+                $class = ($class == 'even') ? 'odd' : 'even';
 
                 $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
                 $criteria2                 = new CriteriaCompo();
@@ -99,11 +99,11 @@ switch ($op) {
 
             echo "<table width='100%' cellspacing='1' class='outer'>
 		<tr>
-		<th align=\"center\">" . AlumniLocale::CATEGORY_TITLE . "</th>
-		<th align=\"center\">" . AlumniLocale::IMGCAT . "</th>
-		<th align=\"center\">" . XoopsLocale::ORDER . "</th>
-		<th align='center' width='10%'>" . XoopsLocale::ACTIONS . "</th></tr>";
-            $class  = "odd";
+		<th align=\"center\">" . AlumniLocale::CATEGORY_TITLE . '</th>
+		<th align="center">' . AlumniLocale::IMGCAT . '</th>
+		<th align="center">' . XoopsLocale::ORDER . "</th>
+		<th align='center' width='10%'>" . XoopsLocale::ACTIONS . '</th></tr>';
+            $class  = 'odd';
             $prefix = "<img src='" . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/arrow.gif'>";
 
             $categoryArray2 = $categoriesHandler->getAll($catCriteria);
@@ -115,28 +115,28 @@ switch ($op) {
                     $title = $categoryArray2[$i]->getVar('title');
                     $order = $categoryArray2[$i]->getVar('ordre');
                     echo "<tr class='" . $class . "'>";
-                    echo "<td align=\"left\">" . $prefix . "&nbsp;" . $categoryArray2[$i]->getVar("title") . "</td>";
-                    echo "<td align=\"center\"><img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/cat/"
-                         . $categoryArray2[$i]->getVar("img")
-                         . "\" height=\"16px\" title=\"img\" alt=\"img\"></td>";
-                    echo "<td align=\"center\">" . $categoryArray2[$i]->getVar("ordre") . "</td>";
+                    echo '<td align="left">' . $prefix . '&nbsp;' . $categoryArray2[$i]->getVar('title') . '</td>';
+                    echo '<td align="center"><img src="' . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/cat/"
+                         . $categoryArray2[$i]->getVar('img')
+                         . '" height="16px" title="img" alt="img"></td>';
+                    echo '<td align="center">' . $categoryArray2[$i]->getVar('ordre') . '</td>';
                     echo "<td align='center' width='10%'>
 				<a href='category.php?op=edit_category&cid="
-                         . $categoryArray2[$i]->getVar("cid") . "'><img src='../images/edit.gif' alt='" . XoopsLocale::A_EDIT
+                         . $categoryArray2[$i]->getVar('cid') . "'><img src='../images/edit.gif' alt='" . XoopsLocale::A_EDIT
                          . "' title='" . XoopsLocale::A_EDIT . "'></a>
 				<a href='category.php?op=delete_category&cid="
-                         . $categoryArray2[$i]->getVar("cid") . "'><img src='../images/dele.gif' alt='"
+                         . $categoryArray2[$i]->getVar('cid') . "'><img src='../images/dele.gif' alt='"
                          . XoopsLocale::A_DELETE . "' title='" . XoopsLocale::A_DELETE . "'></a></td></tr>";
-                    $class     = ($class == "even") ? "odd" : "even";
+                    $class     = ($class == 'even') ? 'odd' : 'even';
                     $criteria3 = new CriteriaCompo();
-                    $criteria3->add(new Criteria("pid", $cid));
-                    $criteria3->setSort("title");
-                    $criteria3->setOrder("ASC");
+                    $criteria3->add(new Criteria('pid', $cid));
+                    $criteria3->setSort('title');
+                    $criteria3->setOrder('ASC');
                     $pid     = $categoriesHandler->getAll($criteria3);
                     $num_pid = $categoriesHandler->getCount();
 
                     if ($pid != 0) {
-                        alumniCategoryDisplayChildren($cid, $pid, $prefix, "title", $class);
+                        alumniCategoryDisplayChildren($cid, $pid, $prefix, 'title', $class);
                     }
                 }
             }

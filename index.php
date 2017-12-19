@@ -118,20 +118,20 @@ if ($xoops->getModuleConfig('' . $moduleDirName . '_offer_search') == '1') {
 
     $categories      = $alumni->getCategoryHandler()->getCategoriesForSearch();
     $by_cat          = Request::getInt('by_cat');
-    $select_category = "<select name=\"by_cat\">";
-    $select_category .= "<option value=\"all\"";
+    $select_category = '<select name="by_cat">';
+    $select_category .= '<option value="all"';
     if (empty($by_cat) || count($by_cat) == 0) {
-        $select_category .= "selected=\"selected\"";
+        $select_category .= 'selected="selected"';
     }
-    $select_category .= ">" . XoopsLocale::ALL . "</option>";
+    $select_category .= '>' . XoopsLocale::ALL . '</option>';
     foreach ($categories as $cid => $title) {
-        $select_category .= "<option value=\"" . $cid . "\"";
+        $select_category .= '<option value="' . $cid . '"';
         if ($cid = $by_cat) {
-            $select_category .= "selected=\"selected\"";
+            $select_category .= 'selected="selected"';
         }
-        $select_category .= ">" . $title . "</option>";
+        $select_category .= '>' . $title . '</option>';
     }
-    $select_category .= "</select>";
+    $select_category .= '</select>';
     $xoops->tpl()->assign('category_select', $select_category);
 }
 
@@ -248,7 +248,7 @@ if ($xoops->getModuleConfig('' . $moduleDirName . '_moderated') == '1') {
             if ($moderate_rows == 0) {
                 $xoops->tpl()->assign('confirm_alumni', AlumniLocale::NO_LISTING_TO_APPROVE);
             } else {
-                $xoops->tpl()->assign('confirm_alumni', AlumniLocale::THERE_ARE . " $moderate_rows  " . AlumniLocale::WAITING . "<br><a href=\"admin/alumni.php?op=list_moderated\">" . constant($main_lang . '_SEEIT') . "</a>");
+                $xoops->tpl()->assign('confirm_alumni', AlumniLocale::THERE_ARE . " $moderate_rows  " . AlumniLocale::WAITING . '<br><a href="admin/alumni.php?op=list_moderated">' . constant($main_lang . '_SEEIT') . '</a>');
             }
 	    $xoops->tpl()->assign('total_confirm', AlumniLocale::THIS_AND . " $moderate_rows " . AlumniLocale::WAITING);
         }
@@ -302,7 +302,7 @@ foreach (array_keys($listingArray) as $i) {
     $newcount  = $xoops->getModuleConfig('' . $moduleDirName . '_countday');
     $startdate = (time() - (86400 * $newcount));
     if ($startdate < $date) {
-        $newitem       = "<img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/newred.gif\">";
+        $newitem       = '<img src="' . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/newred.gif\">";
         $a_item['new'] = $newitem;
     }
 
@@ -321,7 +321,7 @@ foreach (array_keys($listingArray) as $i) {
     
     if ($xoops->user) {
         if ($xoops->user->isAdmin()) {
-            $a_item['admin'] = "<a href='admin/alumni.php?op=edit_listing&amp;lid=$lid&amp;cid=$cid'><img src='images/modif.gif' border=0 alt=\"" . AlumniLocale::MODADMIN . "\"></a>";
+            $a_item['admin'] = "<a href='admin/alumni.php?op=edit_listing&amp;lid=$lid&amp;cid=$cid'><img src='images/modif.gif' border=0 alt=\"" . AlumniLocale::MODADMIN . '"></a>';
         }
     }
 

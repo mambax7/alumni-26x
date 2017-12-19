@@ -66,7 +66,7 @@ $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view'
     }
     $block['lang_title'] = AlumniLocale::BLOCKS_ITEM;
     $block['lang_date']  = AlumniLocale::BLOCKS_DATE;
-    $block['link']       = "<a href=\"" . XOOPS_URL . "/modules/{$blockDirName}/index.php\"><b>" . AlumniLocale::BLOCKS_ALL_LISTINGS . "</b></a></div>";
+    $block['link']       = '<a href="' . XOOPS_URL . "/modules/{$blockDirName}/index.php\"><b>" . AlumniLocale::BLOCKS_ALL_LISTINGS . '</b></a></div>';
 
     return $block;
 }
@@ -92,7 +92,7 @@ function alumni_edit($options) {
     $form .= '>' . AlumniLocale::BLOCKS_HITS . '</option>';
     $form .= "</select>\n";
     $form .= '&nbsp;' . AlumniLocale::BLOCKS_DISPLAY . "&nbsp;<input type='text' name='options[]' value='" . $options[1] . "'/>&nbsp;" . AlumniLocale::BLOCKS_LISTINGS;
-    $form .= "&nbsp;<br><br>" . AlumniLocale::BLOCKS_LENGTH . "&nbsp;<input type='text' name='options[]' value='" . $options[2] . "'/>&nbsp;" . AlumniLocale::BLOCKS_CHARS . '<br><br>';
+    $form .= '&nbsp;<br><br>' . AlumniLocale::BLOCKS_LENGTH . "&nbsp;<input type='text' name='options[]' value='" . $options[2] . "'/>&nbsp;" . AlumniLocale::BLOCKS_CHARS . '<br><br>';
 
     return $form;
 }

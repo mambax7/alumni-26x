@@ -49,7 +49,7 @@ class AlumniCategoryForm extends Xoops\Form\ThemeForm
         }
       
         
-	$img = $obj->getVar("img") ? $obj->getVar("img") : 'default.gif';
+	$img = $obj->getVar('img') ? $obj->getVar('img') : 'default.gif';
 	$imgtray_img = new Xoops\Form\ElementTray(AlumniLocale::IMGCAT,'<br>');
 	$img_path = \XoopsBaseConfig::get('root-path') . '/modules/alumni/images/cat';
 	
@@ -65,10 +65,10 @@ class AlumniCategoryForm extends Xoops\Form\ThemeForm
 	
 	$imageselect_img->setExtra( "onchange='showImgSelected(\"image_img\", \"img\", \"\", \"\", \"" . $alumni_upload_url . "\")'");
 	$imgtray_img->addElement($imageselect_img, false);
-	$imgtray_img->addElement( new Xoops\Form\Label( '', "<br><img src='".$alumni_upload_url. "/" .$img."' name='image_img' id='image_img' alt=''>" ) );
+	$imgtray_img->addElement( new Xoops\Form\Label( '', "<br><img src='".$alumni_upload_url . '/' . $img . "' name='image_img' id='image_img' alt=''>" ) );
 
 	$fileseltray_category_img = new Xoops\Form\ElementTray('<br>','<br>');
-	$fileseltray_category_img->addElement(new Xoops\Form\File(AlumniLocale::FORMUPLOAD , "img"),false);
+	$fileseltray_category_img->addElement(new Xoops\Form\File(AlumniLocale::FORMUPLOAD , 'img'), false);
 	$fileseltray_category_img->addElement(new Xoops\Form\Label(''), false);
 	$imgtray_img->addElement($fileseltray_category_img);
 	$this->addElement($imgtray_img);

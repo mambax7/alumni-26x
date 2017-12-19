@@ -75,7 +75,7 @@ if (!empty($_POST['submit'])) {
     $xoopsMailer = $xoops->getMailer();
     $xoopsMailer->reset();
     $xoopsMailer->useMail();
-    $xoopsMailer->setTemplateDir(XOOPS_ROOT_PATH . "/modules/alumni/language/" . $xoops->getConfig('language') . '/mail_template/');
+    $xoopsMailer->setTemplateDir(XOOPS_ROOT_PATH . '/modules/alumni/language/' . $xoops->getConfig('language') . '/mail_template/');
     $xoopsMailer->setTemplate('listing_user_contact.tpl');
     $xoopsMailer->assign('SNAME', $sname); //assign some vars for mail template
     $xoopsMailer->assign('SEMAIL', $semail);
@@ -102,7 +102,7 @@ if (!empty($_POST['submit'])) {
     $xoopsMailer2 = $xoops->getMailer();
     $xoopsMailer->reset();
     $xoopsMailer2->useMail();
-    $xoopsMailer2->setTemplateDir(XOOPS_ROOT_PATH . "/modules/alumni/language/" . $xoops->getConfig('language') . '/mail_template/');
+    $xoopsMailer2->setTemplateDir(XOOPS_ROOT_PATH . '/modules/alumni/language/' . $xoops->getConfig('language') . '/mail_template/');
     $xoopsMailer2->setTemplate('listing_admin_contact.tpl');
     $xoopsMailer2->assign('SNAME', $sname); //assign some vars for mail template
     $xoopsMailer2->assign('SEMAIL', $semail);
@@ -170,7 +170,7 @@ if (!empty($_POST['submit'])) {
     if ($xoops->getModuleConfig('alumni_use_captcha') == '1' && !$xoops->user->isAdmin()) {
         $sendform->addElement(new XoopsFormCaptcha());
     }
-    $sendform->addElement(new XoopsFormLabel(AlumniLocale::YOUR_IP, "<img src=\"" . XOOPS_URL . "/modules/alumni/ip_image.php\" alt=\"\"><br>" . AlumniLocale::IP_LOGGED . ""));
+    $sendform->addElement(new XoopsFormLabel(AlumniLocale::YOUR_IP, '<img src="' . XOOPS_URL . '/modules/alumni/ip_image.php" alt=""><br>' . AlumniLocale::IP_LOGGED . ''));
 //    $sendform->addElement(new Xoops\Form\Hidden('security', $xoops->security()->createToken()));
     $sendform->addElement(new XoopsFormHidden('listing', $listing), false);
     $sendform->addElement(new XoopsFormHidden('email', $email), false);

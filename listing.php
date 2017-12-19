@@ -68,8 +68,8 @@ switch ($op) {
         $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
         $catObj                    = $categoriesHandler->get($listingObj->getVar('cid'));
 
-        $homePath         = "<a href='" . ALUMNI_URL . "/index.php'>" . XoopsLocale::MAIN . "</a>&nbsp;:&nbsp;";
-        $itemPath         = "<a href='" . ALUMNI_URL . "/categories.php?cid=" . $catObj->getVar("cid") . "'>" . $catObj->getVar("title") . "</a>";
+        $homePath         = "<a href='" . ALUMNI_URL . "/index.php'>" . XoopsLocale::MAIN . '</a>&nbsp;:&nbsp;';
+        $itemPath         = "<a href='" . ALUMNI_URL . '/categories.php?cid=' . $catObj->getVar('cid') . "'>" . $catObj->getVar('title') . '</a>';
         $path             = '';
         $myParent         = $catObj->getVar('pid');
         $catpath_criteria = new CriteriaCompo();
@@ -80,11 +80,11 @@ switch ($op) {
         }
 
         if ($myParent != 0) {
-            $path = "<a href='" . ALUMNI_URL . "/categories.php?cid=" . $catpath_arr[$i]->getVar("cid") . "'>" . $catpath_arr[$i]->getVar("title") . "</a>&nbsp;:&nbsp;{$path}";
+            $path = "<a href='" . ALUMNI_URL . '/categories.php?cid=' . $catpath_arr[$i]->getVar('cid') . "'>" . $catpath_arr[$i]->getVar('title') . "</a>&nbsp;:&nbsp;{$path}";
         }
 
         $path = "{$homePath}{$path}{$itemPath}";
-        $path = str_replace("&nbsp;:&nbsp;", " <img src='" . XOOPS_URL . "/modules/alumni/images/arrow.gif" . "' style='border-width: 0px;' alt=''> ", $path);
+        $path = str_replace('&nbsp;:&nbsp;', " <img src='" . XOOPS_URL . '/modules/alumni/images/arrow.gif' . "' style='border-width: 0px;' alt=''> ", $path);
 
         $xoops->tpl()->assign('category_path', $path);
 
@@ -135,10 +135,10 @@ switch ($op) {
             $x     = 0;
             $i     = 0;
 
-            $printA = "<a href=\"print.php?lid=" . addslashes($lid) . "\" target=\"_blank\"><img src=\"images/print.gif\" border=0 alt=\"" . AlumniLocale::THIS_PRINT . "\" width=15 height=11></a>&nbsp;";
-            $mailA  = "<a href=\"sendfriend.php?op=SendFriend&amp;lid=$lid\"><img src=\"../{$moduleDirName}/images/friend.gif\" border=\"0\" alt=\"" . AlumniLocale::FRIENDSEND . "\" width=\"15\" height=\"11\"></a>";
+            $printA = '<a href="print.php?lid=' . addslashes($lid) . '" target="_blank"><img src="images/print.gif" border=0 alt="' . AlumniLocale::THIS_PRINT . '" width=15 height=11></a>&nbsp;';
+            $mailA  = "<a href=\"sendfriend.php?op=SendFriend&amp;lid=$lid\"><img src=\"../{$moduleDirName}/images/friend.gif\" border=\"0\" alt=\"" . AlumniLocale::FRIENDSEND . '" width="15" height="11"></a>';
             if ($usid > 0) {
-                $xoops->tpl()->assign('submitter', AlumniLocale::SUBMITTED_BY . "<a href='" . XOOPS_URL . "/userinfo.php?uid=" . addslashes($usid) . "'>$submitter</a>");
+                $xoops->tpl()->assign('submitter', AlumniLocale::SUBMITTED_BY . "<a href='" . XOOPS_URL . '/userinfo.php?uid=' . addslashes($usid) . "'>$submitter</a>");
             } else {
                 $xoops->tpl()->assign('submitter', AlumniLocale::SUBMITTED_BY . "$submitter");
             }
@@ -150,10 +150,15 @@ switch ($op) {
             if ($xoops->isUser()) {
                 $calusern = $xoops->user->getVar('uid', 'E');
                 if ($usid == $calusern) {
-                    $xoops->tpl()->assign('modify', "<a href=\"listing.php?op=edit_listing&amp;lid=" . addslashes($lid) . "&amp;cid=" . addslashes($cid) . "\">" . AlumniLocale::MODIFY . "</a>  |  <a href=\"listing.php?op=delete_listing&amp;lid=" . addslashes($lid) . "\">" . XoopsLocale::A_DELETE . "</a>");
+                    $xoops->tpl()->assign('modify', '<a href="listing.php?op=edit_listing&amp;lid='
+                                                    . addslashes($lid) . '&amp;cid='
+                                                    . addslashes($cid) . '">'
+                                                    . AlumniLocale::MODIFY . '</a>  |  <a href="listing.php?op=delete_listing&amp;lid='
+                                                    . addslashes($lid) . '">'
+                                                    . XoopsLocale::A_DELETE . '</a>');
                 }
                 if ($xoops->user->isAdmin()) {
-                    $xoops->tpl()->assign('admin', "<a href=\"admin/alumni.php?op=edit_listing&amp;lid=" . addslashes($lid) . "&amp;cid=" . addslashes($cid) . "\"><img src=\"images/modif.gif\" border=0 alt=\"" . AlumniLocale::MODADMIN . "\"></a>");
+                    $xoops->tpl()->assign('admin', '<a href="admin/alumni.php?op=edit_listing&amp;lid=' . addslashes($lid) . '&amp;cid=' . addslashes($cid) . '"><img src="images/modif.gif" border=0 alt="' . AlumniLocale::MODADMIN . '"></a>');
                 }
             }
 
@@ -184,7 +189,7 @@ switch ($op) {
 
             if ($email) {
                 $xoops->tpl()->assign('contact_head', AlumniLocale::CONTACT_2);
-                $xoops->tpl()->assign('contact_email', "<a href=\"contact.php?lid=$lid\">" . AlumniLocale::EMAIL . "</a>");
+                $xoops->tpl()->assign('contact_email', "<a href=\"contact.php?lid=$lid\">" . AlumniLocale::EMAIL . '</a>');
             }
             $xoops->tpl()->assign('contact_occ_head', AlumniLocale::OCC_2);
             $xoops->tpl()->assign('contact_occ', $occ);

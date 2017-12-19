@@ -92,7 +92,7 @@ switch ($op) {
                 $newcount   = $xoops->getModuleConfig('' . $moduleDirName . '_countday');
                 $startdate  = (time() - (86400 * $newcount));
                 if ($startdate < $date) {
-                    $newitem        = "<img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/newred.gif\">";
+                    $newitem        = '<img src="' . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/newred.gif\">";
                     $listing['new'] = $newitem;
                 }
                 if ($xoops->user) {
@@ -394,7 +394,7 @@ switch ($op) {
                 $newcount  = $xoops->getModuleConfig('' . $moduleDirName . '_countday');
                 $startdate = (time() - (86400 * $newcount));
                 if ($startdate < $date) {
-                    $newitem        = "<img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/newred.gif\">";
+                    $newitem        = '<img src="' . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/newred.gif\">";
                     $listing['new'] = $newitem;
                 }
                 if ($xoops->user) {

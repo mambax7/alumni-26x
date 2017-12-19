@@ -48,7 +48,7 @@ $xmid    = $xoops->module->getVar('mid');
 $queries = [];
 
 if ($action == 'results') {
-    if ($query == ''  && ($by_cat == "")) {
+    if ($query == ''  && ($by_cat == '')) {
         $xoops->redirect('index.php', 1, _MD_SEARCH_PLZENTER);
     }
 } else {
@@ -96,7 +96,7 @@ if ($action != 'showallbyuser') {
                 $ignored_queries[] = $q;
             }
         }
-        if (count($queries) == 0  && ($by_cat == "")){
+        if (count($queries) == 0  && ($by_cat == '')){
             $xoops->redirect('index.php', 2, sprintf(XoopsLocale::EF_KEYWORDS_MUST_BE_GREATER_THAN, $search->getConfig('keyword_min')));
         }
     } else {
@@ -140,7 +140,7 @@ switch ($action) {
 
             $mid           = $module->getVar('mid');
 
-            $xoops->tpl()->assign('sr_showing',"");
+            $xoops->tpl()->assign('sr_showing', '');
             if ($count > 0) {
                 $xoops->tpl()->assign('sr_showing', sprintf(XoopsLocale::F_SHOWING_RESULTS, $start + 1, $start + $count));
                 $xoops->tpl()->assign('showing_of', AlumniLocale::OF . "$count2");
@@ -223,7 +223,7 @@ switch ($action) {
         $count  = count($results);
         $count2 = count($results2);
         
-        $xoops->tpl()->assign('sr_showing', "");
+        $xoops->tpl()->assign('sr_showing', '');
         if (is_array($results) && $count > 0) {
             $next_results = $plugin->search($queries, $andor, 1, $start + 20, $uid);
             $next_count   = count($next_results);

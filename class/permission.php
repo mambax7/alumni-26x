@@ -161,7 +161,7 @@ class AlumniPermissionHandler extends XoopsObjectHandler
         // Save the new permissions
         if (count($groups) > 0) {
             foreach ($groups as $group_id) {
-                echo $group_id . "-";
+                echo $group_id . '-';
                 echo $gperm_handler->addRight($perm_name, $itemid, $group_id, $module_id);
             }
         }

@@ -272,7 +272,7 @@ foreach (array_keys($categoryArray) as $i) {
             $newcount  = $xoops->getModuleConfig('' . $moduleDirName . '_countday');
             $startdate = (time() - (86400 * $newcount));
             if ($startdate < $date) {
-                $newitem       = "<img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/newred.gif\">";
+                $newitem       = '<img src="' . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/newred.gif\">";
                 $a_item['new'] = $newitem;
             }
             if ($xoopsUser) {
@@ -287,7 +287,7 @@ foreach (array_keys($categoryArray) as $i) {
             $date = XoopsLocale::formatTimestamp($date, 's');
             if ($xoopsUser) {
                 if ($xoopsUser->isAdmin()) {
-                    $a_item['admin'] = "<a href='admin/alumni.php?op=edit_listing&amp;lid=$lid&amp;cid=$cid'><img src='images/modif.gif' border=0 alt=\"" . AlumniLocale::MODADMIN . "\"></a>";
+                    $a_item['admin'] = "<a href='admin/alumni.php?op=edit_listing&amp;lid=$lid&amp;cid=$cid'><img src='images/modif.gif' border=0 alt=\"" . AlumniLocale::MODADMIN . '"></a>';
                 }
             }
 
@@ -306,7 +306,7 @@ foreach (array_keys($categoryArray) as $i) {
             if ($photo) {
                 $a_item['photo'] = "<a href=\"javascript:CLA('display-image.php?lid=$lid')\"><img src=\"images/photo.gif\" border=\"0\" width=\"15\" height=\"11\" alt='" . AlumniLocale::PHOTO_AVAILABLE . "'></a>";
             } else {
-		$a_item['photo'] = "";
+		$a_item['photo'] = '';
             }
             $a_item['views'] = $view;
             $xoops->tpl()->append('items', $a_item);
