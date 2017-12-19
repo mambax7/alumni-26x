@@ -54,7 +54,8 @@ $cid = (int)$_GET['cid'];
 $xoops->header('module:alumni/alumni_category.tpl');
 Xoops::getInstance()->header();
 
-$xoTheme->addScript(ALUMNI_URL . '/media/jquery/jquery-1.8.3.min.js');
+//$xoTheme->addScript(ALUMNI_URL . '/media/jquery/jquery-1.8.3.min.js');
+$xoTheme->addBaseScriptAssets('@jquery');
 $xoTheme->addScript(ALUMNI_URL . '/media/jquery/tablesorter-master/js/jquery.tablesorter.js');
 $xoTheme->addScript(ALUMNI_URL . '/media/jquery/tablesorter-master/addons/pager/jquery.tablesorter.pager.js');
 $xoTheme->addScript(ALUMNI_URL . '/media/jquery/tablesorter-master/js/jquery.tablesorter.widgets.js');

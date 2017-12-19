@@ -8,6 +8,7 @@
 bin/
 tmp/
 *_test*.*
+*_idea*.*
 *.tmp
 *.bak
 *.swp
@@ -45,9 +46,11 @@ local.properties
 # Build results
 [Dd]ebug/
 [Rr]elease/
+node_modules/
 *_i.c
 *_p.c
 *.ilk
+*.log
 *.meta
 *.obj
 *.pch
@@ -137,7 +140,6 @@ Desktop.ini
 # Packages
 *.egg
 *.egg-info
-dist
 build
 eggs
 parts
