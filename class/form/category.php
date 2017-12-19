@@ -77,7 +77,7 @@ class AlumniCategoryForm extends Xoops\Form\ThemeForm
         $this->addElement(new Xoops\Form\Label(AlumniLocale::IFSCHOOL, ''));
 
         $photo_old            = $obj->getVar('scphoto') ? $obj->getVar('scphoto') : '';
-        $uploadirectory_photo = XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/photos/school_photos";
+        $uploadirectory_photo = XOOPS_ROOT_PATH . "/uploads/{$moduleDirName}/photos/school_photos";
         $imgtray_photo        = new Xoops\Form\ElementTray(AlumniLocale::SCPHOTO, '<br>');
         $imgpath_photo        = sprintf(AlumniLocale::FORMIMAGE_PATH, $uploadirectory_photo);
         $fileseltray_photo    = new Xoops\Form\ElementTray('', '<br>');

@@ -25,8 +25,8 @@ $xoops = Xoops::getInstance();
 $myts = MyTextSanitizer::getInstance();
 $moduleDirName = basename(__DIR__);
 
-if (!empty($_POST['submit'])) {
-
+//if (!empty($_POST['submit'])) {
+if (Request::getString('submit', '', 'POST')){
     if ($xoops->getModuleConfig('alumni_use_captcha') == '1' && !$xoops->user->isAdmin()) {
         $xoopsCaptcha = XoopsCaptcha::getInstance();
         if (!$xoopsCaptcha->verify()) {
@@ -38,48 +38,48 @@ if (!empty($_POST['submit'])) {
  //           $xoops->redirect('javascript:history.go(-1)', 3, implode(',', $xoops->security()->getErrors()));
  //       }
         
-    $yname = $_POST['yname'];
-    $ymail = $_POST['ymail'];
-    $fname = $_POST['fname'];
-    $fmail = $_POST['fmail'];
+    $yname = Request::getString('yname', '', 'POST'); //$_POST['yname'];
+    $ymail = Request::getString('ymail', '', 'POST'); //$_POST['ymail'];
+    $fname = Request::getString('fname', '', 'POST'); //$_POST['fname'];
+    $fmail = Request::getString('fmail', '', 'POST'); //$_POST['fmail'];
 
 	$lid = Request::getInt('lid', 0);
 
     $alumni    = Alumni::getInstance();
     $helper          = $xoops->getModuleHelper('alumni');
-    $module_id       = $helper->getModule()->getVar('mid');
+    $moduleId       = $helper->getModule()->getVar('mid');
 
     $groups          = $xoops->isUser() ? $xoops->user->getGroups() : '3';
-    $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
+    $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $moduleId);
     $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
     $listing_criteria       = new CriteriaCompo();
     $listing_criteria->add(new Criteria('lid', $lid, '='));
     $listing_criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));
     $numrows = $listingHandler->getCount($listing_criteria);
 
-    $listing_arr = $listingHandler->getAll($listing_criteria);
+    $listingArray = $listingHandler->getAll($listing_criteria);
     unset($listing_criteria);
-    foreach (array_keys($listing_arr) as $i) {
-        $lid        = $listing_arr[$i]->getVar('lid');
-        $cid        = $listing_arr[$i]->getVar('cid');
-        $name       = $listing_arr[$i]->getVar('name');
-        $mname      = $listing_arr[$i]->getVar('mname');
-        $lname      = $listing_arr[$i]->getVar('lname');
-        $school     = $listing_arr[$i]->getVar('school');
-        $year       = $listing_arr[$i]->getVar('year');
-        $studies    = $listing_arr[$i]->getVar('studies');
-        $activities = $listing_arr[$i]->getVar('activities');
-        $extrainfo  = $listing_arr[$i]->getVar('extrainfo');
-        $occ        = $listing_arr[$i]->getVar('occ');
-        $date       = $listing_arr[$i]->getVar('date');
-        $email      = $listing_arr[$i]->getVar('email');
-        $submitter  = $listing_arr[$i]->getVar('submitter');
-        $usid       = $listing_arr[$i]->getVar('usid');
-        $town       = $listing_arr[$i]->getVar('town');
-        $valid      = $listing_arr[$i]->getVar('valid');
-        $photo      = $listing_arr[$i]->getVar('photo');
-        $photo2     = $listing_arr[$i]->getVar('photo2');
-        $view       = $listing_arr[$i]->getVar('view');
+    foreach (array_keys($listingArray) as $i) {
+        $lid        = $listingArray[$i]->getVar('lid');
+        $cid        = $listingArray[$i]->getVar('cid');
+        $name       = $listingArray[$i]->getVar('name');
+        $mname      = $listingArray[$i]->getVar('mname');
+        $lname      = $listingArray[$i]->getVar('lname');
+        $school     = $listingArray[$i]->getVar('school');
+        $year       = $listingArray[$i]->getVar('year');
+        $studies    = $listingArray[$i]->getVar('studies');
+        $activities = $listingArray[$i]->getVar('activities');
+        $extrainfo  = $listingArray[$i]->getVar('extrainfo');
+        $occ        = $listingArray[$i]->getVar('occ');
+        $date       = $listingArray[$i]->getVar('date');
+        $email      = $listingArray[$i]->getVar('email');
+        $submitter  = $listingArray[$i]->getVar('submitter');
+        $usid       = $listingArray[$i]->getVar('usid');
+        $town       = $listingArray[$i]->getVar('town');
+        $valid      = $listingArray[$i]->getVar('valid');
+        $photo      = $listingArray[$i]->getVar('photo');
+        $photo2     = $listingArray[$i]->getVar('photo2');
+        $view       = $listingArray[$i]->getVar('view');
 
         $useroffset = '';
         if ($xoopsUser) {
@@ -152,7 +152,7 @@ if (!empty($_POST['submit'])) {
 
     include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 
-    $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
+    $listingHandler = $xoops->getModuleHandler('listing', $moduleDirName);
     $listing_2_send         = $listingHandler->get($lid);
 
     $listing_2_send->getVar('name');

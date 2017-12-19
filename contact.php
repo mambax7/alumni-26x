@@ -59,16 +59,16 @@ if (!empty($_POST['submit'])) {
     $listing_criteria->add(new Criteria('lid', $lid, '='));
     $listing_criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));
     $numrows     = $listingHandler->getCount($listing_criteria);
-    $listing_arr = $listingHandler->getAll($listing_criteria);
-    foreach (array_keys($listing_arr) as $i) {
+    $listingArray = $listingHandler->getAll($listing_criteria);
+    foreach (array_keys($listingArray) as $i) {
 
-        $name      = $listing_arr[$i]->getVar('name');
-        $mname     = $listing_arr[$i]->getVar('mname');
-        $lname     = $listing_arr[$i]->getVar('lname');
-        $submitter = $listing_arr[$i]->getVar('submitter');
-        $email     = $listing_arr[$i]->getVar('email');
+        $name      = $listingArray[$i]->getVar('name');
+        $mname     = $listingArray[$i]->getVar('mname');
+        $lname     = $listingArray[$i]->getVar('lname');
+        $submitter = $listingArray[$i]->getVar('submitter');
+        $email     = $listingArray[$i]->getVar('email');
     }
-    unset($listing_arr);
+    unset($listingArray);
 
     $ipaddress = $_SERVER['REMOTE_ADDR'];
 
@@ -145,14 +145,14 @@ if (!empty($_POST['submit'])) {
     $listing_criteria->add(new Criteria('lid', $lid, '='));
     $listing_criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));
     $numrows     = $listingHandler->getCount($listing_criteria);
-    $listing_arr = $listingHandler->getAll($listing_criteria);
+    $listingArray = $listingHandler->getAll($listing_criteria);
     unset($listing_criteria);
-    foreach (array_keys($listing_arr) as $i) {
-        $name      = $listing_arr[$i]->getVar('name');
-        $mname     = $listing_arr[$i]->getVar('mname');
-        $lname     = $listing_arr[$i]->getVar('lname');
-        $submitter = $listing_arr[$i]->getVar('submitter');
-        $email     = $listing_arr[$i]->getVar('email');
+    foreach (array_keys($listingArray) as $i) {
+        $name      = $listingArray[$i]->getVar('name');
+        $mname     = $listingArray[$i]->getVar('mname');
+        $lname     = $listingArray[$i]->getVar('lname');
+        $submitter = $listingArray[$i]->getVar('submitter');
+        $email     = $listingArray[$i]->getVar('email');
     }
     $listing = $name . ' ' . $mname . ' ' . $lname;
 

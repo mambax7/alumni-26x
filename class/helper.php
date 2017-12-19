@@ -19,14 +19,21 @@
  */
 defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
+/**
+ * Class Alumni
+ */
 class Alumni extends Xoops\Module\Helper\HelperAbstract {
     /**
      * Init the module
      *
      * @return null|void
      */
-    public function init() {
-        $this->setDirname('alumni');
+    public function init()
+    {
+//        $this->setDirname('alumni');
+        $moduleDirName = basename(dirname(__DIR__));
+        $this->setDirname($moduleDirName);
+
     }
 
     /**

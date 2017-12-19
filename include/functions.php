@@ -32,7 +32,7 @@ function alumni_ShowImg() {
     echo "if (!document.images)\n";
     echo "return\n";
     echo "document.images.avatar.src=\n";
-    echo "'" . XOOPS_URL . "/modules/{$moduleDirName}/images/cat/' + document.imcat.img.options[document.imcat.img.selectedIndex].value\n";
+    echo "'" . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/cat/' + document.imcat.img.options[document.imcat.img.selectedIndex].value\n";
     echo "}\n\n";
     echo "//-->\n";
     echo "</script>\n";
@@ -47,7 +47,7 @@ function alumni_ShowImg2() {
     echo "if (!document.images)\n";
     echo "return\n";
     echo "document.images.scphoto.src=\n";
-    echo "'" . XOOPS_URL . "/modules/{$moduleDirName}/images/schools/' + document.imcat.scphoto.options[document.imcat.scphoto.selectedIndex].value\n";
+    echo "'" . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/schools/' + document.imcat.scphoto.options[document.imcat.scphoto.selectedIndex].value\n";
     echo "}\n\n";
     echo "//-->\n";
     echo "</script>\n";

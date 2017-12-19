@@ -68,7 +68,7 @@ class AlumniObjectTree extends XoopsObjectTree {
         $this->_objects  = $objectArr;
         $this->_myId     = $myId;
         $this->_parentId = $parentId;
-        if (isset($rootId)) {
+        if (null !== $rootId) {
             $this->_rootId = $rootId;
         }
         $this->_initialize();
@@ -207,6 +207,7 @@ class AlumniObjectTree extends XoopsObjectTree {
     /**
      * Make a select box with options from the tree
      *
+     * @param          $name
      * @param  string  $fieldName      Name of the member variable from the
      *                                 node objects that should be used as the title for the options.
      * @param  string  $prefix         String to indent deeper levels

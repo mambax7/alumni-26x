@@ -31,6 +31,7 @@ function alumni_show($options) {
 
 $block       = array();
 $myts        = MyTextSanitizer::getInstance();
+$blockDirName = basename(dirname(__DIR__));
 
 $xoops           = Xoops::getInstance();
 $helper          = $xoops->getModuleHelper('alumni');
@@ -59,13 +60,13 @@ $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view'
         
 	$a_item = array();
         $a_item['school'] = $school;
-        $a_item['link']   = '<a href="' . XOOPS_URL . "/modules/alumni/listing.php?lid=" . addslashes($block_listings[$i]->getVar('lid')) . "\"><b>$year&nbsp;-&nbsp;$name $mname $lname</b><br></a>";
+        $a_item['link']   = '<a href="' . XOOPS_URL . "/modules/{$blockDirName}/listing.php?lid=" . addslashes($block_listings[$i]->getVar('lid')) . "\"><b>$year&nbsp;-&nbsp;$name $mname $lname</b><br></a>";
 
         $block['items'][] = $a_item;
     }
     $block['lang_title'] = AlumniLocale::BLOCKS_ITEM;
     $block['lang_date']  = AlumniLocale::BLOCKS_DATE;
-    $block['link']       = "<a href=\"" . XOOPS_URL . "/modules/alumni/index.php\"><b>" . AlumniLocale::BLOCKS_ALL_LISTINGS . "</b></a></div>";
+    $block['link']       = "<a href=\"" . XOOPS_URL . "/modules/{$blockDirName}/index.php\"><b>" . AlumniLocale::BLOCKS_ALL_LISTINGS . "</b></a></div>";
 
     return $block;
 }

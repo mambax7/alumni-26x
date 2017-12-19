@@ -119,7 +119,7 @@ if ($myParent != 0) {
     $path = "<a href='" . ALUMNI_URL . '/categories.php?cid=' . $catpathArray[$i]->getVar('cid') . "'>" . $catpathArray[$i]->getVar('title') . '</a>&nbsp;:&nbsp;';
 }
 $path = "{$homePath}{$path}{$itemPath}";
-$path = str_replace('&nbsp;:&nbsp;', " <img src='" . XOOPS_URL . "/modules/{$moduleDirName}/images/arrow.gif" . "' style='border-width: 0px;' alt=''> ", $path);
+$path = str_replace('&nbsp;:&nbsp;', " <img src='" . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/arrow.gif" . "' style='border-width: 0px;' alt=''> ", $path);
 
 $xoops->tpl()->assign('category_path', $path);
 
@@ -156,10 +156,10 @@ foreach (array_keys($categoryArray) as $i) {
         $numsubcat  = $categoriesHandler->getCount($subcatCriteria);
         $subcatArray = $categoriesHandler->getAll($subcatCriteria);
         unset($subcatCriteria);
-        foreach (array_keys($subcatArray) as $i) {
-            $subcat_id     = $subcatArray[$i]->getVar('cid');
-            $subcat_pid    = $subcatArray[$i]->getVar('pid');
-            $sub_cat_title = $subcatArray[$i]->getVar('title', 'e');
+        foreach (array_keys($subcatArray) as $j) {
+            $subcat_id     = $subcatArray[$j]->getVar('cid');
+            $subcat_pid    = $subcatArray[$j]->getVar('pid');
+            $sub_cat_title = $subcatArray[$j]->getVar('title', 'e');
 
                   $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
             $listingCriteria = new CriteriaCompo();
@@ -182,7 +182,7 @@ foreach (array_keys($categoryArray) as $i) {
     $xoops->tpl()->assign('scfax', $scfax);
     $xoops->tpl()->assign('scmotto', $scmotto);
     $xoops->tpl()->assign('scurl', $scurl);
-    $xoops->tpl()->assign('top_scphoto', "<img src='" . XOOPS_URL . "/modules/{$moduleDirName}/photos/school_photos/$scphoto' align='middle' alt='$school_name'>");
+    $xoops->tpl()->assign('top_scphoto', "<img src='" . XOOPS_URL . "/uploads/{$moduleDirName}/photos/school_photos/$scphoto' align='middle' alt='$school_name'>");
     $xoops->tpl()->assign('head_scphone', AlumniLocale::SCPHONE);
     $xoops->tpl()->assign('head_scfax', AlumniLocale::SCFAX);
     $xoops->tpl()->assign('web', AlumniLocale::WEB);
@@ -205,27 +205,27 @@ foreach (array_keys($categoryArray) as $i) {
 
     $listingArray = $listingHandler->getAll($listingCriteria);
     unset($listingCriteria);
-    foreach (array_keys($listingArray) as $i) {
-        $lid        = $listingArray[$i]->getVar('lid');
-        $cid        = $listingArray[$i]->getVar('cid');
-        $name       = $listingArray[$i]->getVar('name');
-        $mname      = $listingArray[$i]->getVar('mname');
-        $lname      = $listingArray[$i]->getVar('lname');
-        $school     = $listingArray[$i]->getVar('school');
-        $year       = $listingArray[$i]->getVar('year');
-        $studies    = $listingArray[$i]->getVar('studies');
-        $activities = $listingArray[$i]->getVar('activities');
-        $extrainfo  = $listingArray[$i]->getVar('extrainfo');
-        $occ        = $listingArray[$i]->getVar('occ');
-        $date       = $listingArray[$i]->getVar('date');
-        $email      = $listingArray[$i]->getVar('email');
-        $submitter  = $listingArray[$i]->getVar('submitter');
-        $usid       = $listingArray[$i]->getVar('usid');
-        $town       = $listingArray[$i]->getVar('town');
-        $valid      = $listingArray[$i]->getVar('valid');
-        $photo      = $listingArray[$i]->getVar('photo');
-        $photo2     = $listingArray[$i]->getVar('photo2');
-        $view       = $listingArray[$i]->getVar('view');
+    foreach (array_keys($listingArray) as $j) {
+        $lid        = $listingArray[$j]->getVar('lid');
+        $cid        = $listingArray[$j]->getVar('cid');
+        $name       = $listingArray[$j]->getVar('name');
+        $mname      = $listingArray[$j]->getVar('mname');
+        $lname      = $listingArray[$j]->getVar('lname');
+        $school     = $listingArray[$j]->getVar('school');
+        $year       = $listingArray[$j]->getVar('year');
+        $studies    = $listingArray[$j]->getVar('studies');
+        $activities = $listingArray[$j]->getVar('activities');
+        $extrainfo  = $listingArray[$j]->getVar('extrainfo');
+        $occ        = $listingArray[$j]->getVar('occ');
+        $date       = $listingArray[$j]->getVar('date');
+        $email      = $listingArray[$j]->getVar('email');
+        $submitter  = $listingArray[$j]->getVar('submitter');
+        $usid       = $listingArray[$j]->getVar('usid');
+        $town       = $listingArray[$j]->getVar('town');
+        $valid      = $listingArray[$j]->getVar('valid');
+        $photo      = $listingArray[$j]->getVar('photo');
+        $photo2     = $listingArray[$j]->getVar('photo2');
+        $view       = $listingArray[$j]->getVar('view');
 
         $trows = $numrows;
 
@@ -272,7 +272,7 @@ foreach (array_keys($categoryArray) as $i) {
             $newcount  = $xoops->getModuleConfig('' . $moduleDirName . '_countday');
             $startdate = (time() - (86400 * $newcount));
             if ($startdate < $date) {
-                $newitem       = "<img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/images/newred.gif\">";
+                $newitem       = "<img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/newred.gif\">";
                 $a_item['new'] = $newitem;
             }
             if ($xoopsUser) {

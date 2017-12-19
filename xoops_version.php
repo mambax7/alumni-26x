@@ -19,66 +19,138 @@
  */
 $moduleDirName    = basename(__DIR__);
 
-$modversion                = array();
-$modversion['name']        = AlumniLocale::MODULE_NAME;
-$modversion['description'] = AlumniLocale::MODULE_DESC;
-$modversion['version']     = '3.1';
-$modversion['author']      = 'John Mordo';
-$modversion['nickname']    = 'jlm69';
-$modversion['credits']     = 'John Mordo';
-$modversion['license']     = 'GNU GPL 2.0 or later';
-$modversion['license_url'] = 'http://www.gnu.org/licenses/gpl-2.0.html';
-$modversion['official']    = 0;
-$modversion['help']        = 'page=help';
-$modversion['image']       = 'images/alumni_slogo.png';
-$modversion['dirname']     = $moduleDirName;
 
-$modversion['release_date']        = '2015/06/01';
-$modversion['module_website_url']  = 'https://xoops.org/';
-$modversion['module_website_name'] = 'XOOPS';
-$modversion['module_status']       = 'ALPHA 4';
-$modversion['min_php']             = '5.6.0';
-$modversion['min_xoops']           = '2.6.0';
-$modversion['min_db']              = array('mysql' => '5.1');
 
-// paypal
-$modversion['paypal']                  = array();
-$modversion['paypal']['business']      = 'admin@jlmzone.com';
-$modversion['paypal']['item_name']     = 'Donation : ' . AlumniLocale::MODULE_DESC;
-$modversion['paypal']['amount']        = 0;
-$modversion['paypal']['currency_code'] = 'USD';
 
-$modversion['system_menu'] = 1;
-
-// Admin things
-$modversion['hasAdmin']   = 1;
-$modversion['adminindex'] = 'admin/index.php';
-$modversion['adminmenu']  = 'admin/menu.php';
-
+// ------------------- Informations ------------------- //
+$modversion = array(
+    'name'                => AlumniLocale::MODULE_NAME,
+    'description'         => AlumniLocale::MODULE_DESC,
+    'official'            => 0,
+    //1 indicates supported by XOOPS Dev Team, 0 means 3rd party supported
+    'author'              => 'John Mordo',
+    'nickname'            => 'jlm69',
+    'author_mail'         => 'author-email',
+    'author_website_url'  => 'http://jlmzone.com/',
+    'author_website_name' => 'JLM Zone',
+    'credits'             => 'XOOPS Development Team, John Mordo',
+    'license'             => 'GPL 2.0 or later',
+    'license_url'         => 'www.gnu.org/licenses/gpl-2.0.html/',
+    'help'                => 'page=help',
+    //
+    'release_info'        => 'Changelog',
+    'release_file'        => XOOPS_URL . '/modules/{$moduleDirName}/docs/changelog file',
+    //
+    'manual'              => 'link to manual file',
+    'manual_file'         => XOOPS_URL . '/modules/{$moduleDirName}/docs/install.txt',
+    'min_php'             => '5.4.0',
+    'min_xoops'           => '2.6.0',
+    'min_admin'           => '1.1',
+    'min_db'              => array(
+        'mysql'  => '5.0.7',
+        'mysqli' => '5.0.7'),
+    // images
+    'image'               => 'assets/images/module_logo.png',
+    'iconsmall'           => 'assets/images/iconsmall.png',
+    'iconbig'             => 'assets/images/iconbig.png',
+    'dirname'             => "{$moduleDirName}",
+    //Frameworks
+    'dirmoduleadmin'      => 'Frameworks/moduleclasses/moduleadmin',
+    'sysicons16'          => 'Frameworks/moduleclasses/icons/16',
+    'sysicons32'          => 'Frameworks/moduleclasses/icons/32',
+    // Local path icons
+    'modicons16'          => 'assets/images/icons/16',
+    'modicons32'          => 'assets/images/icons/32',
+    //About
+    'version'             => 3.1,
+    'module_status'       => 'Beta 1',
+    'release_date'        => '2015/06/03',
+    //yyyy/mm/dd
+    //    'release'             => '2015-04-04',
+    'demo_site_url'       => 'http://www.xoops.org',
+    'demo_site_name'      => 'XOOPS Demo Site',
+    'support_url'         => 'https://xoops.org/modules/newbb',
+    'support_name'        => 'Support Forum',
+    'module_website_url'  => 'www.xoops.org',
+    'module_website_name' => 'XOOPS Project',
+    // paypal
+    'paypal'              => array(
+        'business'      => 'admin@jlmzone.com',
+        'item_name'     => 'Donation : ' . AlumniLocale::MODULE_DESC,
+        'amount'        => 0,
+        'currency_code' => 'USD'),
+    // Admin system menu
+    'system_menu'         => 1,
+    // Admin menu
+    'hasAdmin'            => 1,
+    'adminindex'          => 'admin/index.php',
+    'adminmenu'           => 'admin/menu.php',
 // JQuery
-$modversion['jquery'] = 1;
+    'jquery'              => 1,
+    // Main menu
+    'hasMain'             => 1,
+    //Search & Comments
+    //    'hasSearch'           => 1,
+    //    'search'              => array(
+    //        'file'   => 'include/search.inc.php',
+    //        'func'   => 'XXXX_search'),
+    //    'hasComments'         => 1,
+    //    'comments'              => array(
+    //        'pageName'   => 'index.php',
+    //        'itemName'   => 'id'),
 
-// Menu
-$modversion['hasMain'] = 1;
+    // Install/Update
+    'onInstall'           => 'include/oninstall.php',
+    'onUpdate'            => 'include/onupdate.php'//  'onUninstall'         => 'include/onuninstall.php'
 
-// Sql file (must contain sql generated by phpMyAdmin or phpPgAdmin)
+);
+
+// ------------------- Mysql ------------------- //
 $modversion['schema'] = 'sql/schema.yml';
-$modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 
 // Tables created by sql file (without prefix!)
-$modversion['tables'][1] = 'alumni_listing';
-$modversion['tables'][2] = 'alumni_category';
-$modversion['tables'][3] = 'alumni_ip_log';
+$modversion['tables'] = array(
+    $moduleDirName . '_listing',
+    $moduleDirName . '_categories',
+    $moduleDirName . '_ip_log');
 
-// Blocks
-$modversion['blocks'][1]['file']        = 'alumni.php';
-$modversion['blocks'][1]['name']        = AlumniLocale::CONF_BNAME;
-$modversion['blocks'][1]['description'] = AlumniLocale::CONF_BNAME_DESC;
-$modversion['blocks'][1]['show_func']   = 'alumni_show';
-$modversion['blocks'][1]['edit_func']   = 'alumni_edit';
-$modversion['blocks'][1]['template']    = 'alumni_block_new.tpl';
-//$modversion['blocks'][1]['can_clone'] = 'true' ;
-$modversion['blocks'][1]['options'] = 'date|10|25|0';
+// ------------------- Templates ------------------- //
+
+$modversion['templates'] = array(
+    array('file' => 'alumni_adlist.tpl', 'description' => ''),
+    array('file' => 'alumni_category.tpl', 'description' => ''),
+    array('file' => 'alumni_index.tpl', 'description' => ''),
+    array('file' => 'alumni_item.tpl', 'description' => ''),
+    array('file' => 'alumni_search.tpl', 'description' => ''),
+    array('file' => 'alumni_sendfriend.tpl', 'description' => ''),
+    array('file' => '/admin/alumni_admin_cat.tpl', 'description' => ''),
+    array('file' => '/admin/alumni_admin_listing.tpl', 'description' => ''),
+    array('file' => '/admin/alumni_admin_moderated.tpl', 'description' => ''),
+    array('file' => '/admin/alumni_admin_permissions.tpl', 'description' => ''),
+    array('file' => '/blocks/alumni_block_new.tpl', 'description' => ''));
+
+// ------------------- Blocks ------------------- //
+//blocks should or don't have have hardcoded numbers?
+/*
+$modversion['blocks'][] = array(
+    'file'        => 'alumni.php',
+    'name'        => constant($blocksLang . '_BNAME'),
+    'description' => constant($blocksLang . '_BNAME_DESC'),
+    'show_func'   => 'alumni_show',
+    'edit_func'   => 'alumni_edit',
+    'template'    => 'alumni_block_new.tpl',
+    //    'can_clone'     => true,
+    'options'     => 'date|10|25|0');
+*/
+$modversion['blocks'][] = array(
+    'file'        => 'alumni.php',
+    'name'        => AlumniLocale::_BNAME'),
+    'description' => AlumniLocale::_BNAME_DESC'),
+    'show_func'   => 'alumni_show',
+    'edit_func'   => 'alumni_edit',
+    'template'    => 'alumni_block_new.tpl',
+    'can_clone'   => true,
+    'options'     => 'date|10|25|0');
 
 // Search
 $modversion['hasSearch'] = 1;
@@ -86,192 +158,199 @@ $modversion['hasSearch'] = 1;
 $i = 0;
 
 // $xoopsModuleConfig['alumni_moderated']
-$modversion['config'][$i]['name']        = 'alumni_moderated';
-$modversion['config'][$i]['title']       = AlumniLocale::CONF_MODERATE;
-$modversion['config'][$i]['description'] = '';
-$modversion['config'][$i]['formtype']    = 'yesno';
-$modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default']     = '0';
-$modversion['config'][$i]['options']     = array();
+$modversion['config'][] = array(
+    'name'        => 'alumni_moderated',
+    'title'       => AlumniLocale::CONF_MODERATE,
+    'description' => '',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => '0',
+    'options'     => array());
 
 // $xoopsModuleConfig['alumni_per_page']
-++$i;
-$modversion['config'][$i]['name']        = 'alumni_per_page';
-$modversion['config'][$i]['title']       = AlumniLocale::CONF_PERPAGE;
-$modversion['config'][$i]['description'] = '';
-$modversion['config'][$i]['formtype']    = 'select';
-$modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default']     = '10';
-$modversion['config'][$i]['options']     = array('10' => 10, '15' => 15, '20' => 20, '25' => 25, '30' => 30, '35' => 35, '40' => 40, '50' => 50);
+$modversion['config'][] = array(
+    'name'        => 'alumni_per_page',
+    'title'       => AlumniLocale::CONF_PERPAGE,
+    'description' => '',
+    'formtype'    => 'select',
+    'valuetype'   => 'int',
+    'default'     => '10',
+    'options'     => array('10' => 10, '15' => 15, '20' => 20, '25' => 25, '30' => 30, '35' => 35, '40' => 40, '50' => 50));
 
 // $xoopsModuleConfig['alumni_new_listing']
-++$i;
-$modversion['config'][$i]['name']        = 'alumni_new_listing';
-$modversion['config'][$i]['title']       = AlumniLocale::CONF_SHOW_NEW;
-$modversion['config'][$i]['description'] = AlumniLocale::CONF_ONHOME;
-$modversion['config'][$i]['formtype']    = 'yesno';
-$modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default']     = '1';
-$modversion['config'][$i]['options']     = array();
+$modversion['config'][] = array(
+    'name'        => 'alumni_new_listing',
+    'title'       => AlumniLocale::CONF_SHOW_NEW,
+    'description' => AlumniLocale::CONF_ONHOME,
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => '1',
+    'options'     => array());
 
 // $xoopsModuleConfig['alumni_newalumni']
-++$i;
-$modversion['config'][$i]['name']        = 'alumni_newalumni';
-$modversion['config'][$i]['title']       = AlumniLocale::CONF_NUMNEW;
-$modversion['config'][$i]['description'] = AlumniLocale::CONF_ONHOME;
-$modversion['config'][$i]['formtype']    = 'textbox';
-$modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default']     = '10';
-$modversion['config'][$i]['options']     = array();
+$modversion['config'][] = array(
+    'name'        => 'alumni_newalumni',
+    'title'       => AlumniLocale::CONF_NUMNEW,
+    'description' => AlumniLocale::CONF_ONHOME,
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => '10',
+    'options'     => array());
 
 // $xoopsModuleConfig['alumni_countday']
-++$i;
-$modversion['config'][$i]['name']        = 'alumni_countday';
-$modversion['config'][$i]['title']       = AlumniLocale::CONF_NEWTIME;
-$modversion['config'][$i]['description'] = AlumniLocale::CONF_INDAYS;
-$modversion['config'][$i]['formtype']    = 'textbox';
-$modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default']     = '3';
-$modversion['config'][$i]['options']     = array();
+$modversion['config'][] = array(
+    'name'        => 'alumni_countday',
+    'title'       => AlumniLocale::CONF_NEWTIME,
+    'description' => AlumniLocale::CONF_INDAYS,
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => '3',
+    'options'     => array());
 
 // $xoopsModuleConfig['alumni_photomax']
-++$i;
-$modversion['config'][$i]['name']        = 'alumni_photomax';
-$modversion['config'][$i]['title']       = AlumniLocale::CONF_MAXFILESIZE;
-$modversion['config'][$i]['description'] = AlumniLocale::CONF_INBYTES;
-$modversion['config'][$i]['formtype']    = 'textbox';
-$modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default']     = '500000';
-$modversion['config'][$i]['options']     = array();
+$modversion['config'][] = array(
+    'name'        => 'alumni_photomax',
+    'title'       => AlumniLocale::CONF_MAXFILESIZE,
+    'description' => AlumniLocale::CONF_INBYTES,
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => '500000',
+    'options'     => array());
 
 // $xoopsModuleConfig['alumni_maxwide']
-++$i;
-$modversion['config'][$i]['name']        = 'alumni_maxwide';
-$modversion['config'][$i]['title']       = AlumniLocale::CONF_MAXWIDE;
-$modversion['config'][$i]['description'] = AlumniLocale::CONF_INPIXEL;
-$modversion['config'][$i]['formtype']    = 'textbox';
-$modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default']     = '700';
-$modversion['config'][$i]['options']     = array();
+$modversion['config'][] = array(
+    'name'        => 'alumni_maxwide',
+    'title'       => AlumniLocale::CONF_MAXWIDE,
+    'description' => $AlumniLocale::CONF_INPIXEL,
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => '700',
+    'options'     => array());
 
 // $xoopsModuleConfig['alumni_maxhigh']
-++$i;
-$modversion['config'][$i]['name']        = 'alumni_maxhigh';
-$modversion['config'][$i]['title']       = AlumniLocale::CONF_MAXHIGH;
-$modversion['config'][$i]['description'] = AlumniLocale::CONF_INPIXEL;
-$modversion['config'][$i]['formtype']    = 'textbox';
-$modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default']     = '1000';
-$modversion['config'][$i]['options']     = array();
+$modversion['config'][] = array(
+    'name'        => 'alumni_maxhigh',
+    'title'       => AlumniLocale::CONF_MAXHIGH,
+    'description' => AlumniLocale::CONF_INPIXEL,
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => '1000',
+    'options'     => array());
+
 
 // $xoopsModuleConfig['alumni_showsubcat']
-++$i;
-$modversion['config'][$i]['name']        = 'alumni_showsubcat';
-$modversion['config'][$i]['title']       = AlumniLocale::CONF_DISPLSUBCAT;
-$modversion['config'][$i]['description'] = AlumniLocale::CONF_ONHOME;
-$modversion['config'][$i]['formtype']    = 'yesno';
-$modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default']     = '1';
-$modversion['config'][$i]['options']     = array();
+$modversion['config'][] = array(
+    'name'        => 'alumni_showsubcat',
+    'title'       => AlumniLocale::CONF_DISPLSUBCAT,
+    'description' => AlumniLocale::CONF_ONHOME,
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => '1',
+    'options'     => array());
 
 // $xoopsModuleConfig['alumni_numsubcat']
-++$i;
-$modversion['config'][$i]['name']        = 'alumni_numsubcat';
-$modversion['config'][$i]['title']       = AlumniLocale::CONF_NUMSUBCAT;
-$modversion['config'][$i]['description'] = '';
-$modversion['config'][$i]['formtype']    = 'textbox';
-$modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default']     = '4';
-$modversion['config'][$i]['options']     = array();
+$modversion['config'][] = array(
+    'name'        => 'alumni_numsubcat',
+    'title'       => AlumniLocale::CONF_NUMSUBCAT,
+    'description' => '',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => '4',
+    'options'     => array());
 
 // $xoopsModuleConfig['alumni_csortorder']
-++$i;
-$modversion['config'][$i]['name']        = 'alumni_csortorder';
-$modversion['config'][$i]['title']       = AlumniLocale::CONF_CORDER;
-$modversion['config'][$i]['description'] = '';
-$modversion['config'][$i]['formtype']    = 'select';
-$modversion['config'][$i]['valuetype']   = 'text';
-$modversion['config'][$i]['default']     = 'title';
-$modversion['config'][$i]['options']     = array(AlumniLocale::CONF_ORDERALPHA => 'title', AlumniLocale::CONF_ORDERPERSONAL => 'ordre');
+$modversion['config'][] = array(
+    'name'        => 'alumni_csortorder',
+    'title'       => AlumniLocale::CONF_CORDER,
+    'description' => '',
+    'formtype'    => 'select',
+    'valuetype'   => 'text',
+    'default'     => 'title',
+    'options'     => array(AlumniLocale::CONF_ORDERALPHA => 'title', AlumniLocale::CONF_ORDERPERSONAL => 'ordre'));
 
 // $xoopsModuleConfig['alumni_lsortorder']
-++$i;
-$modversion['config'][$i]['name']        = 'alumni_lsortorder';
-$modversion['config'][$i]['title']       = AlumniLocale::CONF_LORDER;
-$modversion['config'][$i]['description'] = '';
-$modversion['config'][$i]['formtype']    = 'select';
-$modversion['config'][$i]['valuetype']   = 'text';
-$modversion['config'][$i]['default']     = 'name';
-$modversion['config'][$i]['options']     = array(AlumniLocale::CONF_ORDER_DATE => 'date DESC', AlumniLocale::CONF_ORDER_NAME => 'name ASC', AlumniLocale::CONF_ORDER_POP => 'hits DESC');
+$modversion['config'][] = array(
+    'name'        => 'alumni_lsortorder',
+    'title'       => AlumniLocale::CONF_LORDER,
+    'description' => '',
+    'formtype'    => 'select',
+    'valuetype'   => 'text',
+    'default'     => 'name',
+    'options'     => array(AlumniLocale::CONF_ORDER_DATE => 'date DESC', AlumniLocale::CONF_ORDER_NAME => 'name ASC', AlumniLocale::CONF_ORDER_POP => 'hits DESC'));
 
 // $xoopsModuleConfig['alumni_form_options'] - Use WYSIWYG Editors?
-++$i;
+
 $editors                                 = XoopsLists::getDirListAsArray(XOOPS_ROOT_PATH . '/class/xoopseditor');
-$modversion['config'][$i]['name']        = 'alumni_form_options';
-$modversion['config'][$i]['title']       = AlumniLocale::CONF_EDITOR;
-$modversion['config'][$i]['description'] = AlumniLocale::CONF_LIST_EDITORS;
-$modversion['config'][$i]['formtype']    = 'select';
-$modversion['config'][$i]['valuetype']   = 'text';
-$modversion['config'][$i]['default']     = 'dhtmltextarea';
-$modversion['config'][$i]['options']     = $editors;
+
+$modversion['config'][] = array(
+    'name'        => 'alumni_form_options',
+    'title'       => AlumniLocale::CONF_EDITOR,
+    'description' => AlumniLocale::CONF_LIST_EDITORS,
+    'formtype'    => 'select',
+    'valuetype'   => 'text',
+    'default'     => 'dhtmltextarea',
+    'options'     => $editors);
+
 
 // $xoopsModuleConfig['alumni_use_captcha']
-++$i;
-$modversion['config'][$i]['name']        = 'alumni_use_captcha';
-$modversion['config'][$i]['title']       = AlumniLocale::CONF_USE_CAPTCHA;
-$modversion['config'][$i]['description'] = '';
-$modversion['config'][$i]['formtype']    = 'yesno';
-$modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default']     = '1';
-$modversion['config'][$i]['options']     = array();
+$modversion['config'][] = array(
+    'name'        => 'alumni_use_captcha',
+    'title'       => AlumniLocale::CONF_USE_CAPTCHA,
+    'description' => '',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => '1',
+    'options'     => array());
 
 // $xoopsModuleConfig['alumni_use_code']
-++$i;
-$modversion['config'][$i]['name']        = 'alumni_use_code';
-$modversion['config'][$i]['title']       = AlumniLocale::CONF_USE_INDEX_CODE;
-$modversion['config'][$i]['description'] = AlumniLocale::CONF_USE_INDEX_CODE_DESC;
-$modversion['config'][$i]['formtype']    = 'yesno';
-$modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default']     = '1';
-$modversion['config'][$i]['options']     = array();
+$modversion['config'][] = array(
+    'name'        => 'alumni_use_code',
+    'title'       => AlumniLocale::CONF_USE_INDEX_CODE,
+    'description' => AlumniLocale::CONF_USE_INDEX_CODE_DESC,
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => '1',
+    'options'     => array());
 
 // $xoopsModuleConfig['alumni_use_banner']
-++$i;
-$modversion['config'][$i]['name']        = 'alumni_use_banner';
-$modversion['config'][$i]['title']       = AlumniLocale::CONF_USE_BANNER;
-$modversion['config'][$i]['description'] = AlumniLocale::CONF_USE_BANNER_DESC;
-$modversion['config'][$i]['formtype']    = 'yesno';
-$modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default']     = '1';
-$modversion['config'][$i]['options']     = array();
+$modversion['config'][] = array(
+    'name'        => 'alumni_use_banner',
+    'title'       => AlumniLocale::CONF_USE_BANNER,
+    'description' => AlumniLocale::CONF_USE_BANNER_DESC,
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => '1',
+    'options'     => array());
 
 // $xoopsModuleConfig['alumni_index_code']
-++$i;
-$modversion['config'][$i]['name']        = 'alumni_index_code';
-$modversion['config'][$i]['title']       = AlumniLocale::CONF_INDEX_CODE;
-$modversion['config'][$i]['description'] = AlumniLocale::CONF_INDEX_CODE_DESC;
-$modversion['config'][$i]['formtype']    = 'textarea';
-$modversion['config'][$i]['valuetype']   = 'text';
-$modversion['config'][$i]['default']     = '';
+$modversion['config'][] = array(
+    'name'        => 'alumni_index_code',
+    'title'       => AlumniLocale::CONF_INDEX_CODE,
+    'description' => AlumniLocale::CONF_INDEX_CODE_DESC,
+    'formtype'    => 'textarea',
+    'valuetype'   => 'text',
+    'default'     => ''
+
+);
 
 // $xoopsModuleConfig['alumni_index_code_place']
-++$i;
-$modversion['config'][$i]['name']        = 'alumni_code_place';
-$modversion['config'][$i]['title']       = AlumniLocale::CONF_INDEX_CODE_PLACE;
-$modversion['config'][$i]['description'] = AlumniLocale::CONF_INDEX_CODE_PLACE_DESC;
-$modversion['config'][$i]['formtype']    = 'textbox';
-$modversion['config'][$i]['valuetype']   = 'text';
-$modversion['config'][$i]['default']     = '5';
+$modversion['config'][] = array(
+    'name'        => 'alumni_code_place',
+    'title'       => AlumniLocale::CONF_INDEX_CODE_PLACE,
+    'description' => AlumniLocale::CONF_INDEX_CODE_PLACE_DESC,
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => '5');
 
 // $xoopsModuleConfig['alumni_offer_search'] - added for optional search
-++$i;
-$modversion['config'][$i]['name']        = 'alumni_offer_search';
-$modversion['config'][$i]['title']       = AlumniLocale::CONF_OFFER_SEARCH;
-$modversion['config'][$i]['description'] = AlumniLocale::CONF_OFFER_SEARCH_DESC;
-$modversion['config'][$i]['formtype']    = 'yesno';
-$modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default']     = '1';
-$modversion['config'][$i]['options']     = array();
+$modversion['config'][] = array(
+    'name'        => 'alumni_offer_search',
+    'title'       => AlumniLocale::CONF_OFFER_SEARCH,
+    'description' => AlumniLocale::CONF_OFFER_SEARCH_DESC,
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => '1',
+    'options'     => array());
 
 $modversion['notification']    = array();
 $modversion['hasNotification'] = 1;

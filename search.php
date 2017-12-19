@@ -23,7 +23,7 @@
 use Xoops\Core\Request;
 use Xoops\Core\Kernel\Handlers\XoopsUser;
 
-include dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'mainfile.php';
+include dirname(dirname(__DIR__)) . '/mainfile.php';
 include_once __DIR__ . '/header.php';
 include_once __DIR__ . '/include/common.php';
 $alumni = Alumni::getInstance();

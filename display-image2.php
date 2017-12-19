@@ -20,10 +20,10 @@ $alumni_listing_Handler = $xoops->getModuleHandler('listing', 'alumni');
 $listing_criteria       = new CriteriaCompo();
 $listing_criteria->add(new Criteria('lid', $lid, '='));
 $numrows     = $alumni_listing_Handler->getCount($listing_criteria);
-$listing_arr = $alumni_listing_Handler->get($lid);
+$listingArray = $alumni_listing_Handler->get($lid);
 
 if ($numrows > '0') {
-    $photo2 = $listing_arr->getVar('photo2');
+    $photo2 = $listingArray->getVar('photo2');
     echo '<center><br><br><img src="photos/now_photo/'.$photo.'" border=0></center>';
 }
 

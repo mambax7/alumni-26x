@@ -58,7 +58,7 @@ class AlumniCategory extends XoopsObject {
         $myts = MyTextSanitizer::getInstance();
         $name = $myts->htmlSpecialChars($this->title);
         $path = "/{$name}{$path}";
-        if ($this->pid != 0) {
+        if (0 != $this->pid) {
             $path = $this->getPathFromId($this->pid, $path);
         }
         return $path;
@@ -83,12 +83,12 @@ class AlumniCategoryHandler extends XoopsPersistableObjectHandler {
     public function getSubCatArray($by_cat, $level, $cat_array, $cat_result) {
         global $theresult;
         $spaces = '';
-        for ($j = 0; $j < $level; $j++) {
+        for ($j = 0; $j < $level; ++$j) {
             $spaces .= '--';
         }
         $theresult[$by_cat['cid']] = $spaces . $by_cat['title'];
         if (isset($cat_array[$by_cat['cid']])) {
-            $level = $level + 1;
+            $level = ++$level;
             foreach ($cat_array[$by_cat['cid']] as $cat) {
                 $this->getSubCatArray($cat, $level, $cat_array, $cat_result);
             }
@@ -123,7 +123,7 @@ class AlumniCategoryHandler extends XoopsPersistableObjectHandler {
         global $theresult, $xoops, $alumni;
         $xoops     = Xoops::getInstance();
         $alumni = Alumni::getInstance();
-        $module_id = $alumni->getModule()->mid();
+        $moduleId = $alumni->getModule()->mid();
         $ret       = array();
         $criteria  = new CriteriaCompo();
         $criteria->setSort('cid');
@@ -131,11 +131,11 @@ class AlumniCategoryHandler extends XoopsPersistableObjectHandler {
         if (!$xoops->isAdmin()) {
   //          $gperm_handler        = $xoops->gethandler('groupperm');
             $groups               = is_object($xoops->isUser()) ? $$xoops->isUser()->getGroups() : '3';
-            $allowedCategoriesIds = $alumni->getGrouppermHandler()->getItemIds('alumni_view', $groups, $module_id);
+            $allowedCategoriesIds = $alumni->getGrouppermHandler()->getItemIds('alumni_view', $groups, $moduleId);
                 $criteria->add(new Criteria('cid', '(' . implode(',', $allowedCategoriesIds) . ')', 'IN'));
         }
         $categories = $this->getAll($criteria, array('cid', 'pid', 'title'), false, false);
-        if (count($categories) == 0) {
+        if (0 == count($categories)) {
             return $ret;
         }
         $cat_array = array();

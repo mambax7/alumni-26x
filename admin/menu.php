@@ -17,33 +17,34 @@
  * @since           2.6.x
  * @author          John Mordo (jlm69)
  */
+
 defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
 include_once dirname(__DIR__) . '/include/common.php';
 $alumni = Alumni::getInstance();
 $xoops         = Xoops::getInstance();
 
-$i = 0;
-$adminmenu[$i]['title'] = AlumniLocale::ADMENU1;
-$adminmenu[$i]['link']  = 'admin/index.php';
-$adminmenu[$i]['icon']  = 'home.png';
+$adminmenu[] = array(
+    'title' => AlumniLocale::ADMENU1,
+    'link'  => 'admin/index.php',
+    'icon'  => 'home.png');
 
-++$i;
-$adminmenu[$i]['title'] = AlumniLocale::ADMENU5;
-$adminmenu[$i]['link']  = 'admin/alumni.php';
-$adminmenu[$i]['icon']  = 'manage.png';
+$adminmenu[] = array(
+    'title' => AlumniLocale::_ADMENU5,
+    'link'  => 'admin/alumni.php',
+    'icon'  => 'manage.png');
 
-++$i;
-$adminmenu[$i]['title'] = AlumniLocale::ADMENU2;
-$adminmenu[$i]['link']  = 'admin/category.php';
-$adminmenu[$i]['icon']  = 'category.png';
+$adminmenu[] = array(
+    'title' => AlumniLocale::_ADMENU2,
+    'link'  => 'admin/alumni_categories.php',
+    'icon'  => 'category.png');
 
-++$i;
-$adminmenu[$i]['title'] = AlumniLocale::ADMENU3;
-$adminmenu[$i]['link']  = 'admin/permissions.php';
-$adminmenu[$i]['icon']  = 'permissions.png';
+$adminmenu[] = array(
+    'title' => AlumniLocale::_ADMENU3,
+    'link'  => 'admin/permissions.php',
+    'icon'  => 'permissions.png');
 
-++$i;
-$adminmenu[$i]['title'] = AlumniLocale::ADMENU7;
-$adminmenu[$i]['link']  = 'admin/about.php';
-$adminmenu[$i]['icon']  = 'about.png';
+$adminmenu[] = array(
+    'title' => AlumniLocale::_ADMENU7,
+    'link'  => 'admin/about.php',
+    'icon'  => 'about.png');

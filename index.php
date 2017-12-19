@@ -155,7 +155,7 @@ foreach (array_keys($cats) as $i) {
     if (in_array($cats[$i]->getVar('cid'), $alumni_ids)) {
         $cat_img = $cats[$i]->getVar('img');
         if ($cat_img != 'http://') {
-            $cat_img = XOOPS_URL . "/modules/{$moduleDirName}/images/cat/$cat_img";
+            $cat_img = XOOPS_URL . "/modules/{$moduleDirName}/assets/images/cat/$cat_img";
         } else {
             $cat_img = '';
         }
@@ -270,29 +270,29 @@ $xoops->tpl()->assign('last_head_local', AlumniLocale::TOWN_2);
 $xoops->tpl()->assign('last_head_views', AlumniLocale::HITS);
 $xoops->tpl()->assign('last_head_photo', AlumniLocale::PHOTO);
 
-$listing_arr = $listingHandler->getAll($criteria);
+$listingArray = $listingHandler->getAll($criteria);
 
-foreach (array_keys($listing_arr) as $i) {
-    $lid        = $listing_arr[$i]->getVar('lid');
-    $cid        = $listing_arr[$i]->getVar('cid');
-    $name       = $listing_arr[$i]->getVar('name');
-    $mname      = $listing_arr[$i]->getVar('mname');
-    $lname      = $listing_arr[$i]->getVar('lname');
-    $school     = $listing_arr[$i]->getVar('school');
-    $year       = $listing_arr[$i]->getVar('year');
-    $studies    = $listing_arr[$i]->getVar('studies');
-    $activities = $listing_arr[$i]->getVar('activities');
-    $extrainfo  = $listing_arr[$i]->getVar('extrainfo');
-    $occ        = $listing_arr[$i]->getVar('occ');
-    $date       = $listing_arr[$i]->getVar('date');
-    $email      = $listing_arr[$i]->getVar('email');
-    $submitter  = $listing_arr[$i]->getVar('submitter');
-    $usid       = $listing_arr[$i]->getVar('usid');
-    $town       = $listing_arr[$i]->getVar('town');
-    $valid      = $listing_arr[$i]->getVar('valid');
-    $photo      = $listing_arr[$i]->getVar('photo');
-    $photo2     = $listing_arr[$i]->getVar('photo2');
-    $view       = $listing_arr[$i]->getVar('view');
+foreach (array_keys($listingArray) as $i) {
+    $lid        = $listingArray[$i]->getVar('lid');
+    $cid        = $listingArray[$i]->getVar('cid');
+    $name       = $listingArray[$i]->getVar('name');
+    $mname      = $listingArray[$i]->getVar('mname');
+    $lname      = $listingArray[$i]->getVar('lname');
+    $school     = $listingArray[$i]->getVar('school');
+    $year       = $listingArray[$i]->getVar('year');
+    $studies    = $listingArray[$i]->getVar('studies');
+    $activities = $listingArray[$i]->getVar('activities');
+    $extrainfo  = $listingArray[$i]->getVar('extrainfo');
+    $occ        = $listingArray[$i]->getVar('occ');
+    $date       = $listingArray[$i]->getVar('date');
+    $email      = $listingArray[$i]->getVar('email');
+    $submitter  = $listingArray[$i]->getVar('submitter');
+    $usid       = $listingArray[$i]->getVar('usid');
+    $town       = $listingArray[$i]->getVar('town');
+    $valid      = $listingArray[$i]->getVar('valid');
+    $photo      = $listingArray[$i]->getVar('photo');
+    $photo2     = $listingArray[$i]->getVar('photo2');
+    $view       = $listingArray[$i]->getVar('view');
 
     $a_item        = array();
     $a_item['new'] = '';
@@ -300,7 +300,7 @@ foreach (array_keys($listing_arr) as $i) {
     $newcount  = $xoops->getModuleConfig('' . $moduleDirName . '_countday');
     $startdate = (time() - (86400 * $newcount));
     if ($startdate < $date) {
-        $newitem       = "<img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/images/newred.gif\">";
+        $newitem       = "<img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/newred.gif\">";
         $a_item['new'] = $newitem;
     }
 
@@ -334,7 +334,7 @@ foreach (array_keys($listing_arr) as $i) {
     }
 
     if ($photo) {
-        $a_item['photo'] = "<a href=\"javascript:CLA('display-image.php?lid=$lid')\"><img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/images/photo.gif\" border=\"0\" width=\"15\" height=\"11\" alt='" . AlumniLocale::PHOTO_AVAILABLE . "'></a>";
+        $a_item['photo'] = "<a href=\"javascript:CLA('display-image.php?lid=$lid')\"><img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/photo.gif\" border=\"0\" width=\"15\" height=\"11\" alt='" . AlumniLocale::PHOTO_AVAILABLE . "'></a>";
     } else {
     $a_item['photo'] = '';
     }

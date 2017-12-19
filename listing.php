@@ -94,30 +94,30 @@ switch ($op) {
         $criteria->add(new Criteria('lid', $lid, '='));
         $criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));
         $numrows     = $listingHandler->getCount();
-        $listing_arr = $listingHandler->getAll($criteria);
+        $listingArray = $listingHandler->getAll($criteria);
 
-        foreach (array_keys($listing_arr) as $i) {
-            $lid        = $listing_arr[$i]->getVar('lid');
-            $cid        = $listing_arr[$i]->getVar('cid');
-            $name       = $listing_arr[$i]->getVar('name');
-            $mname      = $listing_arr[$i]->getVar('mname');
-            $lname      = $listing_arr[$i]->getVar('lname');
-            $school     = $listing_arr[$i]->getVar('school');
-            $year       = $listing_arr[$i]->getVar('year');
-            $studies    = $listing_arr[$i]->getVar('studies');
-            $activities = $listing_arr[$i]->getVar('activities');
-            $extrainfo  = $listing_arr[$i]->getVar('extrainfo');
-            $occ        = $listing_arr[$i]->getVar('occ');
-            $date       = $listing_arr[$i]->getVar('date');
+        foreach (array_keys($listingArray) as $i) {
+            $lid        = $listingArray[$i]->getVar('lid');
+            $cid        = $listingArray[$i]->getVar('cid');
+            $name       = $listingArray[$i]->getVar('name');
+            $mname      = $listingArray[$i]->getVar('mname');
+            $lname      = $listingArray[$i]->getVar('lname');
+            $school     = $listingArray[$i]->getVar('school');
+            $year       = $listingArray[$i]->getVar('year');
+            $studies    = $listingArray[$i]->getVar('studies');
+            $activities = $listingArray[$i]->getVar('activities');
+            $extrainfo  = $listingArray[$i]->getVar('extrainfo');
+            $occ        = $listingArray[$i]->getVar('occ');
+            $date       = $listingArray[$i]->getVar('date');
             $date       = XoopsLocale::formatTimestamp($date, 's');
-            $email      = $listing_arr[$i]->getVar('email');
-            $submitter  = $listing_arr[$i]->getVar('submitter');
-            $usid       = $listing_arr[$i]->getVar('usid');
-            $town       = $listing_arr[$i]->getVar('town');
-            $valid      = $listing_arr[$i]->getVar('valid');
-            $photo      = $listing_arr[$i]->getVar('photo');
-            $photo2     = $listing_arr[$i]->getVar('photo2');
-            $view       = $listing_arr[$i]->getVar('view');
+            $email      = $listingArray[$i]->getVar('email');
+            $submitter  = $listingArray[$i]->getVar('submitter');
+            $usid       = $listingArray[$i]->getVar('usid');
+            $town       = $listingArray[$i]->getVar('town');
+            $valid      = $listingArray[$i]->getVar('valid');
+            $photo      = $listingArray[$i]->getVar('photo');
+            $photo2     = $listingArray[$i]->getVar('photo2');
+            $view       = $listingArray[$i]->getVar('view');
 
             $recordexist = false;
 
@@ -254,7 +254,7 @@ switch ($op) {
         }
 
         $photo_old = Request::getString('photo_old', '');
-        $destination = XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/photos/grad_photo";
+        $destination = XOOPS_ROOT_PATH . "/uploads/{$moduleDirName}/photos/grad_photo";
         $del_photo = Request::getInt('del_photo', 0);
         if (isset($del_photo)) {
             if ($del_photo == '1') {
@@ -266,7 +266,7 @@ switch ($op) {
         }
         
         $photo2_old = Request::getString('photo2_old', '');
-        $destination2 = XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/photos/now_photo";
+        $destination2 = XOOPS_ROOT_PATH . "/uploads/{$moduleDirName}/photos/now_photo";
         $del_photo2 = Request::getInt('del_photo2', 0);
         if (isset($del_photo2)) {
             if ($del_photo2 == '1') {

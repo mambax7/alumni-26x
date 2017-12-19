@@ -50,7 +50,7 @@ switch ($op) {
             $xoops = Xoops::getInstance();
 
             $moduleDirName = basename(dirname(__DIR__));
-            $prefix = $prefix . '<img src=\'' . XOOPS_URL . "/modules/{$moduleDirName}/images/arrow.gif'>";
+            $prefix = $prefix . '<img src=\'' . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/arrow.gif'>";
             foreach (array_keys($categoryArray) as $i) {
                 $cid   = $categoryArray[$i]->getVar('cid');
                 $pid   = $categoryArray[$i]->getVar('pid');
@@ -60,7 +60,7 @@ switch ($op) {
 
                 echo '<tr class="' . $class . '">';
                 echo '<td align="left">' . $prefix . '&nbsp;' . $categoryArray[$i]->getVar('title') . '</td>';
-                echo '<td align="center"><img src="' . XOOPS_URL . "/modules/{$moduleDirName}/images/cat/" . $categoryArray[$i]->getVar('img')
+                echo '<td align="center"><img src="' . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/cat/" . $categoryArray[$i]->getVar('img')
                      . '" height="16px" title="img" alt="img"></td>';
                 echo '<td align="center">' . $categoryArray[$i]->getVar('ordre') . '</td>';
                 echo "<td align='center' width='10%'>
@@ -104,7 +104,7 @@ switch ($op) {
 		<th align=\"center\">" . XoopsLocale::ORDER . "</th>
 		<th align='center' width='10%'>" . XoopsLocale::ACTIONS . "</th></tr>";
             $class  = "odd";
-            $prefix = "<img src='" . XOOPS_URL . "/modules/{$moduleDirName}/images/arrow.gif'>";
+            $prefix = "<img src='" . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/arrow.gif'>";
 
             $categoryArray2 = $categoriesHandler->getAll($catCriteria);
 
@@ -116,7 +116,7 @@ switch ($op) {
                     $order = $categoryArray2[$i]->getVar('ordre');
                     echo "<tr class='" . $class . "'>";
                     echo "<td align=\"left\">" . $prefix . "&nbsp;" . $categoryArray2[$i]->getVar("title") . "</td>";
-                    echo "<td align=\"center\"><img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/images/cat/"
+                    echo "<td align=\"center\"><img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/cat/"
                          . $categoryArray2[$i]->getVar("img")
                          . "\" height=\"16px\" title=\"img\" alt=\"img\"></td>";
                     echo "<td align=\"center\">" . $categoryArray2[$i]->getVar("ordre") . "</td>";
@@ -170,7 +170,7 @@ switch ($op) {
         }
 
         $photo_old = Request::getString('photo_old', '');
-        $destination = XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/photos/school_photos";
+        $destination = XOOPS_ROOT_PATH . "/uploads/{$moduleDirName}/photos/school_photos";
 	$del_photo = Request::getInt('del_photo', 0);
         if (isset($del_photo)) {
         if ($del_photo == '1') {
@@ -218,7 +218,7 @@ switch ($op) {
         $date = time();
         if (!empty($_FILES['scphoto']['name'])) {
             include_once XOOPS_ROOT_PATH . '/class/uploader.php';
-            $uploaddir         = XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/photos/school_photos";
+            $uploaddir         = XOOPS_ROOT_PATH . "/uploads/{$moduleDirName}/photos/school_photos";
             $photomax          = $xoops->getModuleConfig('alumni_photomax');
             $maxwide           = $xoops->getModuleConfig('alumni_maxwide');
             $maxhigh           = $xoops->getModuleConfig('alumni_maxhigh');

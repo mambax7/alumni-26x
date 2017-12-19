@@ -20,14 +20,19 @@ use Xoops\Core\PreloadItem;
  */
 
 /**
- * Publisher core preloads
+ * Alumni core preloads
  *
  * @copyright       XOOPS Project https://xoops.org/
  * @license         GNU GPL V2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
- * @author          trabis <lusopoemas@gmail.com>
+ * @author          XOOPS Development Team
  */
-class AlumniPreload extends PreloadItem {
-    static function eventCoreIncludeCommonClassmaps($args) {
+class AlumniPreload extends PreloadItem
+{
+    /**
+     * @param $args
+     */
+    public static function eventCoreIncludeCommonClassmaps($args)
+    {
         $path = dirname(__DIR__);
         XoopsLoad::addMap(array(
                               'alumnimetagen' => $path . '/class/metagen.php',

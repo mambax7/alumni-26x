@@ -17,10 +17,11 @@
  * @since           2.6.x
  * @author          John Mordo (jlm69)
  */
+ 
  use Xoops\Core\Request;
 defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
-
-include_once(XOOPS_ROOT_PATH . "/modules/alumni/class/alumni_tree.php");
+$moduleDirName = basename(dirname(dirname(__DIR__)));
+include_once(XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/class/alumni_tree.php");
 
 class AlumniSearchForm extends XoopsThemeForm {
     /**
@@ -87,8 +88,8 @@ class AlumniSearchForm extends XoopsThemeForm {
             if (isset($available_modules) && !empty($available_modules)) {
                 $criteria->add(new Criteria('mid', '(' . implode(',', $available_modules) . ')', 'IN'));
             }
-            $module_handler = $xoops->getHandlerModule();
-            $mods_checkbox->addOptionArray($module_handler->getNameList($criteria));
+            $moduleHandler = $xoops->getHandlerModule();
+            $mods_checkbox->addOptionArray($moduleHandler->getNameList($criteria));
         } else {
             /* @var $module XoopsModule */
             $module_array = array();
