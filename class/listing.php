@@ -25,6 +25,9 @@ use Xoops\Core\Kernel\XoopsPersistableObjectHandler;
 //defined('XOOPS_ROOT_PATH') or exit('XOOPS root path not defined');
 $xoops = Xoops::getInstance();
 
+/**
+ * Class AlumniListing
+ */
 class AlumniListing extends XoopsObject {
     /**
      * @var Alumni
@@ -80,6 +83,9 @@ class AlumniListing extends XoopsObject {
 
 }
 
+/**
+ * Class AlumniListingHandler
+ */
 class AlumniListingHandler extends XoopsPersistableObjectHandler {
     /**
      * @param null|Connection|XoopsDatabase $db
@@ -88,6 +94,13 @@ class AlumniListingHandler extends XoopsPersistableObjectHandler {
         parent::__construct($db, 'alumni_listing', 'alumnilisting', 'lid', 'title');
     }
 
+    /**
+     * @param int    $start
+     * @param int    $limit
+     * @param string $sort
+     * @param string $order
+     * @return array
+     */
     public function getListingPublished($start = 0, $limit = 0, $sort = 'date', $order = 'ASC') {
         $helper    = Alumni::getInstance();
         $xoops     = $helper->xoops();

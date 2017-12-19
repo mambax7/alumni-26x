@@ -18,5 +18,8 @@
 
 defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
+/**
+ * Class AlumniLocale
+ */
 class AlumniLocale extends AlumniLocaleEn_US {
 }

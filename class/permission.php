@@ -28,6 +28,9 @@ use Xoops\Core\Kernel\CriteriaCompo;
 
 include_once dirname(__DIR__) . '/include/common.php';
 
+/**
+ * Class AlumniPermissionHandler
+ */
 class AlumniPermissionHandler extends XoopsObjectHandler
 {
     /**

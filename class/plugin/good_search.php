@@ -22,7 +22,18 @@ use Xoops\Core\Request;
 use Xoops\Module\Plugin\PluginAbstract;
 use Xmf\Metagen;
 
+/**
+ * Class AlumniSearchPlugin
+ */
 class AlumniSearchPlugin extends PluginAbstract implements SearchPluginInterface {
+    /**
+     * @param string[] $queries
+     * @param string   $andor
+     * @param int      $limit
+     * @param int      $start
+     * @param \type    $userid
+     * @return array
+     */
     public function search($queries, $andor, $limit, $start, $userid) {
 
 $xoops     = Xoops::getInstance();

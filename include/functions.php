@@ -54,6 +54,10 @@ function alumni_ShowImg2() {
 }
 
 //Reusable Link Sorting Functions
+/**
+ * @param $orderby
+ * @return string
+ */
 function alumni_convertorderbyin($orderby) {
     switch (trim($orderby)) {
         case 'nameA':
@@ -98,6 +102,10 @@ function alumni_convertorderbyin($orderby) {
     return $orderby;
 }
 
+/**
+ * @param $orderby
+ * @return string
+ */
 function alumni_convertorderbytrans($orderby) {
 
     global $main_lang;
@@ -142,6 +150,10 @@ function alumni_convertorderbytrans($orderby) {
     return $orderbyTrans;
 }
 
+/**
+ * @param $orderby
+ * @return string
+ */
 function alumni_convertorderbyout($orderby) {
     if ('lname ASC' == $orderby) {
         $orderby = 'nameA';

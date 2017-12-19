@@ -21,6 +21,9 @@
 defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 $moduleDirName = basename(dirname(dirname(__DIR__)));
 
+/**
+ * Class AlumniNotificationsPlugin
+ */
 class AlumniNotificationsPlugin extends Xoops\Module\Plugin\PluginAbstract implements NotificationsPluginInterface {
     /**
      * @param string $category

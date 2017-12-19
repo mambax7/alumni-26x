@@ -24,6 +24,9 @@ use Xoops\Core\Kernel\Handlers\XoopsGroupPermHandler;
 
 defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
+/**
+ * Class AlumniGroupPermHandler
+ */
 class AlumniGroupPermHandler extends XoopsGroupPermHandler {
     /**
      * Check permission
@@ -40,6 +43,10 @@ class AlumniGroupPermHandler extends XoopsGroupPermHandler {
         return parent::checkRight($gperm_name, $gperm_itemid, $gperm_groupid, $gperm_modid, $trueifadmin);
     }
 
+    /**
+     * @param       $cid
+     * @param array $groups
+     */
     public function updatePerms($cid, $groups = []) {
         $module_id = Alumni::getInstance()->getModule()->getVar('mid');
 

@@ -19,11 +19,14 @@
  */
 
  use Xoops\Core\Request;
- 
+
+/**
+ * Class AlumniListingForm
+ */
 class AlumniListingForm extends Xoops\Form\ThemeForm
 {
     /**
-     * @param AlumniCategory|XoopsObject $obj
+     * @param \AlumniListing $obj
      */
     public function __construct(AlumniListing $obj)
     {

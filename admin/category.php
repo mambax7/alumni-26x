@@ -46,7 +46,14 @@ switch ($op) {
         $categoryArray = $categoriesHandler->getAll($catCriteria);
 
         //Function that allows display child categories
-        function alumniCategoryDisplayChildren($cid = 0, $categoryArray, $prefix = '', $order = '', &$class) {
+    /**
+     * @param int    $cid
+     * @param        $categoryArray
+     * @param string $prefix
+     * @param string $order
+     * @param        $class
+         */
+    function alumniCategoryDisplayChildren($cid = 0, $categoryArray, $prefix = '', $order = '', &$class) {
             $xoops = Xoops::getInstance();
 
             $moduleDirName = basename(dirname(__DIR__));

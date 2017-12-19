@@ -51,7 +51,7 @@ class Alumni extends Xoops\Module\Helper\HelperAbstract {
     }
 
     /**
-     * @return AlumnicategoriesHandler
+     * @return \Xoops\Core\Kernel\XoopsObjectHandler
      */
     public function getCategoryHandler() {
         return $this->getHandler('category');
@@ -71,6 +71,9 @@ class Alumni extends Xoops\Module\Helper\HelperAbstract {
         return $this->getHandler('groupperm');
     }
 
+    /**
+     * @return int|mixed
+     */
     public function getUserId() {
         if ($this->xoops()->isUser()) {
             return $this->xoops()->user->getVar('uid');
