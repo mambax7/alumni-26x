@@ -47,7 +47,7 @@ if (Request::getString('submit', '', 'POST')) {
     $lid = Request::getInt('lid', 0);
 
     $alumni   = Alumni::getInstance();
-    $helper   = $xoops->getModuleHelper('alumni');
+    $helper   = Xoops::getModuleHelper('alumni');
     $moduleId = $helper->getModule()->getVar('mid');
 
     $groups           = $xoops->isUser() ? $xoops->user->getGroups() : '3';

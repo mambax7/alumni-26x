@@ -31,10 +31,10 @@ switch ($op) {
     case 'list':
     default:
         $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
-        $indexAdmin        = new \Xoops\Module\Admin();
-        echo $indexAdmin->displayNavigation('category.php');
-        $indexAdmin->addItemButton(AlumniLocale::ADD_CAT, 'category.php?op=new_category', 'add');
-        echo $indexAdmin->renderButton('left', '');
+        $adminObject        = new \Xoops\Module\Admin();
+        echo $adminObject->displayNavigation('category.php');
+        $adminObject->addItemButton(AlumniLocale::ADD_CAT, 'category.php?op=new_category', 'add');
+        echo $adminObject->renderButton('left', '');
 
         $limit       = Request::getInt('limit', 10);
         $start       = Request::getInt('start', 0);
@@ -147,10 +147,10 @@ switch ($op) {
 
     case 'new_category':
         $xoops->header();
-        $indexAdmin = new \Xoops\Module\Admin();
-        $indexAdmin->displayNavigation('category.php');
-        $indexAdmin->addItemButton(AlumniLocale::LIST_CATS, 'category.php');
-        echo $indexAdmin->renderButton('left', '');
+        $adminObject = new \Xoops\Module\Admin();
+        $adminObject->displayNavigation('category.php');
+        $adminObject->addItemButton(AlumniLocale::LIST_CATS, 'category.php');
+        echo $adminObject->renderButton('left', '');
         $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
         $obj               = $categoriesHandler->create();
         $form              = $xoops->getModuleForm($obj, 'category');
@@ -251,10 +251,10 @@ switch ($op) {
         $cid   = Request::getInt('cid', 0);
         $xoops = Xoops::getInstance();
         $xoops->header();
-        $indexAdmin = new \Xoops\Module\Admin();
-        $indexAdmin->displayNavigation('category.php');
-        $indexAdmin->addItemButton(AlumniLocale::LIST_CATS, 'alumni.php', 'list');
-        $indexAdmin->renderButton('left', '');
+        $adminObject = new \Xoops\Module\Admin();
+        $adminObject->displayNavigation('category.php');
+        $adminObject->addItemButton(AlumniLocale::LIST_CATS, 'alumni.php', 'list');
+        $adminObject->renderButton('left', '');
         $obj  = $categoriesHandler->get($cid);
         $form = $xoops->getModuleForm($obj, 'category');
         $form->display();

@@ -25,34 +25,31 @@ $main_lang     = '_MA_' . strtoupper($moduleDirName);
 $myts          = MyTextSanitizer::getInstance();
 $xoops         = Xoops::getInstance();
 $alumni        = Alumni::getInstance();
-$helper        = $xoops->getModuleHelper('alumni');
+$helper        = Xoops::getModuleHelper('alumni');
 $moduleId      = $helper->getModule()->getVar('mid');
 
+$groups = '3';
 if (is_object($xoopsUser)) {
     $groups = $xoopsUser->getGroups();
-} else {
-    $groups = '3';
 }
 //$gperm_handler = $xoops->getHandler('groupperm');
+$perm_itemid = 0;
 if (isset($_POST['item_id'])) {
-    $perm_itemid = (int)($_POST['item_id']);
-} else {
-    $perm_itemid = 0;
+    $perm_itemid = (int)$_POST['item_id'];
 }
 //If no access
 if (!$gpermHandler->checkRight('' . $moduleDirName . '_view', $perm_itemid, $groups, $moduleId)) {
     $xoops->redirect(XOOPS_URL . '/index.php', 3, XoopsLocale::E_NO_ACCESS_PERMISSION);
     exit();
 }
+$prem_perm = '1';
 if (!$gpermHandler->checkRight('' . $moduleDirName . '_premium', $perm_itemid, $groups, $moduleId)) {
     $prem_perm = '0';
-} else {
-    $prem_perm = '1';
 }
 
-include(XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/include/functions.php");
+include XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/include/functions.php";
 
-$cid = (int)($_GET['cid']);
+$cid = (int)$_GET['cid'];
 
 $xoops->header('module:alumni/alumni_category.tpl');
 Xoops::getInstance()->header();
@@ -69,7 +66,7 @@ $xoTheme->addScript(ALUMNI_URL . '/media/jquery/photo.js');
 $default_sort = $xoops->getModuleConfig('' . $moduleDirName . '_csortorder');
 $listing_sort = $xoops->getModuleConfig('' . $moduleDirName . '_lsortorder');
 
-$cid = (($cid) > 0) ? ($cid) : 0;
+$cid = ($cid > 0) ? $cid : 0;
 
 $xoops->tpl()->assign('add_from', AlumniLocale::ALUMNI_LISTINGS . ' ' . $xoopsConfig['sitename']);
 $xoops->tpl()->assign('add_from_title', AlumniLocale::ALUMNI_LISTINGS);

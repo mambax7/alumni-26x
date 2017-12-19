@@ -34,7 +34,7 @@ function alumni_show($options)
     $blockDirName = basename(dirname(__DIR__));
 
     $xoops          = Xoops::getInstance();
-    $helper         = $xoops->getModuleHelper('alumni');
+    $helper         = Xoops::getModuleHelper('alumni');
     $module_id      = $helper->getModule()->getVar('mid');
     $listingHandler = $helper->getHandler('listing');
     $groups         = $xoops->getUserGroups();

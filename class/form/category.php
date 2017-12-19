@@ -29,11 +29,11 @@ class AlumniCategoryForm extends Xoops\Form\ThemeForm
         $title = sprintf($obj->isNew() ? AlumniLocale::ADD_CAT : AlumniLocale::EDIT_CAT);
         parent::__construct($title, 'form', false, 'post', true);
 
-        include_once(XOOPS_ROOT_PATH . '/class/xoopsformloader.php');
+        include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 
         $this->setExtra('enctype="multipart/form-data"');
 
-        include_once(XOOPS_ROOT_PATH . '/class/tree.php');
+        include_once XOOPS_ROOT_PATH . '/class/tree.php';
         $categoryHandler = $xoops->getModuleHandler('category', 'alumni');
         $arr             = $categoryHandler->getAll();
         $mytree          = new XoopsObjectTree($arr, 'cid', 'pid');

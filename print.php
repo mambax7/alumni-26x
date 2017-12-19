@@ -17,7 +17,7 @@ $lid           = Request::getInt('lid', 0);
 
 $currenttheme = $xoopsConfig['theme_set'];
 $alumni       = Alumni::getInstance();
-$helper       = $xoops->getModuleHelper('alumni');
+$helper       = Xoops::getModuleHelper('alumni');
 $module_id    = $helper->getModule()->getVar('mid');
 
 $groups           = $xoops->isUser() ? $xoops->user->getGroups() : '3';

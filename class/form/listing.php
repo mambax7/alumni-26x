@@ -47,9 +47,9 @@ class AlumniListingForm extends Xoops\Form\ThemeForm
         $userGroups     = $member_handler->getGroupList();
 
         $lid = Request::getInt('lid', 0);
-        if (isset($lid)) {
-            $lid = $lid;
-        }
+//        if (isset($lid)) {
+//            $lid = $lid;
+//        }
 
         $this->addElement(new Xoops\Form\Label(AlumniLocale::SUBMITTER, $xoops->user->uname()));
 
@@ -81,7 +81,7 @@ class AlumniListingForm extends Xoops\Form\ThemeForm
         $activities               = $obj->getVar('activities', 'e') ?: '';
         $editor_configs           = [];
         $editor_configs['name']   = 'activities';
-        $editor_configs['value']  = ($activities);
+        $editor_configs['value']  = $activities;
         $editor_configs['editor'] = $xoops->getModuleConfig('alumni_form_options');
         $editor_configs['rows']   = 6;
         $editor_configs['cols']   = 8;

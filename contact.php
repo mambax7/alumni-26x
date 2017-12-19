@@ -41,7 +41,7 @@ if (!empty($_POST['submit'])) {
     //     }
 
     $lid = Request::getInt('lid', 0);
-    $lid = ($lid);
+    $lid = $lid;
 
     $body    = Request::getString('body', '');
     $sname   = Request::getString('sname', '');
@@ -51,7 +51,7 @@ if (!empty($_POST['submit'])) {
     $subject       = AlumniLocale::CONTACTALUMNI;
     $admin_subject = AlumniLocale::CONTACTADMIN;
 
-    $helper           = $xoops->getModuleHelper('alumni');
+    $helper           = Xoops::getModuleHelper('alumni');
     $module_id        = $helper->getModule()->getVar('mid');
     $groups           = $xoops->isUser() ? $xoops->user->getGroups() : '3';
     $alumni_ids       = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
@@ -134,7 +134,7 @@ if (!empty($_POST['submit'])) {
     include __DIR__ . '/header.php';
     $xoops = Xoops::getInstance();
     Xoops::getInstance()->header();
-    $helper           = $xoops->getModuleHelper('alumni');
+    $helper           = Xoops::getModuleHelper('alumni');
     $module_id        = $helper->getModule()->getVar('mid');
     $groups           = $xoops->isUser() ? $xoops->user->getGroups() : '3';
     $alumni_ids       = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);

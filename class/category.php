@@ -59,13 +59,13 @@ class AlumniCategory extends XoopsObject
     }
 
     /**
-     * @param null   $id
+     * @param null|int   $id
      * @param string $path
      * @return string
      */
     public function getPathFromId($id = null, $path = '')
     {
-        $id   = isset($id) ? (int)($id) : $this->cid;
+        $id   = null !== $id ? (int)$id : $this->cid;
         $myts = MyTextSanitizer::getInstance();
         $name = $myts->htmlSpecialChars($this->title);
         $path = "/{$name}{$path}";
@@ -134,7 +134,7 @@ class AlumniCategoryHandler extends XoopsPersistableObjectHandler
             return $this->getCount();
         }
         $criteria = new CriteriaCompo();
-        if (isset($pid) && ($pid != -1)) {
+        if (null !== $pid && ($pid != -1)) {
             $criteria->add(new criteria('pid', $pid));
             if (!$xoops->userIsAdmin) {
                 $categoriesGranted = $this->alumni->getPermissionHandler()->getGrantedItems('alumni_view');

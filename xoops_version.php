@@ -143,15 +143,17 @@ $modversion['blocks'][] = array(
     //    'can_clone'     => true,
     'options'     => 'date|10|25|0');
 */
-$modversion['blocks'][] = array(
+
+$modversion['blocks'][] = [
     'file' => 'alumni.php',
-    'name' => AlumniLocale::_BNAME'),
-    'description' => AlumniLocale::_BNAME_DESC'),
+    'name' => AlumniLocale::CONF_BNAME,
+    'description' => AlumniLocale::CONF_BNAME_DESC,
     'show_func'   => 'alumni_show',
     'edit_func'   => 'alumni_edit',
     'template'    => 'alumni_block_new.tpl',
     'can_clone'   => true,
-    'options'     => 'date|10|25|0');
+    'options'     => 'date|10|25|0'
+];
 
 // Search
 $modversion['hasSearch'] = 1;
@@ -228,7 +230,7 @@ $modversion['config'][] = [
 $modversion['config'][] = [
     'name'        => 'alumni_maxwide',
     'title'       => AlumniLocale::CONF_MAXWIDE,
-    'description' => $AlumniLocale::CONF_INPIXEL,
+    'description' => AlumniLocale::CONF_INPIXEL,
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => '700',

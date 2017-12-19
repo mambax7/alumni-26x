@@ -29,26 +29,23 @@ $myts          = MyTextSanitizer::getInstance();
 $xoops         = Xoops::getInstance();
 $module_id     = $xoops->module->getVar('mid');
 
+$groups = '3';
 if (is_object($xoops->user)) {
     $groups = $xoops->user->getGroups();
-} else {
-    $groups = '3';
 }
 //$gperm_handler = $xoops->getHandler('groupperm');
+$perm_itemid = 0;
 if (isset($_POST['item_id'])) {
-    $perm_itemid = (int)($_POST['item_id']);
-} else {
-    $perm_itemid = 0;
+    $perm_itemid = (int)$_POST['item_id'];
 }
 //If no access
 if (!$gpermHandler->checkRight('' . $moduleDirName . '_view', $perm_itemid, $groups, $module_id)) {
     $xoops->redirect(XOOPS_URL . '/index.php', 3, XoopsLocale::E_NO_ACCESS_PERMISSION);
     exit();
 }
+$prem_perm = '1';
 if (!$gpermHandler->checkRight('' . $moduleDirName . '_premium', $perm_itemid, $groups, $module_id)) {
     $prem_perm = '0';
-} else {
-    $prem_perm = '1';
 }
 
 $alumni = Alumni::getInstance();
@@ -92,7 +89,7 @@ if ('1' == $xoops->getModuleConfig('' . $moduleDirName . '_offer_search')) {
     $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
 
     $alumni       = Alumni::getInstance();
-    $helper       = $xoops->getModuleHelper('alumni');
+    $helper       = Xoops::getModuleHelper('alumni');
     $module_id    = $helper->getModule()->getVar('mid');
     $groups       = $xoops->isUser() ? $xoops->user->getGroups() : '3';
     $alumni_ids   = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
@@ -113,7 +110,7 @@ if ('1' == $xoops->getModuleConfig('' . $moduleDirName . '_offer_search')) {
         $xoops->tpl()->assign('title', $title);
     }
 
-    include_once(XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/class/alumni_tree.php");
+    include_once XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/class/alumni_tree.php";
     $cattree = new AlumniObjectTree($category_arr, 'cid', 'pid');
 
     $categories      = $alumni->getCategoryHandler()->getCategoriesForSearch();
@@ -210,19 +207,19 @@ foreach (array_keys($cats) as $i) {
 
         $xoops->tpl()->append('categories', [
             'image'     => $cat_img,
-            'id'        => (int)($cats[$i]->getVar('cid')),
+            'id'        => (int)$cats[$i]->getVar('cid'),
             'title'     => $cats[$i]->getVar('title'),
-            'totalcats' => ($alumni_count),
-            'count'     => ($count)
+            'totalcats' => $alumni_count,
+            'count'     => $count
         ]);
     } else {
         $xoops->tpl()->append('categories', [
             'image'         => $cat_img,
-            'id'            => (int)($cats[$i]->getVar('cid')),
+            'id'            => (int)$cats[$i]->getVar('cid'),
             'title'         => $cats[$i]->getVar('title'),
             'subcategories' => $subcategories,
-            'totalcats'     => ($alumni_count),
-            'count'         => ($count)
+            'totalcats'     => $alumni_count,
+            'count'         => $count
         ]);
     }
 }

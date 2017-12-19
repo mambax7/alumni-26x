@@ -33,8 +33,8 @@ switch ($op) {
     case 'list':
     default:
         $xoops->header('admin:alumni/alumni_admin_listing.tpl');
-        $indexAdmin = new \Xoops\Module\Admin();
-        $indexAdmin->displayNavigation('alumni.php');
+        $adminObject = new \Xoops\Module\Admin();
+        $adminObject->displayNavigation('alumni.php');
 
         $xoTheme->addScript(ALUMNI_URL . '/media/jquery/jquery-1.8.3.min.js');
         $xoTheme->addScript(ALUMNI_URL . '/media/jquery/tablesorter-master/js/jquery.tablesorter.js');
@@ -45,20 +45,20 @@ switch ($op) {
         $xoTheme->addStylesheet(ALUMNI_URL . '/media/jquery/css/theme.blue.css');
         $xoTheme->addStylesheet(ALUMNI_URL . '/media/jquery/tablesorter-master/addons/pager/jquery.tablesorter.pager.css');
 
-        $indexAdmin->addItemButton(AlumniLocale::ADD_LISTING, 'alumni.php?op=new_listing', 'add');
+        $adminObject->addItemButton(AlumniLocale::ADD_LISTING, 'alumni.php?op=new_listing', 'add');
 
         if ('1' == $xoops->getModuleConfig('alumni_moderated')) {
-            $indexAdmin->addItemButton(AlumniLocale::MODERATE_LISTING, 'alumni.php?op=list_moderated', 'add');
+            $adminObject->addItemButton(AlumniLocale::MODERATE_LISTING, 'alumni.php?op=list_moderated', 'add');
         }
 
-        $indexAdmin->renderButton('left', '');
+        $adminObject->renderButton('left', '');
 
-        $listingCount = $listingHandler->countAlumni();
+        $listing_count = $listingHandler->countAlumni();
         $listingArray = $listingHandler->getAll();
 
         // Assign Template variables
-        $xoops->tpl()->assign('listingCount', $listingCount);
-        if ($listingCount > 0) {
+        $xoops->tpl()->assign('listing_count', $listing_count);
+        if ($listing_count > 0) {
             foreach (array_keys($listingArray) as $i) {
                 $lid        = $listingArray[$i]->getVar('lid');
                 $cid        = $listingArray[$i]->getVar('cid');
@@ -136,10 +136,10 @@ switch ($op) {
     case 'new_listing':
         $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
         $xoops->header();
-        $indexAdmin = new Xoops\Module\Admin();
-        $indexAdmin->displayNavigation('alumni.php');
-        $indexAdmin->addItemButton(AlumniLocale::LIST_CATS, 'alumni.php');
-        echo $indexAdmin->renderButton('left', '');
+        $adminObject = new Xoops\Module\Admin();
+        $adminObject->displayNavigation('alumni.php');
+        $adminObject->addItemButton(AlumniLocale::LIST_CATS, 'alumni.php');
+        echo $adminObject->renderButton('left', '');
         $obj  = $listingHandler->create();
         $form = $xoops->getModuleForm($obj, 'listing');
         $form->display();
@@ -285,10 +285,10 @@ switch ($op) {
     case 'edit_listing':
         $xoops->header();
         $lid        = Request::getInt('lid', 0);
-        $indexAdmin = new Xoops\Module\Admin();
-        $indexAdmin->addItemButton(AlumniLocale::ADD_LISTING, 'alumni.php?op=new_listing', 'add');
-        $indexAdmin->addItemButton(AlumniLocale::LISTINGLIST, 'alumni.php', 'list');
-        echo $indexAdmin->renderButton('left', '');
+        $adminObject = new Xoops\Module\Admin();
+        $adminObject->addItemButton(AlumniLocale::ADD_LISTING, 'alumni.php?op=new_listing', 'add');
+        $adminObject->addItemButton(AlumniLocale::LISTINGLIST, 'alumni.php', 'list');
+        echo $adminObject->renderButton('left', '');
         $obj  = $listingHandler->get($lid);
         $form = $xoops->getModuleForm($obj, 'listing');
         $form->display();
@@ -327,8 +327,8 @@ switch ($op) {
 
     case 'list_moderated':
         $xoops->header('alumni_admin_moderated.tpl');
-        $indexAdmin = new Xoops\Module\Admin();
-        $indexAdmin->renderNavigation('alumni.php');
+        $adminObject = new Xoops\Module\Admin();
+        $adminObject->renderNavigation('alumni.php');
 
         $xoTheme->addScript(ALUMNI_URL . '/media/jquery/jquery-1.8.3.min.js');
         $xoTheme->addScript(ALUMNI_URL . '/media/jquery/tablesorter-master/js/jquery.tablesorter.js');
@@ -347,12 +347,12 @@ switch ($op) {
         $moderateCriteria = new CriteriaCompo();
         $moderateCriteria->add(new Criteria('valid', 0, '='));
         $moderateCriteria->add(new Criteria('cid', '(' . implode(', ', $alumniIds) . ')', 'IN'));
-        $listingCount = $listingHandler->getCount($moderateCriteria);
+        $listing_count = $listingHandler->getCount($moderateCriteria);
         $listingArray = $listingHandler->getAll($moderateCriteria);
 
         // Assign Template variables
-        $xoops->tpl()->assign('listingCount', $listingCount);
-        if ($listingCount > 0) {
+        $xoops->tpl()->assign('listing_count', $listing_count);
+        if ($listing_count > 0) {
             foreach (array_keys($listingArray) as $i) {
                 $lid        = $listingArray[$i]->getVar('lid');
                 $cid        = $listingArray[$i]->getVar('cid');

@@ -29,26 +29,23 @@ $myts          = MyTextSanitizer::getInstance();
 $xoops         = Xoops::getInstance();
 $module_id     = $xoopsModule->getVar('mid');
 
+$groups = '3';
 if (is_object($xoopsUser)) {
     $groups = $xoopsUser->getGroups();
-} else {
-    $groups = '3';
 }
 //$gperm_handler = $xoops->getHandler('groupperm');
+$perm_itemid = 0;
 if (isset($_POST['item_id'])) {
-    $perm_itemid = (int)($_POST['item_id']);
-} else {
-    $perm_itemid = 0;
+    $perm_itemid = (int)$_POST['item_id'];
 }
 //If no access
 if (!$gpermHandler->checkRight('' . $moduleDirName . '_view', $perm_itemid, $groups, $module_id)) {
     $xoops->redirect(XOOPS_URL . '/index.php', 3, XoopsLocale::E_NO_ACCESS_PERMISSION);
     exit();
 }
+$prem_perm = '1';
 if (!$gpermHandler->checkRight('' . $moduleDirName . '_premium', $perm_itemid, $groups, $module_id)) {
     $prem_perm = '0';
-} else {
-    $prem_perm = '1';
 }
 $lid = Request::getInt('lid', 0);
 $xoops->header('module:alumni/alumni_item.tpl');
@@ -62,7 +59,7 @@ switch ($op) {
         $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
 
         $alumni     = Alumni::getInstance();
-        $helper     = $xoops->getModuleHelper('alumni');
+        $helper     = Xoops::getModuleHelper('alumni');
         $module_id  = $helper->getModule()->getVar('mid');
         $listingObj = $listingHandler->get($lid);
 
@@ -213,16 +210,14 @@ switch ($op) {
     case 'new_listing':
         $xoops->header();
         $module_id = $xoopsModule->getVar('mid');
+        $groups = '3';
         if (is_object($xoopsUser)) {
             $groups = $xoopsUser->getGroups();
-        } else {
-            $groups = '3';
         }
         //      $gperm_handler = $xoops->getHandler('groupperm');
+        $perm_itemid = 0;
         if (isset($_POST['item_id'])) {
-            $perm_itemid = (int)($_POST['item_id']);
-        } else {
-            $perm_itemid = 0;
+            $perm_itemid = (int)$_POST['item_id'];
         }
         //If no access
         if (!$gpermHandler->checkRight('' . $moduleDirName . '_view', $perm_itemid, $groups, $module_id)) {

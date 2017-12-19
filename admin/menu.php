@@ -31,25 +31,25 @@ $adminmenu[] = [
 ];
 
 $adminmenu[] = [
-    'title' => AlumniLocale::_ADMENU5,
+    'title' => AlumniLocale::ADMENU5,
     'link'  => 'admin/alumni.php',
     'icon'  => 'manage.png'
 ];
 
 $adminmenu[] = [
-    'title' => AlumniLocale::_ADMENU2,
+    'title' => AlumniLocale::ADMENU2,
     'link'  => 'admin/alumni_categories.php',
     'icon'  => 'category.png'
 ];
 
 $adminmenu[] = [
-    'title' => AlumniLocale::_ADMENU3,
+    'title' => AlumniLocale::ADMENU3,
     'link'  => 'admin/permissions.php',
     'icon'  => 'permissions.png'
 ];
 
 $adminmenu[] = [
-    'title' => AlumniLocale::_ADMENU7,
+    'title' => AlumniLocale::ADMENU7,
     'link'  => 'admin/about.php',
     'icon'  => 'about.png'
 ];

@@ -90,7 +90,7 @@ class AlumniObjectTree extends XoopsObjectTree
             $key2                          = $object->getVar($this->_parentId);
             $this->_tree[$key1]['parent']  = $key2;
             $this->_tree[$key2]['child'][] = $key1;
-            if (isset($this->_rootId)) {
+            if (null !== $this->_rootId) {
                 $this->_tree[$key1]['root'] = $object->getVar($this->_rootId);
             }
         }

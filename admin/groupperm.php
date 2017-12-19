@@ -28,7 +28,7 @@ $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
 $cats              = $categoriesHandler->getAll();
 $cat_rows          = $categoriesHandler->getCount();
 
-include_once(XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/class/alumni_tree.php");
+include_once XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/class/alumni_tree.php";
 $cattree = new AlumniObjectTree($cats, 'cid', 'pid');
 
 if ('0' == $cat_rows) {

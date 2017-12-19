@@ -23,7 +23,7 @@ use Xoops\Core\Request;
 
 defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 $moduleDirName = basename(dirname(dirname(__DIR__)));
-include_once(XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/class/alumni_tree.php");
+include_once XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/class/alumni_tree.php";
 
 /**
  * Class AlumniSearchForm
@@ -103,7 +103,7 @@ class AlumniSearchForm extends XoopsThemeForm
 
             $criteria = new CriteriaCompo();
             $criteria->add(new Criteria('dirname', '(\'' . implode('\',\'', array_keys($available_plugins)) . '\')', 'IN'));
-            if (isset($available_modules) && !empty($available_modules)) {
+            if (null !== $available_modules && !empty($available_modules)) {
                 $criteria->add(new Criteria('mid', '(' . implode(',', $available_modules) . ')', 'IN'));
             }
             $moduleHandler = $xoops->getHandlerModule();

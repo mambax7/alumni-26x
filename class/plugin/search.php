@@ -40,7 +40,7 @@ class AlumniSearchPlugin extends PluginAbstract implements SearchPluginInterface
     public function search($queryArray, $andor, $limit, $offset, $userid)
     {
         $xoops           = Xoops::getInstance();
-        $helper          = $xoops->getModuleHelper('alumni');
+        $helper          = Xoops::getModuleHelper('alumni');
         $module_id       = $helper->getModule()->getVar('mid');
         $listing_Handler = $helper->getHandler('listing');
         $groups          = $xoops->getUserGroups();

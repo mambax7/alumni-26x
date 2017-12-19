@@ -47,7 +47,7 @@ class AlumniSearchPlugin extends PluginAbstract implements SearchPluginInterface
         $query   = Request::getString('query', '');
         $start   = Request::getInt('start', '0');
 
-        $helper         = $xoops->getModuleHelper('alumni');
+        $helper         = Xoops::getModuleHelper('alumni');
         $module_id      = $helper->getModule()->getVar('mid');
         $listingHandler = $helper->getHandler('listing');
         $groups         = $xoops->getUserGroups();

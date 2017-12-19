@@ -32,12 +32,12 @@ $moderateCriteria = new CriteriaCompo();
 $moderateCriteria->add(new Criteria('valid', 0, '='));
 $moderate_count = $listingHandler->getCount($moderateCriteria);
 
-$indexAdmin = new \Xoops\Module\Admin();
-$indexAdmin->displayNavigation('index.php');
-$indexAdmin->addInfoBox(AlumniLocale::LISTINGS, 'listing');
-$indexAdmin->addInfoBoxLine(sprintf(AlumniLocale::TOTAL_LISTINGS, $moderate_count + $listing_valid), 'listing');
-$indexAdmin->addInfoBoxLine(sprintf(AlumniLocale::TOTAL_VALID, $listing_valid), 'listing');
-$indexAdmin->addInfoBoxLine(sprintf(AlumniLocale::TOTAL_NOT_VALID, $moderate_count), 'listing');
+$adminObject = new \Xoops\Module\Admin();
+$adminObject->displayNavigation('index.php');
+$adminObject->addInfoBox(AlumniLocale::LISTINGS, 'listing');
+$adminObject->addInfoBoxLine(sprintf(AlumniLocale::TOTAL_LISTINGS, $moderate_count + $listing_valid), 'listing');
+$adminObject->addInfoBoxLine(sprintf(AlumniLocale::TOTAL_VALID, $listing_valid), 'listing');
+$adminObject->addInfoBoxLine(sprintf(AlumniLocale::TOTAL_NOT_VALID, $moderate_count), 'listing');
 
 $extensions = [
     'comments'      => 'extension',
@@ -45,9 +45,9 @@ $extensions = [
     'xcaptcha'      => 'extension'
 ];
 foreach ($extensions as $module => $type) {
-    $indexAdmin->addConfigBoxLine([$module, 'warning'], $type);
+    $adminObject->addConfigBoxLine([$module, 'warning'], $type);
 }
 
-$indexAdmin->displayIndex();
+$adminObject->displayIndex();
 
 $xoops->footer();
