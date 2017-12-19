@@ -40,8 +40,9 @@ class AlumniSearchForm extends XoopsThemeForm {
         // create form elements
         $this->addElement(new XoopsFormText(XoopsLocale::KEYWORDS, 'query', 30, 255, htmlspecialchars(stripslashes(implode(' ', $queries)), ENT_QUOTES)), true);
         $type_select = new XoopsFormSelect(XoopsLocale::TYPE, 'andor', $andor);
-        $type_select->addOptionArray(array(
-          'AND' => XoopsLocale::ALL_AND, 'OR' => XoopsLocale::ANY_OR, 'exact' => XoopsLocale::EXACT_MATCH));
+        $type_select->addOptionArray([
+          'AND' => XoopsLocale::ALL_AND, 'OR' => XoopsLocale::ANY_OR, 'exact' => XoopsLocale::EXACT_MATCH
+                                     ]);
         $this->addElement($type_select);
 
         $by_cat = Request::getInt('by_cat', 0);
@@ -68,7 +69,7 @@ class AlumniSearchForm extends XoopsThemeForm {
         $category_select = new XoopsFormSelect(AlumniLocale::L_ALUMNI_CATEGORIES, 'by_cat', $by_cat);
         foreach ($categories as $cid => $title) {
             $category_select->addOption('0', XoopsLocale::ALL);
-            $category_select->addOptionArray(array($cid => $title));
+            $category_select->addOptionArray([$cid => $title]);
         }
         $this->addElement($category_select);
 
@@ -92,7 +93,7 @@ class AlumniSearchForm extends XoopsThemeForm {
             $mods_checkbox->addOptionArray($moduleHandler->getNameList($criteria));
         } else {
             /* @var $module XoopsModule */
-            $module_array = array();
+            $module_array = [];
             foreach ($modules as $mid => $module) {
                 $module_array[$mid] = $module->getVar('name');
             }

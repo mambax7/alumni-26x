@@ -28,10 +28,10 @@ define('ALUMNI_ROOT_PATH', XOOPS_ROOT_PATH . '/modules/' . ALUMNI_DIRNAME);
 define('ALUMNI_UPLOADS_PATH', XOOPS_ROOT_PATH . '/uploads/' . ALUMNI_DIRNAME);
 
 $path = dirname(__DIR__);
-XoopsLoad::addMap(array(
+XoopsLoad::addMap([
                       'alumnisession'   => $path . '/class/session.php',
                       'alumni'          => $path . '/class/helper.php',
                       'alumniblockform' => $path . '/class/blockform.php'
-                  ));
+                  ]);
 
 $alumni = Alumni::getInstance();

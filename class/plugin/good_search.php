@@ -30,7 +30,7 @@ $alumni  = Alumni::getInstance();
 $myts    = MyTextSanitizer::getInstance();
 $by_cat  = Request::getInt('by_cat', '');
 $andor = Request::getWord('andor', 'AND');
-$queries = array();
+$queries = [];
 $query   = Request::getString('query', '');
 $start   = Request::getInt('start', '0');
 
@@ -52,7 +52,7 @@ $all_ids = implode(', ', $alumni_ids);
         $criteria->add(new Criteria('cid', $by_cat, '='));
     }
 
-    $queries = array($query);
+    $queries = [$query];
     $queries = implode('+', $queries);
 
     $count = 0;
@@ -72,7 +72,7 @@ $all_ids = implode(', ', $alumni_ids);
     $numrows     = $listingHandler->getCount();
     $this_search = $listingHandler->getall($criteria);
 
-    $ret = array();
+    $ret = [];
     $k   = 0;
 
     foreach ($this_search as $obj) {

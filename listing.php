@@ -316,7 +316,7 @@ switch ($op) {
             $photomax          = $xoops->getModuleConfig('alumni_photomax');
             $maxwide           = $xoops->getModuleConfig('alumni_maxwide');
             $maxhigh           = $xoops->getModuleConfig('alumni_maxhigh');
-            $allowed_mimetypes = array('image/gif', 'image/jpg', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png');
+            $allowed_mimetypes = ['image/gif', 'image/jpg', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png'];
             $uploader          = new XoopsMediaUploader($uploaddir, $allowed_mimetypes, $photomax, $maxwide, $maxhigh);
             if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
                 $uploader->setTargetFileName($date . '_' . $_FILES['photo']['name']);
@@ -338,7 +338,7 @@ switch ($op) {
             $photomax          = $xoops->getModuleConfig('alumni_photomax');
             $maxwide           = $xoops->getModuleConfig('alumni_maxwide');
             $maxhigh           = $xoops->getModuleConfig('alumni_maxhigh');
-            $allowed_mimetypes = array('image/gif', 'image/jpg', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png');
+            $allowed_mimetypes = ['image/gif', 'image/jpg', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png'];
             $uploader2         = new XoopsMediaUploader($uploaddir2, $allowed_mimetypes, $photomax, $maxwide, $maxhigh);
             if ($uploader2->fetchMedia($_POST['xoops_upload_file'][1])) {
                 $uploader2->setTargetFileName($date . '_' . $_FILES['photo2']['name']);
@@ -363,7 +363,7 @@ switch ($op) {
             //notifications
             if ($lid == 0 && $xoops->isActiveModule('notifications')) {
                 $notification_handler = Notifications::getInstance()->getHandlerNotification();
-                $tags                 = array();
+                $tags                 = [];
                 $tags['MODULE_NAME']  = 'alumni';
                 $tags['ITEM_NAME']    = Request::getInt('lname', '');
                 $tags['ITEM_URL']     = XOOPS_URL . '/modules/alumni/listing.php?lid=' . $new_id;
@@ -401,8 +401,8 @@ switch ($op) {
                 echo $xoops->alert('error', $obj->getHtmlErrors());
             }
         } else {
-            echo $xoops->confirm(array('ok' => 1, 'lid' => $lid, 'op' => 'delete_listing'), 'listing.php', XoopsLocale::Q_ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM
-                . '<br><span class="red">' . $obj->getVar('lname') . '<span>');
+            echo $xoops->confirm(['ok' => 1, 'lid' => $lid, 'op' => 'delete_listing'], 'listing.php', XoopsLocale::Q_ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM
+                                                                                                      . '<br><span class="red">' . $obj->getVar('lname') . '<span>');
         }
         break;
 }

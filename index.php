@@ -177,7 +177,7 @@ foreach (array_keys($cats) as $i) {
             }
         }
     }
-    $subcategories = array();
+    $subcategories = [];
 
     $count++;
 
@@ -200,7 +200,7 @@ foreach (array_keys($cats) as $i) {
                 $alumni_subcount = $listingHandler->getCount($sub_count_criteria);
 
                 if ($xoops->getModuleConfig('alumni_showsubcat') == 1 AND $all_subcats[$k]->getVar('pid') == $cats[$i]->getVar('cid')) { // if we are collecting subcat info for displaying, and this subcat is a first level child...
-                    $subcategories[] = array('id' => $all_subcats[$k]->getVar('cid'), 'title' => $all_subcats[$k]->getVar('title'), 'count' => $alumni_subcount);
+                    $subcategories[] = ['id' => $all_subcats[$k]->getVar('cid'), 'title' => $all_subcats[$k]->getVar('title'), 'count' => $alumni_subcount];
                 }
             }
         }
@@ -209,20 +209,22 @@ foreach (array_keys($cats) as $i) {
     if ($xoops->getModuleConfig('alumni_showsubcat') != 1) {
         unset($subcategories);
 
-        $xoops->tpl()->append('categories', array(
+        $xoops->tpl()->append('categories', [
             'image'     => $cat_img,
             'id'        => (int)($cats[$i]->getVar('cid')),
             'title'     => $cats[$i]->getVar('title'),
             'totalcats' => (int)($alumni_count),
-            'count'     => (int)($count)));
+            'count'     => (int)($count)
+        ]);
     } else {
-        $xoops->tpl()->append('categories', array(
+        $xoops->tpl()->append('categories', [
             'image'         => $cat_img,
             'id'            => (int)($cats[$i]->getVar('cid')),
             'title'         => $cats[$i]->getVar('title'),
             'subcategories' => $subcategories,
             'totalcats'     => (int)($alumni_count),
-            'count'         => (int)($count)));
+            'count'         => (int)($count)
+        ]);
     }
 }
 $xoops->tpl()->assign('total_confirm', '');
@@ -294,7 +296,7 @@ foreach (array_keys($listingArray) as $i) {
     $photo2     = $listingArray[$i]->getVar('photo2');
     $view       = $listingArray[$i]->getVar('view');
 
-    $a_item        = array();
+    $a_item        = [];
     $a_item['new'] = '';
 
     $newcount  = $xoops->getModuleConfig('' . $moduleDirName . '_countday');

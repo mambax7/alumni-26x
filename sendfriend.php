@@ -103,7 +103,7 @@ if (Request::getString('submit', '', 'POST')){
         $submitter  = $myts->htmlSpecialChars($submitter);
         $town       = $myts->htmlSpecialChars($town);
 
-        $tags                       = array();
+        $tags                       = [];
         $tags['YNAME']              = $yname;
         $tags['YMAIL']              = $ymail;
         $tags['FNAME']              = $fname;

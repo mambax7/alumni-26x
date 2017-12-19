@@ -59,7 +59,7 @@ class AlumniPermissionHandler extends XoopsObjectHandler
         if (isset($items[$gperm_name][$id])) {
             return $items[$gperm_name][$id];
         }
-        $groups = array();
+        $groups = [];
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('gperm_modid', $this->alumni->getModule()->getVar('mid')));
         $criteria->add(new Criteria('gperm_name', $gperm_name));
@@ -91,7 +91,7 @@ class AlumniPermissionHandler extends XoopsObjectHandler
         if (isset($items[$gperm_name])) {
             return $items[$gperm_name];
         }
-        $ret = array();
+        $ret = [];
         //Instead of calling groupperm handler and get objects, we will save some memory and do it our way
         $criteria = new CriteriaCompo(new Criteria('gperm_name', $gperm_name));
         $criteria->add(new Criteria('gperm_modid', $this->alumni->getModule()->getVar('mid')));

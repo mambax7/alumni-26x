@@ -189,7 +189,7 @@ switch ($op) {
         $photomax          = $xoops->getModuleConfig('alumni_photomax');
         $maxwide           = $xoops->getModuleConfig('alumni_maxwide');
         $maxhigh           = $xoops->getModuleConfig('alumni_maxhigh');
-        $allowedMimetypes = array('image/gif', 'image/jpg', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png');
+        $allowedMimetypes = ['image/gif', 'image/jpg', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png'];
         $uploader          = new XoopsMediaUploader($uploaddir, $allowedMimetypes, $photomax, $maxwide, $maxhigh);
         if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
             $uploader->setPrefix('category_img_');
@@ -222,7 +222,7 @@ switch ($op) {
             $photomax          = $xoops->getModuleConfig('alumni_photomax');
             $maxwide           = $xoops->getModuleConfig('alumni_maxwide');
             $maxhigh           = $xoops->getModuleConfig('alumni_maxhigh');
-            $allowedMimetypes = array('image/gif', 'image/jpg', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png');
+            $allowedMimetypes = ['image/gif', 'image/jpg', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png'];
             $uploader          = new XoopsMediaUploader($uploaddir, $allowedMimetypes, $photomax, $maxwide, $maxhigh);
             if ($uploader->fetchMedia($_POST['xoops_upload_file'][1])) {
                 $uploader->setTargetFileName($date . '_' . $_FILES['scphoto']['name']);
@@ -277,7 +277,7 @@ switch ($op) {
             }
         } else {
             echo $xoops->confirm(
-                array('ok' => 1, 'cid' => $cid, 'op' => 'delete_category'),
+                ['ok' => 1, 'cid' => $cid, 'op' => 'delete_category'],
                 'category.php',
                 XoopsLocale::Q_ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM
                 . '<br><span class="red">' . $obj->getVar('title') . '<span>'

@@ -40,7 +40,7 @@ class AlumniGroupPermHandler extends XoopsGroupPermHandler {
         return parent::checkRight($gperm_name, $gperm_itemid, $gperm_groupid, $gperm_modid, $trueifadmin);
     }
 
-    public function updatePerms($cid, $groups = array()) {
+    public function updatePerms($cid, $groups = []) {
         $module_id = Alumni::getInstance()->getModule()->getVar('mid');
 
         $groups_exists = parent::getGroupIds('alumni_view', $cid, $module_id);

@@ -46,7 +46,7 @@ $all_ids = implode(', ', $alumni_ids);
             ->setFirstResult($offset)
             ->setMaxResults($limit);
         if (is_array($queryArray) && !empty($queryArray)) {
-            $queryParts = array();
+            $queryParts = [];
             foreach ($queryArray as $i => $q) {
                 $query = ':query' . $i;
                 $qb->setParameter($query, '%' . $q . '%', \PDO::PARAM_STR);
@@ -59,14 +59,14 @@ $all_ids = implode(', ', $alumni_ids);
                 );
             }
 
-	    $qb->andWhere($eb->in('cid', array($all_ids)));
+	    $qb->andWhere($eb->in('cid', [$all_ids]));
             if ($by_cat) {
 	    $qb->andWhere($eb->eq('cid', $by_cat));
             }
             if ($andor == 'and') {
-                $qb->andWhere(call_user_func_array(array($eb, "andX"), $queryParts));
+                $qb->andWhere(call_user_func_array([$eb, "andX"], $queryParts));
             } else {
-                $qb->andWhere(call_user_func_array(array($eb, "orX"), $queryParts));
+                $qb->andWhere(call_user_func_array([$eb, "orX"], $queryParts));
             }
         } else {
             $qb->setParameter(':uid', (int) $userid, \PDO::PARAM_INT);
@@ -74,16 +74,16 @@ $all_ids = implode(', ', $alumni_ids);
         }
 
         $myts = MyTextSanitizer::getInstance();
-        $items = array();
+        $items = [];
         $result = $qb->execute();
         while ($myrow = $result->fetch(\PDO::FETCH_ASSOC)) {
-            $items[] = array(
+            $items[] = [
                 'title' =>  $myrow['name']." ".$myrow['mname']." ".$myrow['lname']."   ---   ".$myrow['school']." ---   ".$myrow['year'],
                 'link' => "listing.php?lid=" . $myrow["lid"],
                 'time' => $myrow['date'],
                 'uid' => $myrow['usid'],
                 'image' => 'images/cat/default.gif',
-            );
+            ];
         }
         return $items;
     }

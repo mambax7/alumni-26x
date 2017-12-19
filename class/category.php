@@ -124,7 +124,7 @@ class AlumniCategoryHandler extends XoopsPersistableObjectHandler {
         $xoops     = Xoops::getInstance();
         $alumni = Alumni::getInstance();
         $moduleId = $alumni->getModule()->mid();
-        $ret       = array();
+        $ret       = [];
         $criteria  = new CriteriaCompo();
         $criteria->setSort('cid');
         $criteria->setOrder('ASC');
@@ -134,11 +134,11 @@ class AlumniCategoryHandler extends XoopsPersistableObjectHandler {
             $allowedCategoriesIds = $alumni->getGrouppermHandler()->getItemIds('alumni_view', $groups, $moduleId);
                 $criteria->add(new Criteria('cid', '(' . implode(',', $allowedCategoriesIds) . ')', 'IN'));
         }
-        $categories = $this->getAll($criteria, array('cid', 'pid', 'title'), false, false);
+        $categories = $this->getAll($criteria, ['cid', 'pid', 'title'], false, false);
         if (0 == count($categories)) {
             return $ret;
         }
-        $cat_array = array();
+        $cat_array = [];
         foreach ($categories as $cat) {
             $cat_array[$cat['pid']][$cat['cid']] = $cat;
         }
@@ -146,7 +146,7 @@ class AlumniCategoryHandler extends XoopsPersistableObjectHandler {
         if (!isset($cat_array[0])) {
             return $ret;
         }
-        $cat_result = array();
+        $cat_result = [];
         foreach ($cat_array[0] as $thecat) {
             $level = 0;
             $this->getSubCatArray($thecat, $level, $cat_array, $cat_result);

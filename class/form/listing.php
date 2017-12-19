@@ -75,7 +75,7 @@ class AlumniListingForm extends Xoops\Form\ThemeForm
         $this->addElement(new Xoops\Form\Text(AlumniLocale::CLASS_OF_2, 'year', 50, 255, $obj->getVar('year')), true);
         $this->addElement(new Xoops\Form\Text(AlumniLocale::STUDIES_2, 'studies', 50, 255, $obj->getVar('studies')), false);
         $activities               = $obj->getVar('activities', 'e') ? $obj->getVar('activities', 'e') : '';
-        $editor_configs           = array();
+        $editor_configs           = [];
         $editor_configs['name']   = 'activities';
         $editor_configs['value']  = ($activities);
         $editor_configs['editor'] = $xoops->getModuleConfig('alumni_form_options');
@@ -84,7 +84,7 @@ class AlumniListingForm extends Xoops\Form\ThemeForm
 
         $this->addElement(new Xoops\Form\Editor(AlumniLocale::ACTIVITIES, 'activities', $editor_configs), false);
         $extrainfo                = $obj->getVar('extrainfo', 'e') ? $obj->getVar('extrainfo', 'e') : '';
-        $editor_configs           = array();
+        $editor_configs           = [];
         $editor_configs['name']   = 'extrainfo';
         $editor_configs['value']  = $extrainfo;
         $editor_configs['editor'] = $xoops->getModuleConfig('alumni_form_options');

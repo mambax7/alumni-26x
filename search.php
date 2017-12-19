@@ -43,9 +43,9 @@ $uid     = Request::getInt('uid', 0);
 $start   = Request::getInt('start', 0);
 $limit   = Request::getInt('start',1000);
 $by_cat  = Request::getInt('by_cat');
-$mids    = Request::getArray('mids', array());
+$mids    = Request::getArray('mids', []);
 $xmid    = $xoops->module->getVar('mid');
-$queries = array();
+$queries = [];
 
 if ($action == 'results') {
     if ($query == ''  && ($by_cat == "")) {
@@ -81,8 +81,8 @@ if ($andor != 'OR' && $andor != 'exact' && $andor != 'AND') {
     $andor = 'AND';
 }
 
-$ignored_queries = array(); // holds kewords that are shorter than allowed minmum length
-$queries_pattern = array();
+$ignored_queries = []; // holds kewords that are shorter than allowed minmum length
+$queries_pattern = [];
 $myts = \Xoops\Core\Text\Sanitizer::getInstance();
 if ($action != 'showallbyuser') {
     if ($andor != 'exact') {
@@ -104,7 +104,7 @@ if ($action != 'showallbyuser') {
         if (mb_strlen($query) < $search->getConfig('keyword_min')) {
             $xoops->redirect('index.php', 2, sprintf(XoopsLocale::EF_KEYWORDS_MUST_BE_GREATER_THAN, $search->getConfig('keyword_min')));
         }
-        $queries           = array($query);
+        $queries           = [$query];
         $queries_pattern[] = '~(' . $query . ')~sUi';
     }
 }
@@ -126,7 +126,7 @@ switch ($action) {
         $xoops->tpl()->assign('ignored_words', sprintf(XoopsLocale::F_KEYWORDS_SHORTER_THAN_WILL_BE_IGNORED, $search->getConfig('keyword_min')));
         $xoops->tpl()->assign('ignored_queries', $ignored_queries);
 
-        $modules_result = array();
+        $modules_result = [];
         foreach ($mids as $mid) {
             $mid = (int)($mid);
             /* @var $module XoopsModule */
@@ -156,7 +156,7 @@ switch ($action) {
                 $xoops->tpl()->assign('cat_name', "<b> :  &nbsp;&nbsp; $cat_name</b>");
             }
 
-            $res = array();
+            $res = [];
             if (is_array($results) && $count > 0) {
                 $nomatch = false;
                 $modules_result[$mid]['name'] = $module->getVar('name');
@@ -165,7 +165,7 @@ switch ($action) {
                 } else {
                     $modules_result[$mid]['image'] = $xoops->url('images/icons/posticon2.gif');
                 }
-                $res = array();
+                $res = [];
                 for ($i = 0; $i < $count; ++$i) {
                     if (!preg_match("/^http[s]*:\/\//i", $results[$i]['link'])) {
                         $res[$i]['link'] = $xoops->url('modules/' . $module->getVar('dirname') . '/' . $results[$i]['link']);
@@ -243,7 +243,7 @@ switch ($action) {
                 $xoops->tpl()->assign('cat_name', "<b> :  &nbsp;&nbsp; $cat_name</b>");
             }
 
-            $res = array();
+            $res = [];
             for ($i = 0; $i < $count; ++$i) {
                 if (isset($results[$i]['image']) && $results[$i]['image'] != '') {
                     $res[$i]['image'] = $xoops->url('modules/' . $module->getVar('dirname') . '/' . $results[$i]['image']);

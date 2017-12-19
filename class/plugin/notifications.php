@@ -31,7 +31,7 @@ class AlumniNotificationsPlugin extends Xoops\Module\Plugin\PluginAbstract imple
     public function item($category, $item_id) {
 
         $xoops   = Xoops::getInstance();
-        $item    = array();
+        $item    = [];
         $item_id = (int)$item_id;
 
         if ('global' == $category) {
@@ -74,23 +74,23 @@ class AlumniNotificationsPlugin extends Xoops\Module\Plugin\PluginAbstract imple
      */
     public function categories() {
 	Xoops::getInstance()->loadLocale('alumni');
-        $ret                      = array();
+        $ret                      = [];
         $ret[1]['name']           = 'global';
         $ret[1]['title']          = AlumniLocale::NOTIFICATION_GLOBAL;
         $ret[1]['description']    = AlumniLocale::NOTIFICATION_GLOBAL_DSC;
-        $ret[1]['subscribe_from'] = array('index.php', 'categories.php');
+        $ret[1]['subscribe_from'] = ['index.php', 'categories.php'];
 
         $ret[2]['name']           = 'category';
         $ret[2]['title']          = AlumniLocale::NOTIFICATION_CATEGORY;
         $ret[2]['description']    = AlumniLocale::NOTIFICATION_CATEGORY_DSC;
-        $ret[2]['subscribe_from'] = array('categories.php');
+        $ret[2]['subscribe_from'] = ['categories.php'];
         $ret[2]['item_name']      = 'cid';
         $ret[2]['allow_bookmark'] = 1;
 
         $ret[3]['name']           = 'alumni_listing';
         $ret[3]['title']          = AlumniLocale::NOTIFICATION_ITEM;
         $ret[3]['description']    = AlumniLocale::NOTIFICATION_ITEM_DSC;
-        $ret[3]['subscribe_from'] = array('listing.php');
+        $ret[3]['subscribe_from'] = ['listing.php'];
         $ret[3]['item_name']      = 'lid';
         $ret[3]['allow_bookmark'] = 1;
 
@@ -102,7 +102,7 @@ class AlumniNotificationsPlugin extends Xoops\Module\Plugin\PluginAbstract imple
      * @return array
      */
     public function events() {
-        $ret = array();
+        $ret = [];
 
         //event
         //alumni notifications new listings in this category
@@ -135,6 +135,6 @@ class AlumniNotificationsPlugin extends Xoops\Module\Plugin\PluginAbstract imple
      * @return array
      */
     public function tags($category, $item_id, $event) {
-        return array();
+        return [];
     }
 }

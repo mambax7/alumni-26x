@@ -39,13 +39,13 @@ $indexAdmin->addInfoBoxLine(sprintf(AlumniLocale::TOTAL_LISTINGS, $moderate_coun
 $indexAdmin->addInfoBoxLine(sprintf(AlumniLocale::TOTAL_VALID, $listing_valid), 'listing');
 $indexAdmin->addInfoBoxLine(sprintf(AlumniLocale::TOTAL_NOT_VALID, $moderate_count), 'listing');
 
-$extensions = array(
+$extensions = [
     'comments'      => 'extension',
     'notifications' => 'extension',
     'xcaptcha'      => 'extension'
-);
+];
 foreach ($extensions as $module => $type) {
-    $indexAdmin->addConfigBoxLine(array($module, 'warning'), $type);
+    $indexAdmin->addConfigBoxLine([$module, 'warning'], $type);
 }
 
 $indexAdmin->displayIndex();

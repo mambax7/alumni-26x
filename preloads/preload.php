@@ -34,11 +34,11 @@ class AlumniPreload extends PreloadItem
     public static function eventCoreIncludeCommonClassmaps($args)
     {
         $path = dirname(__DIR__);
-        XoopsLoad::addMap(array(
+        XoopsLoad::addMap([
                               'alumnimetagen' => $path . '/class/metagen.php',
                               'alumni'        => $path . '/class/helper.php',
                               //    'alumniutils' => $path . '/class/utils.php',
                               //     'alumniblockform' => $path . '/class/blockform.php',
-                          ));
+                          ]);
     }
 }

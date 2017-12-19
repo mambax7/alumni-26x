@@ -81,7 +81,7 @@ switch ($op) {
 
                 $xoops->tpl()->assign('cat', $cid);
 
-                $listing = array();
+                $listing = [];
                 $name    = $myts->undoHtmlSpecialChars($name);
                 $mname   = $myts->undoHtmlSpecialChars($mname);
                 $lname   = $myts->undoHtmlSpecialChars($lname);
@@ -222,7 +222,7 @@ switch ($op) {
             $photomax          = $xoops->getModuleConfig('alumni_photomax');
             $maxwide           = $xoops->getModuleConfig('alumni_maxwide');
             $maxhigh           = $xoops->getModuleConfig('alumni_maxhigh');
-            $allowedMimetypes = array('image/gif', 'image/jpg', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png');
+            $allowedMimetypes = ['image/gif', 'image/jpg', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png'];
             $uploader          = new XoopsMediaUploader($uploaddir, $allowedMimetypes, $photomax, $maxwide, $maxhigh);
             if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
                 $uploader->setTargetFileName($date . '_' . $_FILES['photo']['name']);
@@ -244,7 +244,7 @@ switch ($op) {
             $photomax          = $xoops->getModuleConfig('alumni_photomax');
             $maxwide           = $xoops->getModuleConfig('alumni_maxwide');
             $maxhigh           = $xoops->getModuleConfig('alumni_maxhigh');
-            $allowedMimetypes = array('image/gif', 'image/jpg', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png');
+            $allowedMimetypes = ['image/gif', 'image/jpg', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png'];
             $uploader2         = new XoopsMediaUploader($uploaddir2, $allowedMimetypes, $photomax, $maxwide, $maxhigh);
             if ($uploader2->fetchMedia($_POST['xoops_upload_file'][1])) {
                 $uploader2->setTargetFileName($date . '_' . $_FILES['photo2']['name']);
@@ -266,7 +266,7 @@ switch ($op) {
             //notifications
             if (0 == $lid  && $xoops->isActiveModule('notifications')) {
                 $notification_handler = Notifications::getInstance()->getHandlerNotification();
-                $tags                 = array();
+                $tags                 = [];
                 $tags['MODULE_NAME']  = 'alumni';
                 $tags['ITEM_NAME']    = Request::getString('lname', '');
                 $tags['ITEM_URL']     = XOOPS_URL . "/modules/{$moduleDirName}/listing.php?lid=" . $new_id;
@@ -309,7 +309,7 @@ switch ($op) {
         } else {
         
             echo $xoops->confirm(
-                array('ok' => 1, 'lid' => $lid, 'op' => 'delete_listing'),
+                ['ok' => 1, 'lid' => $lid, 'op' => 'delete_listing'],
                 'alumni.php',
                 XoopsLocale::Q_ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM
                 . '<br><span class="red">' . $obj->getVar('lname') . '<span>'
@@ -382,7 +382,7 @@ switch ($op) {
 
                 $xoops->tpl()->assign('cat', $cid);
 
-                $listing = array();
+                $listing = [];
                 $name    = $myts->undoHtmlSpecialChars($name);
                 $mname   = $myts->undoHtmlSpecialChars($mname);
                 $lname   = $myts->undoHtmlSpecialChars($lname);

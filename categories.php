@@ -167,7 +167,7 @@ foreach (array_keys($categoryArray) as $i) {
             $listingCriteria->add(new Criteria('valid', 1, '='));
             $listingCriteria->add(new Criteria('cid', '(' . implode(', ', $alumniIds) . ')', 'IN'));
             $alumni_count = $listingHandler->getCount($listingCriteria);
-            $xoops->tpl()->append('subcategories', array('title' => $sub_cat_title, 'id' => $subcat_id, 'totallinks' => $alumni_count, 'count' => $numsubcat));
+            $xoops->tpl()->append('subcategories', ['title' => $sub_cat_title, 'id' => $subcat_id, 'totallinks' => $alumni_count, 'count' => $numsubcat]);
         }
         $xoops->tpl()->assign('showsubcat', true);
     }
@@ -255,7 +255,7 @@ foreach (array_keys($categoryArray) as $i) {
             $xoops->tpl()->assign('last_head_photo2', AlumniLocale::PHOTO2);
             $xoops->tpl()->assign('cat', $cid);
 
-            $a_item     = array();
+            $a_item     = [];
             $name       = $myts->undoHtmlSpecialChars($name);
             $mname      = $myts->undoHtmlSpecialChars($mname);
             $lname      = $myts->undoHtmlSpecialChars($lname);

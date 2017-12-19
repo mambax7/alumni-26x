@@ -49,7 +49,7 @@ class AlumniObjectTree extends XoopsObjectTree {
     /**
      * @var array
      */
-    private $_tree = array();
+    private $_tree = [];
 
     /**
      * @var array
@@ -119,7 +119,7 @@ class AlumniObjectTree extends XoopsObjectTree {
      * @return array  Array of children of the parent
      */
     public function alumni_getFirstChild($key) {
-        $ret = array();
+        $ret = [];
         if (isset($this->_tree[$key]['child'])) {
             foreach ($this->_tree[$key]['child'] as $childkey) {
                 $ret[$childkey] = $this->_tree[$childkey]['obj'];
@@ -137,7 +137,7 @@ class AlumniObjectTree extends XoopsObjectTree {
      * @param  array  $ret (Empty when called from client) Array of children from previous recursions.
      * @return array  Array of child nodes.
      */
-    public function alumni_getAllChild($key, $ret = array()) {
+    public function alumni_getAllChild($key, $ret = []) {
         if (isset($this->_tree[$key]['child'])) {
             foreach ($this->_tree[$key]['child'] as $childkey) {
                 $ret[$childkey] = $this->_tree[$childkey]['obj'];
@@ -160,7 +160,7 @@ class AlumniObjectTree extends XoopsObjectTree {
      * @param  int    $uplevel (empty when called from outside) level of recursion
      * @return array  Array of parent nodes.
      */
-    public function alumni_getAllParent($key, $ret = array(), $uplevel = 1) {
+    public function alumni_getAllParent($key, $ret = [], $uplevel = 1) {
         if (isset($this->_tree[$key]['parent']) && isset($this->_tree[$this->_tree[$key]['parent']]['obj'])) {
             $ret[$uplevel] = $this->_tree[$this->_tree[$key]['parent']]['obj'];
             $parents       = $this->alumni_getAllParent($this->_tree[$key]['parent'], $ret, $uplevel + 1);
@@ -238,7 +238,7 @@ class AlumniObjectTree extends XoopsObjectTree {
      * @return array
      */
     public function alumni_makeArrayTree($fieldName, $prefix = '-', $key = 0) {
-        $ret = array();
+        $ret = [];
         $this->alumni_makeArrayTreeOptions($fieldName, $key, $ret, $prefix);
 
         return $ret;

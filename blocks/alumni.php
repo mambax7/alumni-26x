@@ -29,7 +29,7 @@ include_once dirname(__DIR__) . '/include/common.php';
 
 function alumni_show($options) {
 
-$block       = array();
+$block       = [];
 $myts        = MyTextSanitizer::getInstance();
 $blockDirName = basename(dirname(__DIR__));
 
@@ -58,7 +58,7 @@ $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view'
         $year   = $block_listings[$i]->getVar('year');
         $view   = $block_listings[$i]->getVar('view');
         
-	$a_item = array();
+	$a_item = [];
         $a_item['school'] = $school;
         $a_item['link']   = '<a href="' . XOOPS_URL . "/modules/{$blockDirName}/listing.php?lid=" . addslashes($block_listings[$i]->getVar('lid')) . "\"><b>$year&nbsp;-&nbsp;$name $mname $lname</b><br></a>";
 

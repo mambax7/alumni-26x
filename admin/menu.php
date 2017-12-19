@@ -24,27 +24,32 @@ include_once dirname(__DIR__) . '/include/common.php';
 $alumni = Alumni::getInstance();
 $xoops         = Xoops::getInstance();
 
-$adminmenu[] = array(
+$adminmenu[] = [
     'title' => AlumniLocale::ADMENU1,
     'link'  => 'admin/index.php',
-    'icon'  => 'home.png');
+    'icon'  => 'home.png'
+];
 
-$adminmenu[] = array(
+$adminmenu[] = [
     'title' => AlumniLocale::_ADMENU5,
     'link'  => 'admin/alumni.php',
-    'icon'  => 'manage.png');
+    'icon'  => 'manage.png'
+];
 
-$adminmenu[] = array(
+$adminmenu[] = [
     'title' => AlumniLocale::_ADMENU2,
     'link'  => 'admin/alumni_categories.php',
-    'icon'  => 'category.png');
+    'icon'  => 'category.png'
+];
 
-$adminmenu[] = array(
+$adminmenu[] = [
     'title' => AlumniLocale::_ADMENU3,
     'link'  => 'admin/permissions.php',
-    'icon'  => 'permissions.png');
+    'icon'  => 'permissions.png'
+];
 
-$adminmenu[] = array(
+$adminmenu[] = [
     'title' => AlumniLocale::_ADMENU7,
     'link'  => 'admin/about.php',
-    'icon'  => 'about.png');
+    'icon'  => 'about.png'
+];
