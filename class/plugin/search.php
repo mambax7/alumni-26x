@@ -37,15 +37,15 @@ class AlumniSearchPlugin extends PluginAbstract implements SearchPluginInterface
      */
     public function search($queryArray, $andor, $limit, $offset, $userid)
     {
-$xoops           = Xoops::getInstance();
-$helper          = $xoops->getModuleHelper('alumni');
-$module_id       = $helper->getModule()->getVar('mid');
-$listing_Handler = $helper->getHandler('listing');
-$groups          = $xoops->getUserGroups();
-$alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
-$all_ids = implode(', ', $alumni_ids);
+        $xoops           = Xoops::getInstance();
+        $helper          = $xoops->getModuleHelper('alumni');
+        $module_id       = $helper->getModule()->getVar('mid');
+        $listing_Handler = $helper->getHandler('listing');
+        $groups          = $xoops->getUserGroups();
+        $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
+        $all_ids = implode(', ', $alumni_ids);
     
-	$by_cat  = Request::getInt('by_cat', 0);
+        $by_cat  = Request::getInt('by_cat', 0);
         $andor = 'and' == strtolower($andor) ? 'and' : 'or';
 
         $qb = \Xoops::getInstance()->db()->createXoopsQueryBuilder();
@@ -70,9 +70,9 @@ $all_ids = implode(', ', $alumni_ids);
                 );
             }
 
-	    $qb->andWhere($eb->in('cid', [$all_ids]));
+            $qb->andWhere($eb->in('cid', [$all_ids]));
             if ($by_cat) {
-	    $qb->andWhere($eb->eq('cid', $by_cat));
+                $qb->andWhere($eb->eq('cid', $by_cat));
             }
             if ('and' == $andor) {
                 $qb->andWhere(call_user_func_array([$eb, 'andX'], $queryParts));

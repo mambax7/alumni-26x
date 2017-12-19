@@ -23,16 +23,16 @@ class AlumniCategoryForm extends Xoops\Form\ThemeForm
      */
     public function __construct(AlumniCategory $obj)
     {
-	$xoops = Xoops::getInstance();
-	$moduleDirName  = basename(dirname(__DIR__));
+        $xoops = Xoops::getInstance();
+        $moduleDirName  = basename(dirname(__DIR__));
         $admin_lang = '_AM_' . strtoupper($moduleDirName);
     
-	$title = sprintf($obj->isNew() ? AlumniLocale::ADD_CAT : AlumniLocale::EDIT_CAT);
-	parent::__construct($title, 'form', false, 'post', true);
+        $title = sprintf($obj->isNew() ? AlumniLocale::ADD_CAT : AlumniLocale::EDIT_CAT);
+        parent::__construct($title, 'form', false, 'post', true);
 
         include_once(XOOPS_ROOT_PATH . '/class/xoopsformloader.php');
 
-       $this->setExtra('enctype="multipart/form-data"');
+        $this->setExtra('enctype="multipart/form-data"');
 
         include_once(XOOPS_ROOT_PATH . '/class/tree.php');
         $categoryHandler = $xoops->getModuleHandler('category', 'alumni');
@@ -49,29 +49,29 @@ class AlumniCategoryForm extends Xoops\Form\ThemeForm
         }
       
         
-	$img = $obj->getVar('img') ?: 'default.gif';
-	$imgtray_img = new Xoops\Form\ElementTray(AlumniLocale::IMGCAT,'<br>');
-	$img_path = \XoopsBaseConfig::get('root-path') . '/modules/alumni/images/cat';
-	
-	$imgpath_img = sprintf(AlumniLocale::FORMIMAGE_PATH, $img_path);
-	$imageselect_img = new Xoops\Form\Select(sprintf(XoopsLocale::F_FILE_EXISTS_IN, $img_path . '/'), 'img', $img);
-	$image_array_img = XoopsLists::getImgListAsArray( $img_path );
-	$imageselect_img->addOption("$default_img", $default_img);
-	foreach( $image_array_img as $image_img ) {
-	$imageselect_img->addOption("$image_img", $image_img);
-	}
-	
-	$alumni_upload_url = \XoopsBaseConfig::get('url') . '/modules/alumni/images/cat';
-	
-	$imageselect_img->setExtra( "onchange='showImgSelected(\"image_img\", \"img\", \"\", \"\", \"" . $alumni_upload_url . "\")'");
-	$imgtray_img->addElement($imageselect_img, false);
-	$imgtray_img->addElement( new Xoops\Form\Label( '', "<br><img src='".$alumni_upload_url . '/' . $img . "' name='image_img' id='image_img' alt=''>" ) );
+        $img = $obj->getVar('img') ?: 'default.gif';
+        $imgtray_img = new Xoops\Form\ElementTray(AlumniLocale::IMGCAT, '<br>');
+        $img_path = \XoopsBaseConfig::get('root-path') . '/modules/alumni/images/cat';
+    
+        $imgpath_img = sprintf(AlumniLocale::FORMIMAGE_PATH, $img_path);
+        $imageselect_img = new Xoops\Form\Select(sprintf(XoopsLocale::F_FILE_EXISTS_IN, $img_path . '/'), 'img', $img);
+        $image_array_img = XoopsLists::getImgListAsArray($img_path);
+        $imageselect_img->addOption("$default_img", $default_img);
+        foreach ($image_array_img as $image_img) {
+            $imageselect_img->addOption("$image_img", $image_img);
+        }
+    
+        $alumni_upload_url = \XoopsBaseConfig::get('url') . '/modules/alumni/images/cat';
+    
+        $imageselect_img->setExtra("onchange='showImgSelected(\"image_img\", \"img\", \"\", \"\", \"" . $alumni_upload_url . "\")'");
+        $imgtray_img->addElement($imageselect_img, false);
+        $imgtray_img->addElement(new Xoops\Form\Label('', "<br><img src='".$alumni_upload_url . '/' . $img . "' name='image_img' id='image_img' alt=''>"));
 
-	$fileseltray_category_img = new Xoops\Form\ElementTray('<br>','<br>');
-	$fileseltray_category_img->addElement(new Xoops\Form\File(AlumniLocale::FORMUPLOAD , 'img'), false);
-	$fileseltray_category_img->addElement(new Xoops\Form\Label(''), false);
-	$imgtray_img->addElement($fileseltray_category_img);
-	$this->addElement($imgtray_img);
+        $fileseltray_category_img = new Xoops\Form\ElementTray('<br>', '<br>');
+        $fileseltray_category_img->addElement(new Xoops\Form\File(AlumniLocale::FORMUPLOAD, 'img'), false);
+        $fileseltray_category_img->addElement(new Xoops\Form\Label(''), false);
+        $imgtray_img->addElement($fileseltray_category_img);
+        $this->addElement($imgtray_img);
 
         $this->addElement(new Xoops\Form\Text(AlumniLocale::ORDER, 'ordre', 4, 4, $obj->getVar('ordre')), false);
         $this->addElement(new Xoops\Form\Label(AlumniLocale::IFSCHOOL, ''));

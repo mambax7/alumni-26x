@@ -22,7 +22,8 @@ defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 /**
  * Class Alumni
  */
-class Alumni extends Xoops\Module\Helper\HelperAbstract {
+class Alumni extends Xoops\Module\Helper\HelperAbstract
+{
     /**
      * Init the module
      *
@@ -33,48 +34,53 @@ class Alumni extends Xoops\Module\Helper\HelperAbstract {
 //        $this->setDirname('alumni');
         $moduleDirName = basename(dirname(__DIR__));
         $this->setDirname($moduleDirName);
-
     }
 
     /**
      * @return Alumni
      */
-    public static function getInstance() {
+    public static function getInstance()
+    {
         return parent::getInstance();
     }
 
     /**
      * @return AlumnilistingHandler
      */
-    public function getListingHandler() {
+    public function getListingHandler()
+    {
         return $this->getHandler('listing');
     }
 
     /**
      * @return \Xoops\Core\Kernel\XoopsObjectHandler
      */
-    public function getCategoryHandler() {
+    public function getCategoryHandler()
+    {
         return $this->getHandler('category');
     }
 
     /**
      * @return AlumniPermissionHandler
      */
-    public function getPermissionHandler() {
+    public function getPermissionHandler()
+    {
         return $this->getHandler('permission');
     }
 
     /**
      * @return AlumniGroupPermHandler
      */
-    public function getGrouppermHandler() {
+    public function getGrouppermHandler()
+    {
         return $this->getHandler('groupperm');
     }
 
     /**
      * @return int|mixed
      */
-    public function getUserId() {
+    public function getUserId()
+    {
         if ($this->xoops()->isUser()) {
             return $this->xoops()->user->getVar('uid');
         }

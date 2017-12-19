@@ -62,7 +62,7 @@ switch ($op) {
 
         $alumni     = Alumni::getInstance();
         $helper          = $xoops->getModuleHelper('alumni');
-	$module_id       = $helper->getModule()->getVar('mid');
+    $module_id       = $helper->getModule()->getVar('mid');
         $listingObj = $listingHandler->get($lid);
 
         $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
@@ -88,8 +88,8 @@ switch ($op) {
 
         $xoops->tpl()->assign('category_path', $path);
 
-	$groups          = $xoops->isUser() ? $xoops->user->getGroups() : '3';
-	$alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
+    $groups          = $xoops->isUser() ? $xoops->user->getGroups() : '3';
+    $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
         $criteria   = new CriteriaCompo();
         $criteria->add(new Criteria('lid', $lid, '='));
         $criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));
@@ -282,7 +282,7 @@ switch ($op) {
             }
         }
         
-	$cid = Request::getInt('cid', 0);
+    $cid = Request::getInt('cid', 0);
         if (isset($cid)) {
             $cat_name                  = '';
             $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
@@ -383,15 +383,15 @@ switch ($op) {
         break;
 
     case 'edit_listing':
-	$lid = Request::getInt('lid', 0);
-	$listingHandler = $xoops->getModuleHandler('listing', 'alumni');
+    $lid = Request::getInt('lid', 0);
+    $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
         $obj  = $listingHandler->get($lid);
         $form = $xoops->getModuleForm($obj, 'listing');
         $form->display();
         break;
 
     case 'delete_listing':
-	$listingHandler = $xoops->getModuleHandler('listing', 'alumni');
+    $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
         $lid = Request::getInt('lid', 0);
         $ok = Request::getInt('ok', 0);
 

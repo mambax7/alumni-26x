@@ -50,7 +50,7 @@ if (!$gpermHandler->checkRight('' . $moduleDirName . '_premium', $perm_itemid, $
     $prem_perm = '1';
 }
 
-	$alumni = Alumni::getInstance();
+    $alumni = Alumni::getInstance();
 
 $gpermHandler = $xoops->getHandlerGroupPermission();
 
@@ -77,7 +77,6 @@ $xoops->tpl()->assign('class_of', AlumniLocale::CLASSOF);
 $xoops->tpl()->assign('front_intro', AlumniLocale::FINTRO);
 
 if ('1' == $xoops->getModuleConfig('' . $moduleDirName . '_offer_search')) {
-
     $xoops->tpl()->assign('offer_search', true);
     $xoops->tpl()->assign('search_listings', AlumniLocale::SEARCH_LISTINGS);
     $xoops->tpl()->assign('match', AlumniLocale::MATCH);
@@ -172,7 +171,7 @@ foreach (array_keys($cats) as $i) {
         if (count($all_subcats) > 0) {
             foreach (array_keys($all_subcats) as $k) {
                 if (in_array($all_subcats[$k]->getVar('cid'), $alumni_ids)) {
-                    $publishdate = (isset($listings['date'][$all_subcats[$k]->getVar('cid')]) AND $listings['date'][$all_subcats[$k]->getVar('cid')] > $publishdate) ? $listings['date'][$all_subcats[$k]->getVar('cid')] : $publishdate;
+                    $publishdate = (isset($listings['date'][$all_subcats[$k]->getVar('cid')]) and $listings['date'][$all_subcats[$k]->getVar('cid')] > $publishdate) ? $listings['date'][$all_subcats[$k]->getVar('cid')] : $publishdate;
                 }
             }
         }
@@ -190,7 +189,6 @@ foreach (array_keys($cats) as $i) {
 
     if (count($all_subcats) > 0) {
         foreach (array_keys($all_subcats) as $k) {
-
             if (in_array($all_subcats[$k]->getVar('cid'), $alumni_ids)) {
                 $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
                 $sub_count_criteria     = new CriteriaCompo();
@@ -199,7 +197,7 @@ foreach (array_keys($cats) as $i) {
                 $sub_count_criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));
                 $alumni_subcount = $listingHandler->getCount($sub_count_criteria);
 
-                if (1 == $xoops->getModuleConfig('alumni_showsubcat') AND $all_subcats[$k]->getVar('pid') == $cats[$i]->getVar('cid')) { // if we are collecting subcat info for displaying, and this subcat is a first level child...
+                if (1 == $xoops->getModuleConfig('alumni_showsubcat') and $all_subcats[$k]->getVar('pid') == $cats[$i]->getVar('cid')) { // if we are collecting subcat info for displaying, and this subcat is a first level child...
                     $subcategories[] = ['id' => $all_subcats[$k]->getVar('cid'), 'title' => $all_subcats[$k]->getVar('title'), 'count' => $alumni_subcount];
                 }
             }
@@ -250,7 +248,7 @@ if ('1' == $xoops->getModuleConfig('' . $moduleDirName . '_moderated')) {
             } else {
                 $xoops->tpl()->assign('confirm_alumni', AlumniLocale::THERE_ARE . " $moderate_rows  " . AlumniLocale::WAITING . '<br><a href="admin/alumni.php?op=list_moderated">' . constant($main_lang . '_SEEIT') . '</a>');
             }
-	    $xoops->tpl()->assign('total_confirm', AlumniLocale::THIS_AND . " $moderate_rows " . AlumniLocale::WAITING);
+            $xoops->tpl()->assign('total_confirm', AlumniLocale::THIS_AND . " $moderate_rows " . AlumniLocale::WAITING);
         }
     }
 }
@@ -338,7 +336,7 @@ foreach (array_keys($listingArray) as $i) {
     if ($photo) {
         $a_item['photo'] = "<a href=\"javascript:CLA('display-image.php?lid=$lid')\"><img src=\"" . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/photo.gif\" border=\"0\" width=\"15\" height=\"11\" alt='" . AlumniLocale::PHOTO_AVAILABLE . "'></a>";
     } else {
-    $a_item['photo'] = '';
+        $a_item['photo'] = '';
     }
 
     $a_item['views'] = $view;

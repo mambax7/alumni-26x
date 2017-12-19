@@ -40,4 +40,3 @@ $xoops->theme()->addStylesheet($helper->url('css/rating.css'));
 
 $module_id = $helper->getModule()->getVar('mid');
 $interval  = 3600; //1 hour
-

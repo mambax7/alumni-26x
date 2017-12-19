@@ -35,9 +35,9 @@ if (!empty($_POST['submit'])) {
         }
     }
 
-  //      if (!$xoops->security()->check()) {
-   //         $xoops->redirect('javascript:history.go(-1)', 3, implode(',', $xoops->security()->getErrors()));
-   //     }
+    //      if (!$xoops->security()->check()) {
+    //         $xoops->redirect('javascript:history.go(-1)', 3, implode(',', $xoops->security()->getErrors()));
+    //     }
         
     $lid = Request::getInt('lid', 0);
     $lid = ($lid);
@@ -61,7 +61,6 @@ if (!empty($_POST['submit'])) {
     $numrows     = $listingHandler->getCount($listing_criteria);
     $listingArray = $listingHandler->getAll($listing_criteria);
     foreach (array_keys($listingArray) as $i) {
-
         $name      = $listingArray[$i]->getVar('name');
         $mname     = $listingArray[$i]->getVar('mname');
         $lname     = $listingArray[$i]->getVar('lname');
@@ -129,13 +128,11 @@ if (!empty($_POST['submit'])) {
     $xoopsMailer2->getErrors();
 
     $xoops->redirect('index.php', 3, AlumniLocale::MESSAGE_SENT);
-
 } else {
-
     $lid = isset($_REQUEST['lid']) ? $_REQUEST['lid'] : '';
     include __DIR__ . '/header.php';
     $xoops = Xoops::getInstance();
-    	Xoops::getInstance()->header();
+    Xoops::getInstance()->header();
     $helper          = $xoops->getModuleHelper('alumni');
     $module_id       = $helper->getModule()->getVar('mid');
     $groups          = $xoops->isUser() ? $xoops->user->getGroups() : '3';

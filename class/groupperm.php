@@ -27,7 +27,8 @@ defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 /**
  * Class AlumniGroupPermHandler
  */
-class AlumniGroupPermHandler extends XoopsGroupPermHandler {
+class AlumniGroupPermHandler extends XoopsGroupPermHandler
+{
     /**
      * Check permission
      *
@@ -39,7 +40,8 @@ class AlumniGroupPermHandler extends XoopsGroupPermHandler {
      *
      * @return bool
      */
-    public function checkRight($gperm_name, $gperm_itemid, $gperm_groupid, $gperm_modid = 1, $trueifadmin = true) {
+    public function checkRight($gperm_name, $gperm_itemid, $gperm_groupid, $gperm_modid = 1, $trueifadmin = true)
+    {
         return parent::checkRight($gperm_name, $gperm_itemid, $gperm_groupid, $gperm_modid, $trueifadmin);
     }
 
@@ -47,7 +49,8 @@ class AlumniGroupPermHandler extends XoopsGroupPermHandler {
      * @param       $cid
      * @param array $groups
      */
-    public function updatePerms($cid, $groups = []) {
+    public function updatePerms($cid, $groups = [])
+    {
         $module_id = Alumni::getInstance()->getModule()->getVar('mid');
 
         $groups_exists = parent::getGroupIds('alumni_view', $cid, $module_id);

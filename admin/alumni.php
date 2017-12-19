@@ -18,6 +18,7 @@
  * @author          John Mordo (jlm69)
  */
 use Xoops\Core\Request;
+
 include __DIR__ . '/admin_header.php';
 $moduleDirName = basename(dirname(__DIR__));
 include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
@@ -57,7 +58,6 @@ switch ($op) {
         $xoops->tpl()->assign('listingCount', $listingCount);
         if ($listingCount > 0) {
             foreach (array_keys($listingArray) as $i) {
-
                 $lid        = $listingArray[$i]->getVar('lid');
                 $cid        = $listingArray[$i]->getVar('cid');
                 $name       = $listingArray[$i]->getVar('name');
@@ -157,7 +157,7 @@ switch ($op) {
         }
 
         $date = time();
-	$lid = Request::getInt('lid', 0);
+    $lid = Request::getInt('lid', 0);
         if (isset($lid)) {
             $obj = $listingHandler->get($lid);
             $obj->setVar('lid', $lid);
@@ -186,7 +186,7 @@ switch ($op) {
                 $obj->setVar('photo2', '');
             }
         }
-	$cid = Request::getInt('cid', 0);
+    $cid = Request::getInt('cid', 0);
         if (isset($cid)) {
             $cat_name                  = '';
             $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
@@ -307,14 +307,13 @@ switch ($op) {
                 echo $obj->getHtmlErrors();
             }
         } else {
-        
             echo $xoops->confirm(
                 ['ok' => 1, 'lid' => $lid, 'op' => 'delete_listing'],
                 'alumni.php',
                 XoopsLocale::Q_ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM
                 . '<br><span class="red">' . $obj->getVar('lname') . '<span>'
             );
-         }
+        }
         break;
 
     case 'update_status':
@@ -358,7 +357,6 @@ switch ($op) {
         $xoops->tpl()->assign('listingCount', $listingCount);
         if ($listingCount > 0) {
             foreach (array_keys($listingArray) as $i) {
-
                 $lid        = $listingArray[$i]->getVar('lid');
                 $cid        = $listingArray[$i]->getVar('cid');
                 $name       = $listingArray[$i]->getVar('name');
@@ -437,7 +435,6 @@ switch ($op) {
                 $xoops->tpl()->assign('occ_lang', AlumniLocale::OCC);
             }
             unset($listing);
-
         } else {
             $xoops->tpl()->assign('error_message', AlumniLocale::NO_LISTING_TO_APPROVE);
         }

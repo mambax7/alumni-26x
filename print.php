@@ -8,6 +8,7 @@
 //                                                                           //
 // ------------------------------------------------------------------------- //
 use Xoops\Core\Request;
+
 include __DIR__ . '/header.php';
 $xoops     = Xoops::getInstance();
 $moduleDirName = basename(__DIR__);
@@ -125,7 +126,4 @@ $lid = Request::getInt('lid', 0);
 	</td></tr></table>
 	</body>
 	</html>";
-	}
-
-
-
+    }

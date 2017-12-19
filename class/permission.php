@@ -134,7 +134,7 @@ class AlumniPermissionHandler extends XoopsObjectHandler
             return false;
         }
         $permissions = $this->getGrantedItems($gperm_name);
-        if (!empty($permissions) && isset ($permissions[$id])) {
+        if (!empty($permissions) && isset($permissions[$id])) {
             return true;
         } else {
             return false;

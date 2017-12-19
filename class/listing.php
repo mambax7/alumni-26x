@@ -28,7 +28,8 @@ $xoops = Xoops::getInstance();
 /**
  * Class AlumniListing
  */
-class AlumniListing extends XoopsObject {
+class AlumniListing extends XoopsObject
+{
     /**
      * @var Alumni
      * @access public
@@ -38,7 +39,8 @@ class AlumniListing extends XoopsObject {
     /**
      * Constructor
      */
-    public function __construct() {
+    public function __construct()
+    {
         global $xoops;
         $this->db = $xoops->db();
         $this->initVar('lid', XOBJ_DTYPE_INT, null, false, 11);
@@ -66,7 +68,8 @@ class AlumniListing extends XoopsObject {
     /**
      * @return mixed
      */
-    public function get_new_id() {
+    public function get_new_id()
+    {
         $xoops  = Xoops::getInstance();
         $new_id = $xoops->db()->getInsertId();
 
@@ -77,20 +80,22 @@ class AlumniListing extends XoopsObject {
     /**
      * @return mixed
      */
-    public function updateCounter() {
+    public function updateCounter()
+    {
         return $this->updateCounter($this->getVar('lid'));
     }
-
 }
 
 /**
  * Class AlumniListingHandler
  */
-class AlumniListingHandler extends XoopsPersistableObjectHandler {
+class AlumniListingHandler extends XoopsPersistableObjectHandler
+{
     /**
      * @param null|Connection|XoopsDatabase $db
      */
-    public function __construct(Connection $db = null) {
+    public function __construct(Connection $db = null)
+    {
         parent::__construct($db, 'alumni_listing', 'alumnilisting', 'lid', 'title');
     }
 
@@ -101,7 +106,8 @@ class AlumniListingHandler extends XoopsPersistableObjectHandler {
      * @param string $order
      * @return array
      */
-    public function getListingPublished($start = 0, $limit = 0, $sort = 'date', $order = 'ASC') {
+    public function getListingPublished($start = 0, $limit = 0, $sort = 'date', $order = 'ASC')
+    {
         $helper    = Alumni::getInstance();
         $xoops     = $helper->xoops();
         $moduleId = $helper->getModule()->getVar('mid');
@@ -126,7 +132,8 @@ class AlumniListingHandler extends XoopsPersistableObjectHandler {
      * @param null $maxDepth
      * @return mixed
      */
-    public function getValues($keys = null, $format = null, $maxDepth = null) {
+    public function getValues($keys = null, $format = null, $maxDepth = null)
+    {
         $page             = Page::getInstance();
         $ret              = parent::getValues($keys, $format, $maxDepth);
         $ret['rating']    = number_format($this->getVar('rating'), 1);
@@ -149,7 +156,8 @@ class AlumniListingHandler extends XoopsPersistableObjectHandler {
      * @param string $order
      * @return int
      */
-    public function countAlumni($start = 0, $limit = 0, $sort = 'date', $order = 'ASC') {
+    public function countAlumni($start = 0, $limit = 0, $sort = 'date', $order = 'ASC')
+    {
         $criteria = new CriteriaCompo();
         $criteria->setSort($sort);
         $criteria->setOrder($order);
@@ -163,7 +171,8 @@ class AlumniListingHandler extends XoopsPersistableObjectHandler {
      * @param $lid
      * @return bool
      */
-    public function updateCounter($lid) {
+    public function updateCounter($lid)
+    {
         $xoops      = Xoops::getInstance();
         $listingObj = $this->get($lid);
         if (!is_object($listingObj)) {

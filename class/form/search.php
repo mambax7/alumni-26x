@@ -19,19 +19,22 @@
  */
  
  use Xoops\Core\Request;
-defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
+
+ defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 $moduleDirName = basename(dirname(dirname(__DIR__)));
 include_once(XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/class/alumni_tree.php");
 
 /**
  * Class AlumniSearchForm
  */
-class AlumniSearchForm extends XoopsThemeForm {
+class AlumniSearchForm extends XoopsThemeForm
+{
     /**
      * We are not using this for objects but we need to override the constructor
      * @param null $obj
      */
-    public function __construct($obj = null) {
+    public function __construct($obj = null)
+    {
     }
 
     /**
@@ -42,7 +45,8 @@ class AlumniSearchForm extends XoopsThemeForm {
      * @param $bycat
      * @return $this
      */
-    public function alumni_getSearchFrom($andor, $queries, $mids, $mid, $bycat) {
+    public function alumni_getSearchFrom($andor, $queries, $mids, $mid, $bycat)
+    {
         $xoops  = Xoops::getInstance();
         $alumni = Alumni::getInstance();
         // create form

@@ -53,54 +53,54 @@ switch ($op) {
      * @param string $order
      * @param        $class
          */
-    function alumniCategoryDisplayChildren($cid = 0, $categoryArray, $prefix = '', $order = '', &$class) {
-            $xoops = Xoops::getInstance();
+    function alumniCategoryDisplayChildren($cid = 0, $categoryArray, $prefix = '', $order = '', &$class)
+    {
+        $xoops = Xoops::getInstance();
 
-            $moduleDirName = basename(dirname(__DIR__));
-            $prefix = $prefix . '<img src=\'' . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/arrow.gif'>";
-            foreach (array_keys($categoryArray) as $i) {
-                $cid   = $categoryArray[$i]->getVar('cid');
-                $pid   = $categoryArray[$i]->getVar('pid');
-                $title = $categoryArray[$i]->getVar('title');
-                $img   = $categoryArray[$i]->getVar('img');
-                $order = $categoryArray[$i]->getVar('ordre');
+        $moduleDirName = basename(dirname(__DIR__));
+        $prefix = $prefix . '<img src=\'' . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/arrow.gif'>";
+        foreach (array_keys($categoryArray) as $i) {
+            $cid   = $categoryArray[$i]->getVar('cid');
+            $pid   = $categoryArray[$i]->getVar('pid');
+            $title = $categoryArray[$i]->getVar('title');
+            $img   = $categoryArray[$i]->getVar('img');
+            $order = $categoryArray[$i]->getVar('ordre');
 
-                echo '<tr class="' . $class . '">';
-                echo '<td align="left">' . $prefix . '&nbsp;' . $categoryArray[$i]->getVar('title') . '</td>';
-                echo '<td align="center"><img src="' . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/cat/" . $categoryArray[$i]->getVar('img')
+            echo '<tr class="' . $class . '">';
+            echo '<td align="left">' . $prefix . '&nbsp;' . $categoryArray[$i]->getVar('title') . '</td>';
+            echo '<td align="center"><img src="' . XOOPS_URL . "/modules/{$moduleDirName}/assets/images/cat/" . $categoryArray[$i]->getVar('img')
                      . '" height="16px" title="img" alt="img"></td>';
-                echo '<td align="center">' . $categoryArray[$i]->getVar('ordre') . '</td>';
-                echo "<td align='center' width='10%'>
+            echo '<td align="center">' . $categoryArray[$i]->getVar('ordre') . '</td>';
+            echo "<td align='center' width='10%'>
 						<a href='category.php?op=edit_category&cid=" . $categoryArray[$i]->getVar('cid')
                      . "'><img src='../images/edit.gif' alt='" . XoopsLocale::A_EDIT . "' title='" . XoopsLocale::A_EDIT . "'></a>
 						<a href='category.php?op=delete_category&cid=" . $categoryArray[$i]->getVar('cid')
                      . "'><img src='../images/dele.gif' alt='" . XoopsLocale::A_DELETE . "' title='" . XoopsLocale::A_DELETE . "'></a></td></tr>";
-                $class = ('even' === $class) ? 'odd' : 'even';
+            $class = ('even' === $class) ? 'odd' : 'even';
 
-                $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
-                $criteria2                 = new CriteriaCompo();
-                $criteria2->add(new Criteria('pid', $categoryArray[$i]->getVar('cid')));
-                $criteria2->setSort('title');
-                $criteria2->setOrder('ASC');
-                $cat_pid = $categoriesHandler->getAll($criteria2);
-                $num_pid = $categoriesHandler->getCount();
-                if (0 != $num_pid) {
-                    alumniCategoryDisplayChildren($cid, $cat_pid, $prefix, $order, $class);
-                }
+            $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
+            $criteria2                 = new CriteriaCompo();
+            $criteria2->add(new Criteria('pid', $categoryArray[$i]->getVar('cid')));
+            $criteria2->setSort('title');
+            $criteria2->setOrder('ASC');
+            $cat_pid = $categoriesHandler->getAll($criteria2);
+            $num_pid = $categoriesHandler->getCount();
+            if (0 != $num_pid) {
+                alumniCategoryDisplayChildren($cid, $cat_pid, $prefix, $order, $class);
             }
         }
+    }
 
         if ($numrows > 0) {
             if ($numrows > 1) {
                 if ($numrows > $limit) {
                     $cat_url[] = 'limit=' . $limit;
                     $cat_url[] = 'orderby=' . $order;
-                if (isset($cat_url)) {
+                    if (isset($cat_url)) {
                         $args = implode('&amp;', $cat_url);
-                }
+                    }
                     $nav = new XoopsPageNav($numrows, $limit, $start, 'start', $args);
                     echo '' . $nav->renderNav(5, '', 'center') . '';
-
                 }
             }
 
@@ -178,14 +178,14 @@ switch ($op) {
 
         $photo_old = Request::getString('photo_old', '');
         $destination = XOOPS_ROOT_PATH . "/uploads/{$moduleDirName}/photos/school_photos";
-	$del_photo = Request::getInt('del_photo', 0);
+    $del_photo = Request::getInt('del_photo', 0);
         if (isset($del_photo)) {
-        if ('1' == $del_photo) {
-            if (@file_exists('' . $destination . '/' . $photo_old) . '') {
-                unlink('' . $destination . '/' . $photo_old . '');
+            if ('1' == $del_photo) {
+                if (@file_exists('' . $destination . '/' . $photo_old) . '') {
+                    unlink('' . $destination . '/' . $photo_old . '');
+                }
+                $obj->setVar('scphoto', '');
             }
-            $obj->setVar('scphoto', '');
-        }
         }
         
         $obj->setVar('pid', Request::getInt('pid'));
@@ -200,7 +200,7 @@ switch ($op) {
         $uploader          = new XoopsMediaUploader($uploaddir, $allowedMimetypes, $photomax, $maxwide, $maxhigh);
         if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
             $uploader->setPrefix('category_img_');
-           $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
+            $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
             if (!$uploader->upload()) {
                 $errors = $uploader->getErrors();
                 $xoops->redirect('javascript:history.go(-1)', 3, $errors);
@@ -255,7 +255,7 @@ switch ($op) {
 
     case 'edit_category':
 
-	$cid = Request::getInt('cid', 0);
+    $cid = Request::getInt('cid', 0);
         $xoops = Xoops::getInstance();
         $xoops->header();
         $indexAdmin = new \Xoops\Module\Admin();

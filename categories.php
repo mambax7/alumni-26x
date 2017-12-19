@@ -148,7 +148,6 @@ foreach (array_keys($categoryArray) as $i) {
     }
     $xoops->tpl()->assign('lang_subcat', '');
     if (1 == $xoops->getModuleConfig('alumni_showsubcat')) {
-
         $subcatCriteria = new CriteriaCompo();
         $subcatCriteria->add(new Criteria('pid', $cid, '='));
         $subcatCriteria->add(new Criteria('cid', '(' . implode(', ', $alumniIds) . ')', 'IN'));
@@ -161,7 +160,7 @@ foreach (array_keys($categoryArray) as $i) {
             $subcat_pid    = $subcatArray[$j]->getVar('pid');
             $sub_cat_title = $subcatArray[$j]->getVar('title', 'e');
 
-                  $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
+            $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
             $listingCriteria = new CriteriaCompo();
             $listingCriteria->add(new Criteria('cid', $subcat_id, '='));
             $listingCriteria->add(new Criteria('valid', 1, '='));
@@ -238,7 +237,6 @@ foreach (array_keys($categoryArray) as $i) {
         $xoops->tpl()->assign('lang_subcat', AlumniLocale::SUBCAT_AVAIL);
 
         if ($trows > '0') {
-
             $xoops->tpl()->assign('last_head', AlumniLocale::THE . ' ' . $xoops->getModuleConfig('' . $moduleDirName . '_newalumni') . ' ' . AlumniLocale::LASTADD);
             $xoops->tpl()->assign('last_head_name', AlumniLocale::NAME_2);
             $xoops->tpl()->assign('last_head_mname', AlumniLocale::MNAME_2);
@@ -306,7 +304,7 @@ foreach (array_keys($categoryArray) as $i) {
             if ($photo) {
                 $a_item['photo'] = "<a href=\"javascript:CLA('display-image.php?lid=$lid')\"><img src=\"images/photo.gif\" border=\"0\" width=\"15\" height=\"11\" alt='" . AlumniLocale::PHOTO_AVAILABLE . "'></a>";
             } else {
-		$a_item['photo'] = '';
+                $a_item['photo'] = '';
             }
             $a_item['views'] = $view;
             $xoops->tpl()->append('items', $a_item);

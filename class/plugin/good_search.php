@@ -25,7 +25,8 @@ use Xmf\Metagen;
 /**
  * Class AlumniSearchPlugin
  */
-class AlumniSearchPlugin extends PluginAbstract implements SearchPluginInterface {
+class AlumniSearchPlugin extends PluginAbstract implements SearchPluginInterface
+{
     /**
      * @param string[] $queries
      * @param string   $andor
@@ -34,70 +35,68 @@ class AlumniSearchPlugin extends PluginAbstract implements SearchPluginInterface
      * @param \type    $userid
      * @return array
      */
-    public function search($queries, $andor, $limit, $start, $userid) {
+    public function search($queries, $andor, $limit, $start, $userid)
+    {
+        $xoops     = Xoops::getInstance();
+        $alumni  = Alumni::getInstance();
+        $myts    = MyTextSanitizer::getInstance();
+        $by_cat  = Request::getInt('by_cat', '');
+        $andor = Request::getWord('andor', 'AND');
+        $queries = [];
+        $query   = Request::getString('query', '');
+        $start   = Request::getInt('start', '0');
 
-$xoops     = Xoops::getInstance();
-$alumni  = Alumni::getInstance();
-$myts    = MyTextSanitizer::getInstance();
-$by_cat  = Request::getInt('by_cat', '');
-$andor = Request::getWord('andor', 'AND');
-$queries = [];
-$query   = Request::getString('query', '');
-$start   = Request::getInt('start', '0');
-
-$helper          = $xoops->getModuleHelper('alumni');
-$module_id       = $helper->getModule()->getVar('mid');
-$listingHandler = $helper->getHandler('listing');
-$groups          = $xoops->getUserGroups();
-$alumni_ids      = $xoops->getHandlerGroupperm()->getItemIds('alumni_view', $groups, $module_id);
-$all_ids = implode(', ', $alumni_ids);
+        $helper          = $xoops->getModuleHelper('alumni');
+        $module_id       = $helper->getModule()->getVar('mid');
+        $listingHandler = $helper->getHandler('listing');
+        $groups          = $xoops->getUserGroups();
+        $alumni_ids      = $xoops->getHandlerGroupperm()->getItemIds('alumni_view', $groups, $module_id);
+        $all_ids = implode(', ', $alumni_ids);
     
-    $criteria        = new CriteriaCompo();
-    $criteria->add(new Criteria('valid', 1, '='));
-  //  $criteria->add(new Criteria('date', time(), '<='));
-    $criteria->add(new Criteria('cid', '('.$all_ids.')', 'IN'));
-    if (0 != $userid) {
-        $criteria->add(new Criteria('usid', $userid, '='));
-    }
-    if ($by_cat) {
-        $criteria->add(new Criteria('cid', $by_cat, '='));
-    }
+        $criteria        = new CriteriaCompo();
+        $criteria->add(new Criteria('valid', 1, '='));
+        //  $criteria->add(new Criteria('date', time(), '<='));
+        $criteria->add(new Criteria('cid', '('.$all_ids.')', 'IN'));
+        if (0 != $userid) {
+            $criteria->add(new Criteria('usid', $userid, '='));
+        }
+        if ($by_cat) {
+            $criteria->add(new Criteria('cid', $by_cat, '='));
+        }
 
-    $queries = [$query];
-    $queries = implode('+', $queries);
+        $queries = [$query];
+        $queries = implode('+', $queries);
 
-    $count = 0;
-    $i     = 0;
+        $count = 0;
+        $i     = 0;
 
-    $criteria->add(new Criteria('name', '%' . $queries . '%', 'LIKE'), 'AND');
-    $criteria->add(new Criteria('mname', '%' . $queries . '%', 'LIKE'), 'OR');
-    $criteria->add(new Criteria('lname', '%' . $queries . '%', 'LIKE'), 'OR');
-    $criteria->add(new Criteria('school', '%' . $queries . '%', 'LIKE'), 'OR');
-    $criteria->add(new Criteria('year', '%' . $queries . '%', 'LIKE'), 'OR');
+        $criteria->add(new Criteria('name', '%' . $queries . '%', 'LIKE'), 'AND');
+        $criteria->add(new Criteria('mname', '%' . $queries . '%', 'LIKE'), 'OR');
+        $criteria->add(new Criteria('lname', '%' . $queries . '%', 'LIKE'), 'OR');
+        $criteria->add(new Criteria('school', '%' . $queries . '%', 'LIKE'), 'OR');
+        $criteria->add(new Criteria('year', '%' . $queries . '%', 'LIKE'), 'OR');
 
-    $criteria->setLimit($limit);
-    $criteria->setSort('date');
-    $criteria->setOrder('DESC');
-    $criteria->setStart($start);
+        $criteria->setLimit($limit);
+        $criteria->setSort('date');
+        $criteria->setOrder('DESC');
+        $criteria->setStart($start);
 
-    $numrows     = $listingHandler->getCount();
-    $this_search = $listingHandler->getall($criteria);
+        $numrows     = $listingHandler->getCount();
+        $this_search = $listingHandler->getall($criteria);
 
-    $ret = [];
-    $k   = 0;
+        $ret = [];
+        $k   = 0;
 
-    foreach ($this_search as $obj) {
-
-        $ret[$k]['image'] = 'images/cat/default.gif';
-        $ret[$k]['link']  = 'listing.php?lid=' . $obj->getVar('lid') . '';
-        $ret[$k]['title'] = $obj->getVar('name') . ' ' . $obj->getVar('mname') . ' ' . $obj->getVar('lname') . '   ---   ' . $obj->getVar('school') . '
+        foreach ($this_search as $obj) {
+            $ret[$k]['image'] = 'images/cat/default.gif';
+            $ret[$k]['link']  = 'listing.php?lid=' . $obj->getVar('lid') . '';
+            $ret[$k]['title'] = $obj->getVar('name') . ' ' . $obj->getVar('mname') . ' ' . $obj->getVar('lname') . '   ---   ' . $obj->getVar('school') . '
 		---   ' . $obj->getVar('year');
-        $ret[$k]['time']  = $obj->getVar('date');
-        $ret[$k]['uid']   = $obj->getVar('usid');
-        $k++;
+            $ret[$k]['time']  = $obj->getVar('date');
+            $ret[$k]['uid']   = $obj->getVar('usid');
+            $k++;
+        }
+
+        return $ret;
     }
-
-    return $ret;
-}
-
 }

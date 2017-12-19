@@ -20,7 +20,7 @@
 
  use Xoops\Core\Request;
 
-/**
+ /**
  * Class AlumniListingForm
  */
 class AlumniListingForm extends Xoops\Form\ThemeForm
@@ -30,22 +30,22 @@ class AlumniListingForm extends Xoops\Form\ThemeForm
      */
     public function __construct(AlumniListing $obj)
     {
-	$xoops = Xoops::getInstance();
+        $xoops = Xoops::getInstance();
 
-	if ('1' == $xoops->getModuleConfig('alumni_moderated')) {
-        $title = sprintf($obj->isNew() ? AlumniLocale::ADD_MOD : AlumniLocale::EDIT_MOD);
+        if ('1' == $xoops->getModuleConfig('alumni_moderated')) {
+            $title = sprintf($obj->isNew() ? AlumniLocale::ADD_MOD : AlumniLocale::EDIT_MOD);
         } else {
-	$title = sprintf($obj->isNew() ? AlumniLocale::ADD_LISTING : AlumniLocale::EDIT_LISTING);
-	}
+            $title = sprintf($obj->isNew() ? AlumniLocale::ADD_LISTING : AlumniLocale::EDIT_LISTING);
+        }
 
-	parent::__construct($title, 'form', false, 'post', true);
+        parent::__construct($title, 'form', false, 'post', true);
 
         $this->setExtra('enctype="multipart/form-data"');
 
-	$member_handler = $xoops->getHandlerMember();
+        $member_handler = $xoops->getHandlerMember();
         $userGroups     = $member_handler->getGroupList();
 
-	$lid = Request::getInt('lid', 0);
+        $lid = Request::getInt('lid', 0);
         if (isset($lid)) {
             $lid = $lid;
         }
@@ -55,11 +55,11 @@ class AlumniListingForm extends Xoops\Form\ThemeForm
         $categoryHandler = $xoops->getModuleHandler('category', 'alumni');
         $categories              = $categoryHandler->getObjects();
         $mytree                  = new XoopsObjectTree($categories, 'cid', 'pid');
-	if ($obj->isNew()) {
-	  $this_cid  = Request::getInt('cid', 0);
-	} else {
-	  $this_cid  = $obj->getVar('cid');
-	}
+        if ($obj->isNew()) {
+            $this_cid  = Request::getInt('cid', 0);
+        } else {
+            $this_cid  = $obj->getVar('cid');
+        }
         $categories_Handler = $xoops->getModuleHandler('category', 'alumni');
         $categories              = $categories_Handler->getObjects();
         $mytree                  = new XoopsObjectTree($categories, 'cid', 'pid');
@@ -133,7 +133,7 @@ class AlumniListingForm extends Xoops\Form\ThemeForm
         $this->addElement(new Xoops\Form\Text(AlumniLocale::TOWN_2, 'town', 50, 255, $obj->getVar('town')), false);
 
         if ($xoops->user->isAdmin()) {
-	$this->addElement(new Xoops\Form\RadioYesNo(AlumniLocale::APPROVE_2, 'valid', $obj->getVar('valid'), XoopsLocale::YES, XoopsLocale::NO));
+            $this->addElement(new Xoops\Form\RadioYesNo(AlumniLocale::APPROVE_2, 'valid', $obj->getVar('valid'), XoopsLocale::YES, XoopsLocale::NO));
         }
         if ('1' == $xoops->getModuleConfig('alumni_use_captcha')) {
             $this->addElement(new Xoops\Form\Captcha());

@@ -24,15 +24,16 @@ $moduleDirName = basename(dirname(dirname(__DIR__)));
 /**
  * Class AlumniNotificationsPlugin
  */
-class AlumniNotificationsPlugin extends Xoops\Module\Plugin\PluginAbstract implements NotificationsPluginInterface {
+class AlumniNotificationsPlugin extends Xoops\Module\Plugin\PluginAbstract implements NotificationsPluginInterface
+{
     /**
      * @param string $category
      * @param int    $item_id
      *
      * @return array
      */
-    public function item($category, $item_id) {
-
+    public function item($category, $item_id)
+    {
         $xoops   = Xoops::getInstance();
         $item    = [];
         $item_id = (int)$item_id;
@@ -75,8 +76,9 @@ class AlumniNotificationsPlugin extends Xoops\Module\Plugin\PluginAbstract imple
     /**
      * @return array
      */
-    public function categories() {
-	Xoops::getInstance()->loadLocale('alumni');
+    public function categories()
+    {
+        Xoops::getInstance()->loadLocale('alumni');
         $ret                      = [];
         $ret[1]['name']           = 'global';
         $ret[1]['title']          = AlumniLocale::NOTIFICATION_GLOBAL;
@@ -104,7 +106,8 @@ class AlumniNotificationsPlugin extends Xoops\Module\Plugin\PluginAbstract imple
     /**
      * @return array
      */
-    public function events() {
+    public function events()
+    {
         $ret = [];
 
         //event
@@ -137,7 +140,8 @@ class AlumniNotificationsPlugin extends Xoops\Module\Plugin\PluginAbstract imple
      *
      * @return array
      */
-    public function tags($category, $item_id, $event) {
+    public function tags($category, $item_id, $event)
+    {
         return [];
     }
 }

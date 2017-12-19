@@ -41,7 +41,7 @@ $andor   = Request::getWord('andor', 'AND');
 $mid     = Request::getInt('mid', 0);
 $uid     = Request::getInt('uid', 0);
 $start   = Request::getInt('start', 0);
-$limit   = Request::getInt('start',1000);
+$limit   = Request::getInt('start', 1000);
 $by_cat  = Request::getInt('by_cat');
 $mids    = Request::getArray('mids', []);
 $xmid    = $xoops->module->getVar('mid');
@@ -96,7 +96,7 @@ if ('showallbyuser' !== $action) {
                 $ignored_queries[] = $q;
             }
         }
-        if (0 == count($queries) && ('' == $by_cat)){
+        if (0 == count($queries) && ('' == $by_cat)) {
             $xoops->redirect('index.php', 2, sprintf(XoopsLocale::EF_KEYWORDS_MUST_BE_GREATER_THAN, $search->getConfig('keyword_min')));
         }
     } else {

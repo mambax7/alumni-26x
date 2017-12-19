@@ -23,7 +23,8 @@ $moduleDirName = basename(dirname(__DIR__));
 $xoops = Xoops::getInstance();
 $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
 
-function alumni_ShowImg() {
+function alumni_ShowImg()
+{
     global $moduleDirName;
 
     echo "<script type=\"text/javascript\">\n";
@@ -38,7 +39,8 @@ function alumni_ShowImg() {
     echo "</script>\n";
 }
 
-function alumni_ShowImg2() {
+function alumni_ShowImg2()
+{
     global $moduleDirName;
 
     echo "<script type=\"text/javascript\">\n";
@@ -58,7 +60,8 @@ function alumni_ShowImg2() {
  * @param $orderby
  * @return string
  */
-function alumni_convertorderbyin($orderby) {
+function alumni_convertorderbyin($orderby)
+{
     switch (trim($orderby)) {
         case 'nameA':
             $orderby = 'lname ASC';
@@ -106,8 +109,8 @@ function alumni_convertorderbyin($orderby) {
  * @param $orderby
  * @return string
  */
-function alumni_convertorderbytrans($orderby) {
-
+function alumni_convertorderbytrans($orderby)
+{
     global $main_lang;
 
     if ('view ASC' === $orderby) {
@@ -154,7 +157,8 @@ function alumni_convertorderbytrans($orderby) {
  * @param $orderby
  * @return string
  */
-function alumni_convertorderbyout($orderby) {
+function alumni_convertorderbyout($orderby)
+{
     if ('lname ASC' === $orderby) {
         $orderby = 'nameA';
     }

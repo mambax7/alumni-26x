@@ -69,7 +69,7 @@ class AlumniLocaleEn_US /*extends XoopsLocaleEn_US*/
     const TOTAL_VALID     = 'There are <span class=\'green bold\'>%s</span> approved listings';
     const TOTAL_NOT_VALID = 'There are <span class=\'red bold\'>%s</span> listings waiting to be approved';
 
-     // Main
+    // Main
     const ADD_LISTING      = 'Add a new listing';
     const ADD_LISTING_2       = 'Add a Listing';
     const ADD_CAT          = 'Add a new Category';
@@ -214,7 +214,7 @@ class AlumniLocaleEn_US /*extends XoopsLocaleEn_US*/
     // Print
     const PRINT_COMES = 'This listing comes from';
 
-   // Admin
+    // Admin
 
     const DIRPERMS       = 'Check Directory Permission ! => ';
     const CHECKER       = 'Directory Checker';
@@ -227,9 +227,9 @@ class AlumniLocaleEn_US /*extends XoopsLocaleEn_US*/
     const SCADDRESS       = 'School Address :';
     const SCADDRESS2       = 'School Address2 :';
     const SCCITY       = 'School City :';
-    const SCSTATE       = 'School State :';  
+    const SCSTATE       = 'School State :';
     const SCZIP       = 'School Zip Code :';
-    const SCPHONE       = 'School Phone :';  
+    const SCPHONE       = 'School Phone :';
     const SCFAX       = 'School Fax :';
     const SCMOTTO       = 'School Motto :';
     const SCURL       = 'School Website :http://';
@@ -292,5 +292,4 @@ class AlumniLocaleEn_US /*extends XoopsLocaleEn_US*/
     const CONF_CORDER = 'Category Order :';
     const CONF_BLOCK_L_DESC = 'Descending';
     const CONF_BLOCK_DISPLAY_NUMBER = 'Number to display';
-
 }

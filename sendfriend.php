@@ -26,7 +26,7 @@ $myts = MyTextSanitizer::getInstance();
 $moduleDirName = basename(__DIR__);
 
 //if (!empty($_POST['submit'])) {
-if (Request::getString('submit', '', 'POST')){
+if (Request::getString('submit', '', 'POST')) {
     if ('1' == $xoops->getModuleConfig('alumni_use_captcha') && !$xoops->user->isAdmin()) {
         $xoopsCaptcha = XoopsCaptcha::getInstance();
         if (!$xoopsCaptcha->verify()) {
@@ -34,16 +34,16 @@ if (Request::getString('submit', '', 'POST')){
             exit(0);
         }
     }
- //       if (!$xoops->security()->check()) {
- //           $xoops->redirect('javascript:history.go(-1)', 3, implode(',', $xoops->security()->getErrors()));
- //       }
+    //       if (!$xoops->security()->check()) {
+    //           $xoops->redirect('javascript:history.go(-1)', 3, implode(',', $xoops->security()->getErrors()));
+    //       }
         
     $yname = Request::getString('yname', '', 'POST'); //$_POST['yname'];
     $ymail = Request::getString('ymail', '', 'POST'); //$_POST['ymail'];
     $fname = Request::getString('fname', '', 'POST'); //$_POST['fname'];
     $fmail = Request::getString('fmail', '', 'POST'); //$_POST['fmail'];
 
-	$lid = Request::getInt('lid', 0);
+    $lid = Request::getInt('lid', 0);
 
     $alumni    = Alumni::getInstance();
     $helper          = $xoops->getModuleHelper('alumni');
@@ -142,9 +142,7 @@ if (Request::getString('submit', '', 'POST')){
         $xoops->redirect('index.php', 3, AlumniLocale::ALUM_SEND);
         exit();
     }
-
 } else {
-
     global $xoops;
 
     $lid = Request::getInt('lid', 0);
@@ -177,7 +175,7 @@ if (Request::getString('submit', '', 'POST')){
     if ('1' == $xoops->getModuleConfig('alumni_use_captcha') && !$xoops->user->isAdmin()) {
         $form->addElement(new XoopsFormCaptcha());
     }
- //   $form->addElement(new Xoops\Form\Hidden('security', $xoops->security()->createToken()));
+    //   $form->addElement(new Xoops\Form\Hidden('security', $xoops->security()->createToken()));
     $form->addElement(new Xoops\Form\Hidden('lid', $lid), false);
     $form->addElement(new Xoops\Form\Button('', 'submit', XoopsLocale::A_SUBMIT, 'submit'));
     $form->display();

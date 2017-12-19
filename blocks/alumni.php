@@ -27,30 +27,29 @@ include_once dirname(__DIR__) . '/include/common.php';
  * @return array
  */
 
-function alumni_show($options) {
+function alumni_show($options)
+{
+    $block       = [];
+    $myts        = MyTextSanitizer::getInstance();
+    $blockDirName = basename(dirname(__DIR__));
 
-$block       = [];
-$myts        = MyTextSanitizer::getInstance();
-$blockDirName = basename(dirname(__DIR__));
-
-$xoops           = Xoops::getInstance();
-$helper          = $xoops->getModuleHelper('alumni');
-$module_id       = $helper->getModule()->getVar('mid');
-$listingHandler = $helper->getHandler('listing');
-$groups          = $xoops->getUserGroups();
-$alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
+    $xoops           = Xoops::getInstance();
+    $helper          = $xoops->getModuleHelper('alumni');
+    $module_id       = $helper->getModule()->getVar('mid');
+    $listingHandler = $helper->getHandler('listing');
+    $groups          = $xoops->getUserGroups();
+    $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
     $all_ids = implode(', ', $alumni_ids);
 
-	$criteria        = new CriteriaCompo();
-	$criteria->add(new Criteria('valid', 1, '='));
-	$criteria->add(new Criteria('cid', '('.$all_ids.')', 'IN'));
-	$criteria->setLimit($options[1]);
-	$criteria->setSort('date');
-	$criteria->setOrder('DESC');
-	$block_listings = $listingHandler->getall($criteria);
+    $criteria        = new CriteriaCompo();
+    $criteria->add(new Criteria('valid', 1, '='));
+    $criteria->add(new Criteria('cid', '('.$all_ids.')', 'IN'));
+    $criteria->setLimit($options[1]);
+    $criteria->setSort('date');
+    $criteria->setOrder('DESC');
+    $block_listings = $listingHandler->getall($criteria);
 
     foreach (array_keys($block_listings) as $i) {
-
         $name   = $block_listings[$i]->getVar('name');
         $mname  = $block_listings[$i]->getVar('mname');
         $lname  = $block_listings[$i]->getVar('lname');
@@ -58,7 +57,7 @@ $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view'
         $year   = $block_listings[$i]->getVar('year');
         $view   = $block_listings[$i]->getVar('view');
         
-	$a_item = [];
+        $a_item = [];
         $a_item['school'] = $school;
         $a_item['link']   = '<a href="' . XOOPS_URL . "/modules/{$blockDirName}/listing.php?lid=" . addslashes($block_listings[$i]->getVar('lid')) . "\"><b>$year&nbsp;-&nbsp;$name $mname $lname</b><br></a>";
 
@@ -77,8 +76,8 @@ $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view'
  */
 
 
-function alumni_edit($options) {
-
+function alumni_edit($options)
+{
     $form = AlumniLocale::BLOCKS_ORDER . "&nbsp;<select name='options[]'>";
     $form .= "<option value='date'";
     if ('date' === $options[0]) {

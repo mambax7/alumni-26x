@@ -27,8 +27,8 @@ use Xoops\Core\Kernel\CriteriaCompo;
 /**
  * Class AlumniCategory
  */
-class AlumniCategory extends XoopsObject {
-
+class AlumniCategory extends XoopsObject
+{
     public $alumni = null;
 
     /**
@@ -37,7 +37,8 @@ class AlumniCategory extends XoopsObject {
     public $_categoryPath = false;
 
     //Constructor
-    public function __construct() {
+    public function __construct()
+    {
         $this->alumni = Alumni::getInstance();
         $this->initVar('cid', XOBJ_DTYPE_INT, null, false, 11);
         $this->initVar('pid', XOBJ_DTYPE_INT, null, false, 5);
@@ -61,7 +62,8 @@ class AlumniCategory extends XoopsObject {
      * @param string $path
      * @return string
      */
-    public function getPathFromId($id = null, $path = '') {
+    public function getPathFromId($id = null, $path = '')
+    {
         $id   = isset($id) ? (int)($id) : $this->cid;
         $myts = MyTextSanitizer::getInstance();
         $name = $myts->htmlSpecialChars($this->title);
@@ -79,21 +81,22 @@ class AlumniCategory extends XoopsObject {
     {
         return $this->alumni->getPermissionHandler()->getGrantedGroupsById('alumni_view', $this->getVar('cid'));
     }
-    }
+}
 
 /**
  * Class AlumniCategoryHandler
  */
-class AlumniCategoryHandler extends XoopsPersistableObjectHandler {
-
+class AlumniCategoryHandler extends XoopsPersistableObjectHandler
+{
     public $alumni = null;
 
     /**
      * AlumniCategoryHandler constructor.
      * @param \Xoops\Core\Database\Connection|null $db
      */
-    public function __construct(Connection $db = null) {
-	$this->alumni = Alumni::getInstance();
+    public function __construct(Connection $db = null)
+    {
+        $this->alumni = Alumni::getInstance();
         parent::__construct($db, 'alumni_category', 'alumnicategory', 'cid', 'title');
     }
 
@@ -103,7 +106,8 @@ class AlumniCategoryHandler extends XoopsPersistableObjectHandler {
      * @param $cat_array
      * @param $cat_result
      */
-    public function getSubCatArray($by_cat, $level, $cat_array, $cat_result) {
+    public function getSubCatArray($by_cat, $level, $cat_array, $cat_result)
+    {
         global $theresult;
         $spaces = '';
         for ($j = 0; $j < $level; ++$j) {
@@ -146,7 +150,8 @@ class AlumniCategoryHandler extends XoopsPersistableObjectHandler {
     /**
      * @return array
      */
-    public function &getCategoriesForSearch() {
+    public function &getCategoriesForSearch()
+    {
         global $theresult, $xoops, $alumni;
         $xoops     = Xoops::getInstance();
         $alumni = Alumni::getInstance();
@@ -156,10 +161,10 @@ class AlumniCategoryHandler extends XoopsPersistableObjectHandler {
         $criteria->setSort('cid');
         $criteria->setOrder('ASC');
         if (!$xoops->isAdmin()) {
-  //          $gperm_handler        = $xoops->gethandler('groupperm');
+            //          $gperm_handler        = $xoops->gethandler('groupperm');
             $groups               = is_object($xoops->isUser()) ? $$xoops->isUser()->getGroups() : '3';
             $allowedCategoriesIds = $alumni->getGrouppermHandler()->getItemIds('alumni_view', $groups, $moduleId);
-                $criteria->add(new Criteria('cid', '(' . implode(',', $allowedCategoriesIds) . ')', 'IN'));
+            $criteria->add(new Criteria('cid', '(' . implode(',', $allowedCategoriesIds) . ')', 'IN'));
         }
         $categories = $this->getAll($criteria, ['cid', 'pid', 'title'], false, false);
         if (0 == count($categories)) {
