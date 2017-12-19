@@ -106,7 +106,7 @@ class AlumniObjectTree extends XoopsObjectTree {
      * returns an object from the tree specified by its id
      *
      * @param  string $key ID of the object to retrieve
-     * @return object Object within the tree
+     * @return XoopsObject Object within the tree
      */
     public function alumni_getByKey($key) {
         return $this->_tree[$key]['obj'];
