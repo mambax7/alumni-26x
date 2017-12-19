@@ -21,7 +21,7 @@ class AlumniCategoryForm extends Xoops\Form\ThemeForm
     /**
      * @param AlumniCategory|XoopsObject $obj
      */
-    public function __construct(AlumniCategory &$obj)
+    public function __construct(AlumniCategory $obj)
     {
 	$xoops = Xoops::getInstance();
 	$moduleDirName  = basename(dirname(__DIR__));

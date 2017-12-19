@@ -25,7 +25,7 @@ class AlumniListingForm extends Xoops\Form\ThemeForm
     /**
      * @param AlumniCategory|XoopsObject $obj
      */
-    public function __construct(AlumniListing &$obj)
+    public function __construct(AlumniListing $obj)
     {
 	$xoops = Xoops::getInstance();
 
