@@ -69,7 +69,7 @@ $xoTheme->addScript(ALUMNI_URL . '/media/jquery/photo.js');
 $default_sort = $xoops->getModuleConfig('' . $moduleDirName . '_csortorder');
 $listing_sort = $xoops->getModuleConfig('' . $moduleDirName . '_lsortorder');
 
-$cid = ((int)($cid) > 0) ? (int)($cid) : 0;
+$cid = (($cid) > 0) ? ($cid) : 0;
 
 $xoops->tpl()->assign('add_from', AlumniLocale::ALUMNI_LISTINGS . ' ' . $xoopsConfig['sitename']);
 $xoops->tpl()->assign('add_from_title', AlumniLocale::ALUMNI_LISTINGS);

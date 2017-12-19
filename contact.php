@@ -40,7 +40,7 @@ if (!empty($_POST['submit'])) {
    //     }
         
     $lid = Request::getInt('lid', 0);
-    $lid = (int)($lid);
+    $lid = ($lid);
 
     $body = Request::getString('body', '');
     $sname = Request::getString('sname', '');

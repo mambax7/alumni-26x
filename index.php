@@ -213,8 +213,8 @@ foreach (array_keys($cats) as $i) {
             'image'     => $cat_img,
             'id'        => (int)($cats[$i]->getVar('cid')),
             'title'     => $cats[$i]->getVar('title'),
-            'totalcats' => (int)($alumni_count),
-            'count'     => (int)($count)
+            'totalcats' => ($alumni_count),
+            'count'     => ($count)
         ]);
     } else {
         $xoops->tpl()->append('categories', [
@@ -222,8 +222,8 @@ foreach (array_keys($cats) as $i) {
             'id'            => (int)($cats[$i]->getVar('cid')),
             'title'         => $cats[$i]->getVar('title'),
             'subcategories' => $subcategories,
-            'totalcats'     => (int)($alumni_count),
-            'count'         => (int)($count)
+            'totalcats'     => ($alumni_count),
+            'count'         => ($count)
         ]);
     }
 }
