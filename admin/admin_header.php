@@ -8,6 +8,7 @@
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
+
 /**
  * Alumni module for Xoops
  *
@@ -26,14 +27,14 @@ include_once dirname(__DIR__) . '/include/common.php';
 XoopsLoad::load('system', 'system');
 $xoops = Xoops::getInstance();
 $xoops->loadLanguage('modinfo');
-$helper = Alumni::getInstance();
-$xoops  = $helper->xoops();
+$helper        = Alumni::getInstance();
+$xoops         = $helper->xoops();
 $moduleDirName = basename(dirname(__DIR__));
 
 $listingHandler    = $xoops->getModuleHandler('listing', 'alumni');
 $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
 $gpermHandler      = $helper->getGrouppermHandler();
-$module_id                 = $helper->getModule()->getVar('mid');
+$module_id         = $helper->getModule()->getVar('mid');
 
 $xoops->theme()->addStylesheet('modules/system/css/admin.css');
 

@@ -20,7 +20,7 @@
 
 $moduleDirName = basename(dirname(__DIR__));
 
-$xoops = Xoops::getInstance();
+$xoops          = Xoops::getInstance();
 $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
 
 function alumni_ShowImg()

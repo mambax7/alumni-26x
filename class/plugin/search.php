@@ -8,6 +8,7 @@
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
+
 /**
  * Alumni module for Xoops
  *
@@ -17,6 +18,7 @@
  * @since           2.6.x
  * @author          John Mordo (jlm69)
  */
+
 use Xoops\Module\Plugin\PluginAbstract;
 use Xmf\Metagen;
 use Xoops\Core\Request;
@@ -43,31 +45,20 @@ class AlumniSearchPlugin extends PluginAbstract implements SearchPluginInterface
         $listing_Handler = $helper->getHandler('listing');
         $groups          = $xoops->getUserGroups();
         $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
-        $all_ids = implode(', ', $alumni_ids);
-    
-        $by_cat  = Request::getInt('by_cat', 0);
-        $andor = 'and' == strtolower($andor) ? 'and' : 'or';
+        $all_ids         = implode(', ', $alumni_ids);
+
+        $by_cat = Request::getInt('by_cat', 0);
+        $andor  = 'and' == strtolower($andor) ? 'and' : 'or';
 
         $qb = \Xoops::getInstance()->db()->createXoopsQueryBuilder();
         $eb = $qb->expr();
-        $qb ->select('DISTINCT *')
-            ->fromPrefix('alumni_listing')
-            ->where($eb->eq('valid', '1'))
-            ->orderBy('lname', 'DESC')
-            ->setFirstResult($offset)
-            ->setMaxResults($limit);
+        $qb->select('DISTINCT *')->fromPrefix('alumni_listing')->where($eb->eq('valid', '1'))->orderBy('lname', 'DESC')->setFirstResult($offset)->setMaxResults($limit);
         if (is_array($queryArray) && !empty($queryArray)) {
             $queryParts = [];
             foreach ($queryArray as $i => $q) {
                 $query = ':query' . $i;
                 $qb->setParameter($query, '%' . $q . '%', \PDO::PARAM_STR);
-                $queryParts[] = $eb -> orX(
-                    $eb->like('name', $query),
-                    $eb->like('mname', $query),
-                    $eb->like('lname', $query),
-                    $eb->like('school', $query),
-                    $eb->like('year', $query)
-                );
+                $queryParts[] = $eb->orX($eb->like('name', $query), $eb->like('mname', $query), $eb->like('lname', $query), $eb->like('school', $query), $eb->like('year', $query));
             }
 
             $qb->andWhere($eb->in('cid', [$all_ids]));
@@ -80,19 +71,19 @@ class AlumniSearchPlugin extends PluginAbstract implements SearchPluginInterface
                 $qb->andWhere(call_user_func_array([$eb, 'orX'], $queryParts));
             }
         } else {
-            $qb->setParameter(':uid', (int) $userid, \PDO::PARAM_INT);
+            $qb->setParameter(':uid', (int)$userid, \PDO::PARAM_INT);
             $qb->andWhere($eb->eq('usid', ':uid'));
         }
 
-        $myts = MyTextSanitizer::getInstance();
-        $items = [];
+        $myts   = MyTextSanitizer::getInstance();
+        $items  = [];
         $result = $qb->execute();
         while ($myrow = $result->fetch(\PDO::FETCH_ASSOC)) {
             $items[] = [
-                'title' =>  $myrow['name'] . ' ' . $myrow['mname'] . ' ' . $myrow['lname'] . '   ---   ' . $myrow['school'] . ' ---   ' . $myrow['year'],
-                'link' => 'listing.php?lid=' . $myrow['lid'],
-                'time' => $myrow['date'],
-                'uid' => $myrow['usid'],
+                'title' => $myrow['name'] . ' ' . $myrow['mname'] . ' ' . $myrow['lname'] . '   ---   ' . $myrow['school'] . ' ---   ' . $myrow['year'],
+                'link'  => 'listing.php?lid=' . $myrow['lid'],
+                'time'  => $myrow['date'],
+                'uid'   => $myrow['usid'],
                 'image' => 'images/cat/default.gif',
             ];
         }

@@ -24,11 +24,11 @@ include_once __DIR__ . '/include/common.php';
 XoopsLoad::load('system', 'system');
 $system = System::getInstance();
 $helper = Alumni::getInstance();
-$xoops = $helper->xoops();
+$xoops  = $helper->xoops();
 
 $categoriesHandler = $helper->getCategoryHandler();
-$listingHandler  = $helper->getListingHandler();
-$gpermHandler = $helper->getGrouppermHandler();
+$listingHandler    = $helper->getListingHandler();
+$gpermHandler      = $helper->getGrouppermHandler();
 
 //permission
 $groups = $xoops->getUserGroups();
@@ -36,7 +36,6 @@ $uid    = $helper->getUserId();
 
 $xoops->theme()->addStylesheet($helper->url('css/styles.css'));
 $xoops->theme()->addStylesheet($helper->url('css/rating.css'));
-
 
 $module_id = $helper->getModule()->getVar('mid');
 $interval  = 3600; //1 hour

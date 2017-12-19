@@ -22,7 +22,7 @@ defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
 include_once dirname(__DIR__) . '/include/common.php';
 $alumni = Alumni::getInstance();
-$xoops         = Xoops::getInstance();
+$xoops  = Xoops::getInstance();
 
 $adminmenu[] = [
     'title' => AlumniLocale::ADMENU1,

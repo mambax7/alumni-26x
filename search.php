@@ -8,6 +8,7 @@
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
+
 /**
  * XOOPS global search
  *
@@ -20,6 +21,7 @@
  * @author          Edited by John Mordo (jlm69)
  * @version         $Id$
  */
+
 use Xoops\Core\Request;
 use Xoops\Core\Kernel\Handlers\XoopsUser;
 
@@ -83,14 +85,14 @@ if ('OR' !== $andor && 'exact' !== $andor && 'AND' !== $andor) {
 
 $ignored_queries = []; // holds kewords that are shorter than allowed minmum length
 $queries_pattern = [];
-$myts = \Xoops\Core\Text\Sanitizer::getInstance();
+$myts            = \Xoops\Core\Text\Sanitizer::getInstance();
 if ('showallbyuser' !== $action) {
     if ('exact' !== $andor) {
         $temp_queries = str_getcsv($query, ' ', '"');
         foreach ($temp_queries as $q) {
             $q = trim($q);
             if (mb_strlen($q) >= $search->getConfig('keyword_min')) {
-                $queries[] = $q;
+                $queries[]         = $q;
                 $queries_pattern[] = '~(' . $q . ')~sUi';
             } else {
                 $ignored_queries[] = $q;
@@ -132,13 +134,13 @@ switch ($action) {
             /* @var $module XoopsModule */
             $module = $modules[$xmid];
             /* @var $plugin SearchPluginInterface */
-            $plugin        = \Xoops\Module\Plugin::getPlugin($module->getVar('dirname'), 'search');
-            $all_results   = $plugin->search($queries, $andor, $limit, 0, null);
-            $count2        = count($all_results);
-            $results       = $plugin->search($queries, $andor, 5, 0, null);
-            $count         = count($results);
+            $plugin      = \Xoops\Module\Plugin::getPlugin($module->getVar('dirname'), 'search');
+            $all_results = $plugin->search($queries, $andor, $limit, 0, null);
+            $count2      = count($all_results);
+            $results     = $plugin->search($queries, $andor, 5, 0, null);
+            $count       = count($results);
 
-            $mid           = $module->getVar('mid');
+            $mid = $module->getVar('mid');
 
             $xoops->tpl()->assign('sr_showing', '');
             if ($count > 0) {
@@ -158,7 +160,7 @@ switch ($action) {
 
             $res = [];
             if (is_array($results) && $count > 0) {
-                $nomatch = false;
+                $nomatch                      = false;
                 $modules_result[$mid]['name'] = $module->getVar('name');
                 if (XoopsLoad::fileExists($image = $xoops->path('modules/' . $module->getVar('dirname') . '/icons/logo_large.png'))) {
                     $modules_result[$mid]['image'] = $xoops->url($image);
@@ -182,8 +184,8 @@ switch ($action) {
                     $res[$i]['content'] = empty($results[$i]['content']) ? '' : preg_replace($queries_pattern, "<span class='searchHighlight'>$1</span>", $results[$i]['content']);
                 }
                 if ($count >= 5) {
-                    $search_url = XOOPS_URL . '/modules/alumni/search.php?query=' . urlencode(stripslashes(implode(' ', $queries)));
-                    $search_url .= "&mid={$mid}&action=showall&andor={$andor}&by_cat=$by_cat";
+                    $search_url                         = XOOPS_URL . '/modules/alumni/search.php?query=' . urlencode(stripslashes(implode(' ', $queries)));
+                    $search_url                         .= "&mid={$mid}&action=showall&andor={$andor}&by_cat=$by_cat";
                     $modules_result[$mid]['search_url'] = htmlspecialchars($search_url);
                 }
             }
@@ -222,7 +224,7 @@ switch ($action) {
 
         $count  = count($results);
         $count2 = count($results2);
-        
+
         $xoops->tpl()->assign('sr_showing', '');
         if (is_array($results) && $count > 0) {
             $next_results = $plugin->search($queries, $andor, 1, $start + 20, $uid);

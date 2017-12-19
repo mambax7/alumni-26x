@@ -19,12 +19,12 @@ $currenttheme = $xoopsConfig['theme_set'];
 $alumni_listing_Handler = $xoops->getModuleHandler('listing', 'alumni');
 $listing_criteria       = new CriteriaCompo();
 $listing_criteria->add(new Criteria('lid', $lid, '='));
-$numrows     = $alumni_listing_Handler->getCount($listing_criteria);
+$numrows      = $alumni_listing_Handler->getCount($listing_criteria);
 $listingArray = $alumni_listing_Handler->get($lid);
 
 if ($numrows > '0') {
     $photo = $listingArray->getVar('photo');
-    echo '<center><br><br><img src="photos/grad_photo/'.$photo.'" border=0></center>';
+    echo '<center><br><br><img src="photos/grad_photo/' . $photo . '" border=0></center>';
 }
 
 echo '<center><table><tr><td><a href=#  onClick="window.close()">' . AlumniLocale::CLOSEF . '</a></td></tr></table></center>';

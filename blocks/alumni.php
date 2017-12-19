@@ -29,21 +29,21 @@ include_once dirname(__DIR__) . '/include/common.php';
 
 function alumni_show($options)
 {
-    $block       = [];
-    $myts        = MyTextSanitizer::getInstance();
+    $block        = [];
+    $myts         = MyTextSanitizer::getInstance();
     $blockDirName = basename(dirname(__DIR__));
 
-    $xoops           = Xoops::getInstance();
-    $helper          = $xoops->getModuleHelper('alumni');
-    $module_id       = $helper->getModule()->getVar('mid');
+    $xoops          = Xoops::getInstance();
+    $helper         = $xoops->getModuleHelper('alumni');
+    $module_id      = $helper->getModule()->getVar('mid');
     $listingHandler = $helper->getHandler('listing');
-    $groups          = $xoops->getUserGroups();
-    $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
-    $all_ids = implode(', ', $alumni_ids);
+    $groups         = $xoops->getUserGroups();
+    $alumni_ids     = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
+    $all_ids        = implode(', ', $alumni_ids);
 
-    $criteria        = new CriteriaCompo();
+    $criteria = new CriteriaCompo();
     $criteria->add(new Criteria('valid', 1, '='));
-    $criteria->add(new Criteria('cid', '('.$all_ids.')', 'IN'));
+    $criteria->add(new Criteria('cid', '(' . $all_ids . ')', 'IN'));
     $criteria->setLimit($options[1]);
     $criteria->setSort('date');
     $criteria->setOrder('DESC');
@@ -56,8 +56,8 @@ function alumni_show($options)
         $school = $block_listings[$i]->getVar('school');
         $year   = $block_listings[$i]->getVar('year');
         $view   = $block_listings[$i]->getVar('view');
-        
-        $a_item = [];
+
+        $a_item           = [];
         $a_item['school'] = $school;
         $a_item['link']   = '<a href="' . XOOPS_URL . "/modules/{$blockDirName}/listing.php?lid=" . addslashes($block_listings[$i]->getVar('lid')) . "\"><b>$year&nbsp;-&nbsp;$name $mname $lname</b><br></a>";
 
@@ -74,7 +74,6 @@ function alumni_show($options)
  * @param $options
  * @return string
  */
-
 
 function alumni_edit($options)
 {

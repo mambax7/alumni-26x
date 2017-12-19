@@ -8,6 +8,7 @@
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
+
 /**
  * Alumni module for Xoops
  *
@@ -18,9 +19,9 @@
  * @author          John Mordo (jlm69)
  */
 
- use Xoops\Core\Request;
+use Xoops\Core\Request;
 
- /**
+/**
  * Class AlumniListingForm
  */
 class AlumniListingForm extends Xoops\Form\ThemeForm
@@ -53,23 +54,23 @@ class AlumniListingForm extends Xoops\Form\ThemeForm
         $this->addElement(new Xoops\Form\Label(AlumniLocale::SUBMITTER, $xoops->user->uname()));
 
         $categoryHandler = $xoops->getModuleHandler('category', 'alumni');
-        $categories              = $categoryHandler->getObjects();
-        $mytree                  = new XoopsObjectTree($categories, 'cid', 'pid');
+        $categories      = $categoryHandler->getObjects();
+        $mytree          = new XoopsObjectTree($categories, 'cid', 'pid');
         if ($obj->isNew()) {
-            $this_cid  = Request::getInt('cid', 0);
+            $this_cid = Request::getInt('cid', 0);
         } else {
-            $this_cid  = $obj->getVar('cid');
+            $this_cid = $obj->getVar('cid');
         }
         $categories_Handler = $xoops->getModuleHandler('category', 'alumni');
-        $categories              = $categories_Handler->getObjects();
-        $mytree                  = new XoopsObjectTree($categories, 'cid', 'pid');
-        $category_select         = $mytree->makeSelBox('cid', 'title', '--', $this_cid, true);
+        $categories         = $categories_Handler->getObjects();
+        $mytree             = new XoopsObjectTree($categories, 'cid', 'pid');
+        $category_select    = $mytree->makeSelBox('cid', 'title', '--', $this_cid, true);
         $this->addElement(new Xoops\Form\Label(AlumniLocale::SCHOOL, $category_select), true);
 
-        $cat_name                  = '';
+        $cat_name           = '';
         $categories_Handler = $xoops->getModuleHandler('category', 'alumni');
-        $catObj                    = $categories_Handler->get($obj->getVar('cid'));
-        $cat_name                  = $catObj->getVar('title');
+        $catObj             = $categories_Handler->get($obj->getVar('cid'));
+        $cat_name           = $catObj->getVar('title');
         $this->addElement(new Xoops\Form\Hidden('school', $cat_name));
 
         $this->addElement(new Xoops\Form\Text(AlumniLocale::NAME_2, 'name', 50, 255, $obj->getVar('name')), true);
@@ -138,9 +139,9 @@ class AlumniListingForm extends Xoops\Form\ThemeForm
         if ('1' == $xoops->getModuleConfig('alumni_use_captcha')) {
             $this->addElement(new Xoops\Form\Captcha());
         }
-        
+
         $this->addElement(new Xoops\Form\Hidden('security', $xoops->security()->createToken()));
-        
+
         if (isset($_REQUEST['date'])) {
             $this->addElement(new Xoops\Form\Hidden('date', $_REQUEST['date']));
         } else {

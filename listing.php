@@ -8,6 +8,7 @@
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
+
 /**
  * Alumni module for Xoops
  *
@@ -23,10 +24,10 @@ use Xoops\Core\Request;
 include __DIR__ . '/header.php';
 
 $moduleDirName = basename(__DIR__);
-$main_lang = '_MA_' . strtoupper($moduleDirName);
-$myts      = MyTextSanitizer::getInstance();
-$xoops     = Xoops::getInstance();
-$module_id = $xoopsModule->getVar('mid');
+$main_lang     = '_MA_' . strtoupper($moduleDirName);
+$myts          = MyTextSanitizer::getInstance();
+$xoops         = Xoops::getInstance();
+$module_id     = $xoopsModule->getVar('mid');
 
 if (is_object($xoopsUser)) {
     $groups = $xoopsUser->getGroups();
@@ -61,12 +62,12 @@ switch ($op) {
         $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
 
         $alumni     = Alumni::getInstance();
-        $helper          = $xoops->getModuleHelper('alumni');
-    $module_id       = $helper->getModule()->getVar('mid');
+        $helper     = $xoops->getModuleHelper('alumni');
+        $module_id  = $helper->getModule()->getVar('mid');
         $listingObj = $listingHandler->get($lid);
 
         $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
-        $catObj                    = $categoriesHandler->get($listingObj->getVar('cid'));
+        $catObj            = $categoriesHandler->get($listingObj->getVar('cid'));
 
         $homePath         = "<a href='" . ALUMNI_URL . "/index.php'>" . XoopsLocale::MAIN . '</a>&nbsp;:&nbsp;';
         $itemPath         = "<a href='" . ALUMNI_URL . '/categories.php?cid=' . $catObj->getVar('cid') . "'>" . $catObj->getVar('title') . '</a>';
@@ -88,12 +89,12 @@ switch ($op) {
 
         $xoops->tpl()->assign('category_path', $path);
 
-    $groups          = $xoops->isUser() ? $xoops->user->getGroups() : '3';
-    $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
+        $groups     = $xoops->isUser() ? $xoops->user->getGroups() : '3';
+        $alumni_ids = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
         $criteria   = new CriteriaCompo();
         $criteria->add(new Criteria('lid', $lid, '='));
         $criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));
-        $numrows     = $listingHandler->getCount();
+        $numrows      = $listingHandler->getCount();
         $listingArray = $listingHandler->getAll($criteria);
 
         foreach (array_keys($listingArray) as $i) {
@@ -150,12 +151,10 @@ switch ($op) {
             if ($xoops->isUser()) {
                 $calusern = $xoops->user->getVar('uid', 'E');
                 if ($usid == $calusern) {
-                    $xoops->tpl()->assign('modify', '<a href="listing.php?op=edit_listing&amp;lid='
-                                                    . addslashes($lid) . '&amp;cid='
-                                                    . addslashes($cid) . '">'
-                                                    . AlumniLocale::MODIFY . '</a>  |  <a href="listing.php?op=delete_listing&amp;lid='
-                                                    . addslashes($lid) . '">'
-                                                    . XoopsLocale::A_DELETE . '</a>');
+                    $xoops->tpl()->assign(
+                        'modify',
+                                          '<a href="listing.php?op=edit_listing&amp;lid=' . addslashes($lid) . '&amp;cid=' . addslashes($cid) . '">' . AlumniLocale::MODIFY . '</a>  |  <a href="listing.php?op=delete_listing&amp;lid=' . addslashes($lid) . '">' . XoopsLocale::A_DELETE . '</a>'
+                    );
                 }
                 if ($xoops->user->isAdmin()) {
                     $xoops->tpl()->assign('admin', '<a href="admin/alumni.php?op=edit_listing&amp;lid=' . addslashes($lid) . '&amp;cid=' . addslashes($cid) . '"><img src="images/modif.gif" border=0 alt="' . AlumniLocale::MODADMIN . '"></a>');
@@ -197,7 +196,6 @@ switch ($op) {
             $xoops->tpl()->assign('photo', '');
             $xoops->tpl()->assign('photo2', '');
 
-
             if ($photo) {
                 $xoops->tpl()->assign('photo', "<img src=\"photos/grad_photo/$photo\" alt=\"\" width=\"125\"/>");
             }
@@ -220,7 +218,7 @@ switch ($op) {
         } else {
             $groups = '3';
         }
-  //      $gperm_handler = $xoops->getHandler('groupperm');
+        //      $gperm_handler = $xoops->getHandler('groupperm');
         if (isset($_POST['item_id'])) {
             $perm_itemid = (int)($_POST['item_id']);
         } else {
@@ -233,7 +231,7 @@ switch ($op) {
         }
         $obj    = $listingHandler->create();
         $new_id = $listingHandler->get_new_id();
-        $form = $xoops->getModuleForm($obj, 'listing');
+        $form   = $xoops->getModuleForm($obj, 'listing');
         $form->display();
         break;
 
@@ -258,9 +256,9 @@ switch ($op) {
             $lid = '0';
         }
 
-        $photo_old = Request::getString('photo_old', '');
+        $photo_old   = Request::getString('photo_old', '');
         $destination = XOOPS_ROOT_PATH . "/uploads/{$moduleDirName}/photos/grad_photo";
-        $del_photo = Request::getInt('del_photo', 0);
+        $del_photo   = Request::getInt('del_photo', 0);
         if (isset($del_photo)) {
             if ('1' == $del_photo) {
                 if (@file_exists('' . $destination . '/' . $photo_old . '')) {
@@ -269,10 +267,10 @@ switch ($op) {
                 $obj->setVar('photo', '');
             }
         }
-        
-        $photo2_old = Request::getString('photo2_old', '');
+
+        $photo2_old   = Request::getString('photo2_old', '');
         $destination2 = XOOPS_ROOT_PATH . "/uploads/{$moduleDirName}/photos/now_photo";
-        $del_photo2 = Request::getInt('del_photo2', 0);
+        $del_photo2   = Request::getInt('del_photo2', 0);
         if (isset($del_photo2)) {
             if ('1' == $del_photo2) {
                 if (@file_exists('' . $destination2 . '/' . $photo2_old . '')) {
@@ -281,19 +279,19 @@ switch ($op) {
                 $obj->setVar('photo2', '');
             }
         }
-        
-    $cid = Request::getInt('cid', 0);
+
+        $cid = Request::getInt('cid', 0);
         if (isset($cid)) {
-            $cat_name                  = '';
+            $cat_name          = '';
             $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
-            $catObj                    = $categoriesHandler->get($cid);
-            $cat_name                  = $catObj->getVar('title');
+            $catObj            = $categoriesHandler->get($cid);
+            $cat_name          = $catObj->getVar('title');
         }
-        
+
         if (isset($lid)) {
             $obj->setVar('lid', $lid);
         }
-        
+
         $obj->setVar('cid', Request::getInt('cid', 0));
         $obj->setVar('name', Request::getString('name'));
         $obj->setVar('mname', Request::getString('mname'));
@@ -363,7 +361,7 @@ switch ($op) {
             if ('1' == $xoops->getModuleConfig('alumni_moderated')) {
                 $xoops->redirect('index.php', 3, AlumniLocale::MODERATE);
             } else {
-                $xoops->redirect('listing.php?lid=' .$new_id. '', 3, XoopsLocale::S_DATABASE_UPDATED);
+                $xoops->redirect('listing.php?lid=' . $new_id . '', 3, XoopsLocale::S_DATABASE_UPDATED);
             }
             //notifications
             if (0 == $lid && $xoops->isActiveModule('notifications')) {
@@ -383,17 +381,17 @@ switch ($op) {
         break;
 
     case 'edit_listing':
-    $lid = Request::getInt('lid', 0);
-    $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
-        $obj  = $listingHandler->get($lid);
-        $form = $xoops->getModuleForm($obj, 'listing');
+        $lid            = Request::getInt('lid', 0);
+        $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
+        $obj            = $listingHandler->get($lid);
+        $form           = $xoops->getModuleForm($obj, 'listing');
         $form->display();
         break;
 
     case 'delete_listing':
-    $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
-        $lid = Request::getInt('lid', 0);
-        $ok = Request::getInt('ok', 0);
+        $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
+        $lid            = Request::getInt('lid', 0);
+        $ok             = Request::getInt('ok', 0);
 
         $obj = $listingHandler->get($lid);
         if (1 == $ok) {
@@ -406,8 +404,7 @@ switch ($op) {
                 echo $xoops->alert('error', $obj->getHtmlErrors());
             }
         } else {
-            echo $xoops->confirm(['ok' => 1, 'lid' => $lid, 'op' => 'delete_listing'], 'listing.php', XoopsLocale::Q_ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM
-                                                                                                      . '<br><span class="red">' . $obj->getVar('lname') . '<span>');
+            echo $xoops->confirm(['ok' => 1, 'lid' => $lid, 'op' => 'delete_listing'], 'listing.php', XoopsLocale::Q_ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM . '<br><span class="red">' . $obj->getVar('lname') . '<span>');
         }
         break;
 }

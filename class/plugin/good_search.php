@@ -18,6 +18,7 @@
  * @author          Mage Grégory (AKA Mage)
  * @version         $Id: $
  */
+
 use Xoops\Core\Request;
 use Xoops\Module\Plugin\PluginAbstract;
 use Xmf\Metagen;
@@ -37,26 +38,26 @@ class AlumniSearchPlugin extends PluginAbstract implements SearchPluginInterface
      */
     public function search($queries, $andor, $limit, $start, $userid)
     {
-        $xoops     = Xoops::getInstance();
+        $xoops   = Xoops::getInstance();
         $alumni  = Alumni::getInstance();
         $myts    = MyTextSanitizer::getInstance();
         $by_cat  = Request::getInt('by_cat', '');
-        $andor = Request::getWord('andor', 'AND');
+        $andor   = Request::getWord('andor', 'AND');
         $queries = [];
         $query   = Request::getString('query', '');
         $start   = Request::getInt('start', '0');
 
-        $helper          = $xoops->getModuleHelper('alumni');
-        $module_id       = $helper->getModule()->getVar('mid');
+        $helper         = $xoops->getModuleHelper('alumni');
+        $module_id      = $helper->getModule()->getVar('mid');
         $listingHandler = $helper->getHandler('listing');
-        $groups          = $xoops->getUserGroups();
-        $alumni_ids      = $xoops->getHandlerGroupperm()->getItemIds('alumni_view', $groups, $module_id);
-        $all_ids = implode(', ', $alumni_ids);
-    
-        $criteria        = new CriteriaCompo();
+        $groups         = $xoops->getUserGroups();
+        $alumni_ids     = $xoops->getHandlerGroupperm()->getItemIds('alumni_view', $groups, $module_id);
+        $all_ids        = implode(', ', $alumni_ids);
+
+        $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('valid', 1, '='));
         //  $criteria->add(new Criteria('date', time(), '<='));
-        $criteria->add(new Criteria('cid', '('.$all_ids.')', 'IN'));
+        $criteria->add(new Criteria('cid', '(' . $all_ids . ')', 'IN'));
         if (0 != $userid) {
             $criteria->add(new Criteria('usid', $userid, '='));
         }

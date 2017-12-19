@@ -45,7 +45,7 @@ class AlumniPermissionHandler extends XoopsObjectHandler
     public function __construct()
     {
         $this->alumni = Alumni::getInstance();
-        $this->db2 = \Xoops::getInstance()->db();
+        $this->db2    = \Xoops::getInstance()->db();
     }
 
     /**
@@ -62,15 +62,14 @@ class AlumniPermissionHandler extends XoopsObjectHandler
         if (isset($items[$gperm_name][$id])) {
             return $items[$gperm_name][$id];
         }
-        $groups = [];
+        $groups   = [];
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('gperm_modid', $this->alumni->getModule()->getVar('mid')));
         $criteria->add(new Criteria('gperm_name', $gperm_name));
         $criteria->add(new Criteria('gperm_itemid', $id));
         //Instead of calling groupperm handler and get objects, we will save some memory and do it our way
         $qb = $this->db2->createXoopsQueryBuilder();
-        $qb ->select('gperm_groupid')
-            ->fromPrefix('group_permission', '');
+        $qb->select('gperm_groupid')->fromPrefix('group_permission', '');
         $criteria->renderQb($qb);
         $result = $qb->execute();
 
@@ -100,7 +99,7 @@ class AlumniPermissionHandler extends XoopsObjectHandler
         $criteria->add(new Criteria('gperm_modid', $this->alumni->getModule()->getVar('mid')));
 
         //Get user's groups
-        $groups = \Xoops::getInstance()->getUserGroups();
+        $groups    = \Xoops::getInstance()->getUserGroups();
         $criteria2 = new CriteriaCompo();
         foreach ($groups as $gid) {
             $criteria2->add(new Criteria('gperm_groupid', $gid), 'OR');
@@ -108,8 +107,7 @@ class AlumniPermissionHandler extends XoopsObjectHandler
         $criteria->add($criteria2);
 
         $qb = $this->db2->createXoopsQueryBuilder();
-        $qb ->select('gperm_itemid')
-            ->fromPrefix('group_permission', '');
+        $qb->select('gperm_itemid')->fromPrefix('group_permission', '');
         $criteria->renderQb($qb);
         $result = $qb->execute();
 
@@ -155,9 +153,9 @@ class AlumniPermissionHandler extends XoopsObjectHandler
      */
     public function saveItemPermissions($groups, $itemid, $perm_name)
     {
-        $xoops = Xoops::getInstance();
-        $result = true;
-        $module_id = $this->alumni->getModule()->getVar('mid');
+        $xoops         = Xoops::getInstance();
+        $result        = true;
+        $module_id     = $this->alumni->getModule()->getVar('mid');
         $gperm_handler = $xoops->getHandlerGroupPermission();
         // First, if the permissions are already there, delete them
         $gperm_handler->deleteByModule($module_id, $perm_name, $itemid);
@@ -182,8 +180,8 @@ class AlumniPermissionHandler extends XoopsObjectHandler
      */
     public function deletePermissions($itemid, $gperm_name)
     {
-        $xoops = Xoops::getInstance();
-        $result = true;
+        $xoops         = Xoops::getInstance();
+        $result        = true;
         $gperm_handler = $xoops->getHandlerGroupPermission();
         $gperm_handler->deleteByModule($this->alumni->getModule()->getVar('mid'), $gperm_name, $itemid);
         return $result;

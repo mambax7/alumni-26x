@@ -8,6 +8,7 @@
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
+
 /**
  * Alumni module for Xoops
  *
@@ -17,6 +18,7 @@
  * @since           2.6.x
  * @author          John Mordo (jlm69)
  */
+
 use Xoops\Core\Request;
 
 include __DIR__ . '/admin_header.php';
@@ -33,7 +35,7 @@ switch ($op) {
         $xoops->header('admin:alumni/alumni_admin_listing.tpl');
         $indexAdmin = new \Xoops\Module\Admin();
         $indexAdmin->displayNavigation('alumni.php');
-        
+
         $xoTheme->addScript(ALUMNI_URL . '/media/jquery/jquery-1.8.3.min.js');
         $xoTheme->addScript(ALUMNI_URL . '/media/jquery/tablesorter-master/js/jquery.tablesorter.js');
         $xoTheme->addScript(ALUMNI_URL . '/media/jquery/tablesorter-master/addons/pager/jquery.tablesorter.pager.js');
@@ -52,7 +54,7 @@ switch ($op) {
         $indexAdmin->renderButton('left', '');
 
         $listingCount = $listingHandler->countAlumni();
-        $listingArray   = $listingHandler->getAll();
+        $listingArray = $listingHandler->getAll();
 
         // Assign Template variables
         $xoops->tpl()->assign('listingCount', $listingCount);
@@ -157,7 +159,7 @@ switch ($op) {
         }
 
         $date = time();
-    $lid = Request::getInt('lid', 0);
+        $lid  = Request::getInt('lid', 0);
         if (isset($lid)) {
             $obj = $listingHandler->get($lid);
             $obj->setVar('lid', $lid);
@@ -166,7 +168,7 @@ switch ($op) {
         }
 
         $destination = XOOPS_ROOT_PATH . "/uploads/{$moduleDirName}/photos/grad_photo";
-       $del_photo = Request::getInt('del_photo', 0);
+        $del_photo   = Request::getInt('del_photo', 0);
         if (isset($del_photo)) {
             if ('1' == $del_photo) {
                 if (@file_exists('' . $destination . '/' . Request::getString('photo_old') . '')) {
@@ -176,7 +178,7 @@ switch ($op) {
             }
         }
         $destination2 = XOOPS_ROOT_PATH . "/uploads/{$moduleDirName}/photos/now_photo";
-        $del_photo2 = Request::getInt('del_photo', 0);
+        $del_photo2   = Request::getInt('del_photo', 0);
         if (isset($del_photo2)) {
             if ('1' == $del_photo2) {
                 if (@file_exists('' . $destination2 . '/' . Request::getString('photo2_old') . '')) {
@@ -186,12 +188,12 @@ switch ($op) {
                 $obj->setVar('photo2', '');
             }
         }
-    $cid = Request::getInt('cid', 0);
+        $cid = Request::getInt('cid', 0);
         if (isset($cid)) {
-            $cat_name                  = '';
+            $cat_name          = '';
             $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
-            $catObj                    = $categoriesHandler->get($cid);
-            $cat_name                  = $catObj->getVar('title');
+            $catObj            = $categoriesHandler->get($cid);
+            $cat_name          = $catObj->getVar('title');
         }
 
         $obj->setVar('cid', Request::getInt('cid', 0));
@@ -218,12 +220,12 @@ switch ($op) {
 
         if (!empty($_FILES['photo']['name'])) {
             include_once XOOPS_ROOT_PATH . '/class/uploader.php';
-            $uploaddir         = XOOPS_ROOT_PATH . "/uploads/{$moduleDirName}/photos/grad_photo";
-            $photomax          = $xoops->getModuleConfig('alumni_photomax');
-            $maxwide           = $xoops->getModuleConfig('alumni_maxwide');
-            $maxhigh           = $xoops->getModuleConfig('alumni_maxhigh');
+            $uploaddir        = XOOPS_ROOT_PATH . "/uploads/{$moduleDirName}/photos/grad_photo";
+            $photomax         = $xoops->getModuleConfig('alumni_photomax');
+            $maxwide          = $xoops->getModuleConfig('alumni_maxwide');
+            $maxhigh          = $xoops->getModuleConfig('alumni_maxhigh');
             $allowedMimetypes = ['image/gif', 'image/jpg', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png'];
-            $uploader          = new XoopsMediaUploader($uploaddir, $allowedMimetypes, $photomax, $maxwide, $maxhigh);
+            $uploader         = new XoopsMediaUploader($uploaddir, $allowedMimetypes, $photomax, $maxwide, $maxhigh);
             if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
                 $uploader->setTargetFileName($date . '_' . $_FILES['photo']['name']);
                 $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
@@ -241,11 +243,11 @@ switch ($op) {
         if (!empty($_FILES['photo2']['name'])) {
             include_once XOOPS_ROOT_PATH . '/class/uploader.php';
             $uploaddir2       = XOOPS_ROOT_PATH . "/uploads/{$moduleDirName}/photos/now_photo";
-            $photomax          = $xoops->getModuleConfig('alumni_photomax');
-            $maxwide           = $xoops->getModuleConfig('alumni_maxwide');
-            $maxhigh           = $xoops->getModuleConfig('alumni_maxhigh');
+            $photomax         = $xoops->getModuleConfig('alumni_photomax');
+            $maxwide          = $xoops->getModuleConfig('alumni_maxwide');
+            $maxhigh          = $xoops->getModuleConfig('alumni_maxhigh');
             $allowedMimetypes = ['image/gif', 'image/jpg', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png'];
-            $uploader2         = new XoopsMediaUploader($uploaddir2, $allowedMimetypes, $photomax, $maxwide, $maxhigh);
+            $uploader2        = new XoopsMediaUploader($uploaddir2, $allowedMimetypes, $photomax, $maxwide, $maxhigh);
             if ($uploader2->fetchMedia($_POST['xoops_upload_file'][1])) {
                 $uploader2->setTargetFileName($date . '_' . $_FILES['photo2']['name']);
                 $uploader2->fetchMedia($_POST['xoops_upload_file'][1]);
@@ -264,7 +266,7 @@ switch ($op) {
             $xoops->redirect('alumni.php', 3, XoopsLocale::S_DATABASE_UPDATED);
 
             //notifications
-            if (0 == $lid  && $xoops->isActiveModule('notifications')) {
+            if (0 == $lid && $xoops->isActiveModule('notifications')) {
                 $notification_handler = Notifications::getInstance()->getHandlerNotification();
                 $tags                 = [];
                 $tags['MODULE_NAME']  = 'alumni';
@@ -282,7 +284,7 @@ switch ($op) {
 
     case 'edit_listing':
         $xoops->header();
-        $lid = Request::getInt('lid', 0);
+        $lid        = Request::getInt('lid', 0);
         $indexAdmin = new Xoops\Module\Admin();
         $indexAdmin->addItemButton(AlumniLocale::ADD_LISTING, 'alumni.php?op=new_listing', 'add');
         $indexAdmin->addItemButton(AlumniLocale::LISTINGLIST, 'alumni.php', 'list');
@@ -295,7 +297,7 @@ switch ($op) {
     case 'delete_listing':
         $xoops->header();
         $lid = Request::getInt('lid', 0);
-        $ok = Request::getInt('ok', 0);
+        $ok  = Request::getInt('ok', 0);
         $obj = $listingHandler->get($lid);
         if (isset($ok) && 1 == $ok) {
             if (!$xoops->security()->check()) {
@@ -307,12 +309,7 @@ switch ($op) {
                 echo $obj->getHtmlErrors();
             }
         } else {
-            echo $xoops->confirm(
-                ['ok' => 1, 'lid' => $lid, 'op' => 'delete_listing'],
-                'alumni.php',
-                XoopsLocale::Q_ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM
-                . '<br><span class="red">' . $obj->getVar('lname') . '<span>'
-            );
+            echo $xoops->confirm(['ok' => 1, 'lid' => $lid, 'op' => 'delete_listing'], 'alumni.php', XoopsLocale::Q_ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM . '<br><span class="red">' . $obj->getVar('lname') . '<span>');
         }
         break;
 
@@ -342,10 +339,10 @@ switch ($op) {
         $xoTheme->addStylesheet(ALUMNI_URL . '/media/jquery/css/theme.blue.css');
         $xoTheme->addStylesheet(ALUMNI_URL . '/media/jquery/tablesorter-master/addons/pager/jquery.tablesorter.pager.css');
 
-        $listing_Handler   = $xoops->getModuleHandler('listing', 'alumni');
-        $alumni            = Alumni::getInstance();
+        $listing_Handler  = $xoops->getModuleHandler('listing', 'alumni');
+        $alumni           = Alumni::getInstance();
         $moduleId         = $xoops->module->getVar('mid');
-        $groups            = $xoops->isUser() ? $xoops->user->getGroups() : '3';
+        $groups           = $xoops->isUser() ? $xoops->user->getGroups() : '3';
         $alumniIds        = $alumni->getGrouppermHandler()->getItemIds('alumni_view', $groups, $moduleId);
         $moderateCriteria = new CriteriaCompo();
         $moderateCriteria->add(new Criteria('valid', 0, '='));

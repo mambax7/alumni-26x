@@ -25,8 +25,8 @@ $admin_page = new Xoops\Module\Admin();
 $admin_page->displayNavigation('groupperm.php');
 $moduleId          = $xoops->module->getVar('mid');
 $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
-$cats               = $categoriesHandler->getAll();
-$cat_rows           = $categoriesHandler->getCount();
+$cats              = $categoriesHandler->getAll();
+$cat_rows          = $categoriesHandler->getCount();
 
 include_once(XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/class/alumni_tree.php");
 $cattree = new AlumniObjectTree($cats, 'cid', 'pid');
@@ -64,7 +64,7 @@ if ('0' == $cat_rows) {
             break;
     }
 
-    $opform    = new XoopsSimpleForm('', 'opform', 'groupperm.php', 'get');
+    $opform   = new XoopsSimpleForm('', 'opform', 'groupperm.php', 'get');
     $opSelect = new XoopsFormSelect('', 'op', $op);
     $opSelect->setExtra('onchange="document.forms.opform.submit()"');
     $opSelect->addOption('alumni_view', constant($modinfo_lang . '_VIEWFORM'));

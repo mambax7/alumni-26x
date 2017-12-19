@@ -8,6 +8,7 @@
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
+
 /**
  * Alumni module for Xoops
  *
@@ -17,6 +18,7 @@
  * @since           2.6.x
  * @author          John Mordo (jlm69)
  */
+
 use Xoops\Core\Request;
 
 include __DIR__ . '/admin_header.php';
@@ -66,7 +68,7 @@ if ('0' == $cat_rows) {
             break;
     }
 
-    $opform    = new Xoops\Form\SimpleForm('', 'opform', 'permissions.php', 'get');
+    $opform   = new Xoops\Form\SimpleForm('', 'opform', 'permissions.php', 'get');
     $opSelect = new Xoops\Form\Select('', 'op', $op);
     $opSelect->setExtra('onchange="document.forms.opform.submit()"');
     $opSelect->addOption('alumni_view', AlumniLocale::PERMISSIONS_VIEW);
@@ -76,7 +78,7 @@ if ('0' == $cat_rows) {
     $opform->display();
 
     $moduleId = $xoops->module->getVar('mid');
-    $form      = new Xoops\Form\GroupPermissionForm($title_of_form, $moduleId, $perm_name, $perm_desc, 'admin/permissions.php', $anonymous);
+    $form     = new Xoops\Form\GroupPermissionForm($title_of_form, $moduleId, $perm_name, $perm_desc, 'admin/permissions.php', $anonymous);
 
     foreach (array_keys($cats) as $i) {
         $cid     = $cats[$i]->getVar('cid');

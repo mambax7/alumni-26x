@@ -8,6 +8,7 @@
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
+
 /**
  * Alumni module for Xoops
  *
@@ -153,11 +154,11 @@ class AlumniCategoryHandler extends XoopsPersistableObjectHandler
     public function &getCategoriesForSearch()
     {
         global $theresult, $xoops, $alumni;
-        $xoops     = Xoops::getInstance();
-        $alumni = Alumni::getInstance();
+        $xoops    = Xoops::getInstance();
+        $alumni   = Alumni::getInstance();
         $moduleId = $alumni->getModule()->mid();
-        $ret       = [];
-        $criteria  = new CriteriaCompo();
+        $ret      = [];
+        $criteria = new CriteriaCompo();
         $criteria->setSort('cid');
         $criteria->setOrder('ASC');
         if (!$xoops->isAdmin()) {

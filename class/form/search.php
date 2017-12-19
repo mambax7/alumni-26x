@@ -8,6 +8,7 @@
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
+
 /**
  * Alumni module for Xoops
  *
@@ -17,10 +18,10 @@
  * @since           2.6.x
  * @author          John Mordo (jlm69)
  */
- 
- use Xoops\Core\Request;
 
- defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
+use Xoops\Core\Request;
+
+defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 $moduleDirName = basename(dirname(dirname(__DIR__)));
 include_once(XOOPS_ROOT_PATH . "/modules/{$moduleDirName}/class/alumni_tree.php");
 
@@ -56,16 +57,18 @@ class AlumniSearchForm extends XoopsThemeForm
         $this->addElement(new XoopsFormText(XoopsLocale::KEYWORDS, 'query', 30, 255, htmlspecialchars(stripslashes(implode(' ', $queries)), ENT_QUOTES)), true);
         $type_select = new XoopsFormSelect(XoopsLocale::TYPE, 'andor', $andor);
         $type_select->addOptionArray([
-          'AND' => XoopsLocale::ALL_AND, 'OR' => XoopsLocale::ANY_OR, 'exact' => XoopsLocale::EXACT_MATCH
+                                         'AND'   => XoopsLocale::ALL_AND,
+                                         'OR'    => XoopsLocale::ANY_OR,
+                                         'exact' => XoopsLocale::EXACT_MATCH
                                      ]);
         $this->addElement($type_select);
 
         $by_cat = Request::getInt('by_cat', 0);
 
         $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
-        $search = Search::getInstance();
+        $search            = Search::getInstance();
 
-        $module_id = $xoops->module->getVar('mid');
+        $module_id  = $xoops->module->getVar('mid');
         $groups     = $xoops->isUser() ? $xoops->user->getGroups() : '3';
         $alumni_ids = $alumni->getGrouppermHandler()->getItemIds('alumni_view', $groups, $module_id);
         $criteria   = new CriteriaCompo();
@@ -87,7 +90,6 @@ class AlumniSearchForm extends XoopsThemeForm
             $category_select->addOptionArray([$cid => $title]);
         }
         $this->addElement($category_select);
-
 
         if (!empty($mids)) {
             $mods_checkbox = new XoopsFormCheckBox(XoopsLocale::SEARCH_IN, 'mids[]', $mids);

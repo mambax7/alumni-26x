@@ -31,7 +31,7 @@ class Alumni extends Xoops\Module\Helper\HelperAbstract
      */
     public function init()
     {
-//        $this->setDirname('alumni');
+        //        $this->setDirname('alumni');
         $moduleDirName = basename(dirname(__DIR__));
         $this->setDirname($moduleDirName);
     }

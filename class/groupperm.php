@@ -20,6 +20,7 @@
  * @author          John Mordo (jlm69)
  * @version         $Id$
  */
+
 use Xoops\Core\Kernel\Handlers\XoopsGroupPermHandler;
 
 defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
@@ -68,7 +69,6 @@ class AlumniGroupPermHandler extends XoopsGroupPermHandler
         $groups2_delete = array_diff(array_values($groups2_exists), $groups);
         $groups2_add    = array_diff($groups, array_values($groups2_exists));
 
-
         // delete alumni_view
         if (0 != count($groups_delete)) {
             $criteria = $criteria = new CriteriaCompo();
@@ -79,7 +79,6 @@ class AlumniGroupPermHandler extends XoopsGroupPermHandler
             if (parent::deleteAll($criteria)) {
             }
         }
-
 
         // delete alumni_view
         if (0 != count($groups1_delete)) {

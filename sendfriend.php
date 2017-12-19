@@ -8,6 +8,7 @@
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
+
 /**
  * Alumni module for Xoops
  *
@@ -21,8 +22,8 @@
 use Xoops\Core\Request;
 
 include __DIR__ . '/header.php';
-$xoops = Xoops::getInstance();
-$myts = MyTextSanitizer::getInstance();
+$xoops         = Xoops::getInstance();
+$myts          = MyTextSanitizer::getInstance();
 $moduleDirName = basename(__DIR__);
 
 //if (!empty($_POST['submit'])) {
@@ -37,7 +38,7 @@ if (Request::getString('submit', '', 'POST')) {
     //       if (!$xoops->security()->check()) {
     //           $xoops->redirect('javascript:history.go(-1)', 3, implode(',', $xoops->security()->getErrors()));
     //       }
-        
+
     $yname = Request::getString('yname', '', 'POST'); //$_POST['yname'];
     $ymail = Request::getString('ymail', '', 'POST'); //$_POST['ymail'];
     $fname = Request::getString('fname', '', 'POST'); //$_POST['fname'];
@@ -45,14 +46,14 @@ if (Request::getString('submit', '', 'POST')) {
 
     $lid = Request::getInt('lid', 0);
 
-    $alumni    = Alumni::getInstance();
-    $helper          = $xoops->getModuleHelper('alumni');
-    $moduleId       = $helper->getModule()->getVar('mid');
+    $alumni   = Alumni::getInstance();
+    $helper   = $xoops->getModuleHelper('alumni');
+    $moduleId = $helper->getModule()->getVar('mid');
 
-    $groups          = $xoops->isUser() ? $xoops->user->getGroups() : '3';
-    $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $moduleId);
-    $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
-    $listing_criteria       = new CriteriaCompo();
+    $groups           = $xoops->isUser() ? $xoops->user->getGroups() : '3';
+    $alumni_ids       = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $moduleId);
+    $listingHandler   = $xoops->getModuleHandler('listing', 'alumni');
+    $listing_criteria = new CriteriaCompo();
     $listing_criteria->add(new Criteria('lid', $lid, '='));
     $listing_criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));
     $numrows = $listingHandler->getCount($listing_criteria);
@@ -151,7 +152,7 @@ if (Request::getString('submit', '', 'POST')) {
     include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 
     $listingHandler = $xoops->getModuleHandler('listing', $moduleDirName);
-    $listing_2_send         = $listingHandler->get($lid);
+    $listing_2_send = $listingHandler->get($lid);
 
     $listing_2_send->getVar('name');
     $listing_2_send->getVar('mname');

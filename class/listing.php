@@ -8,6 +8,7 @@
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
+
 /**
  * Alumni module for Xoops
  *
@@ -76,7 +77,6 @@ class AlumniListing extends XoopsObject
         return $new_id;
     }
 
-
     /**
      * @return mixed
      */
@@ -108,11 +108,11 @@ class AlumniListingHandler extends XoopsPersistableObjectHandler
      */
     public function getListingPublished($start = 0, $limit = 0, $sort = 'date', $order = 'ASC')
     {
-        $helper    = Alumni::getInstance();
-        $xoops     = $helper->xoops();
+        $helper   = Alumni::getInstance();
+        $xoops    = $helper->xoops();
         $moduleId = $helper->getModule()->getVar('mid');
         // get permitted id
-        $groups     = $xoops->isUser() ? $xoops->user->getGroups() : '3';
+        $groups    = $xoops->isUser() ? $xoops->user->getGroups() : '3';
         $alumniIds = $helper->getGrouppermHandler()->getItemIds('alumni_view', $groups, $moduleId);
         // criteria
         $criteria = new CriteriaCompo();

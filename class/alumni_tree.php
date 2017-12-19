@@ -135,7 +135,6 @@ class AlumniObjectTree extends XoopsObjectTree
         return $ret;
     }
 
-
     /**
      * returns an array of all child objects of an object specified by its id
      *
@@ -199,11 +198,11 @@ class AlumniObjectTree extends XoopsObjectTree
             /* @var $object XoopsObject */
             $object = $this->_tree[$key]['obj'];
             $value  = $object->getVar($this->_myId);
-            $ret .= '<option value="' . $value . '"';
+            $ret    .= '<option value="' . $value . '"';
             if ($value == $selected) {
                 $ret .= ' selected="selected"';
             }
-            $ret .= '>' . $prefix_curr . $object->getVar($fieldName) . '</option>';
+            $ret         .= '>' . $prefix_curr . $object->getVar($fieldName) . '</option>';
             $prefix_curr .= $prefix_orig;
         }
         if (isset($this->_tree[$key]['child']) && !empty($this->_tree[$key]['child'])) {

@@ -50,11 +50,11 @@ class AlumniNotificationsPlugin extends Xoops\Module\Plugin\PluginAbstract imple
         if ('category' === $category) {
 
             // Assume we have a valid topid id
-            $sql = 'SELECT title  FROM ' . $xoopsDB->prefix('alumni_categories') . ' WHERE cid = ' . $item_id . ' limit 1';
+            $sql          = 'SELECT title  FROM ' . $xoopsDB->prefix('alumni_categories') . ' WHERE cid = ' . $item_id . ' LIMIT 1';
             $result       = $xoopsDB->query($sql); // TODO: error check
             $result_array = $xoopsDB->fetchArray($result);
             $item['name'] = $result_array['title'];
-            $item['url'] = XOOPS_URL . '/modules/' . $module->getVar('dirname') . '/categories.php?cid=' . $item_id;
+            $item['url']  = XOOPS_URL . '/modules/' . $module->getVar('dirname') . '/categories.php?cid=' . $item_id;
 
             return $item;
         }
@@ -65,7 +65,7 @@ class AlumniNotificationsPlugin extends Xoops\Module\Plugin\PluginAbstract imple
             $result       = $xoopsDB->query($sql);
             $result_array = $xoopsDB->fetchArray($result);
             $item['name'] = $result_array['title'];
-            $item['url'] = XOOPS_URL . '/modules/' . $module->getVar('dirname') . '/listing.php?lid= ' . $item_id;
+            $item['url']  = XOOPS_URL . '/modules/' . $module->getVar('dirname') . '/listing.php?lid= ' . $item_id;
 
             return $item;
         }
@@ -99,7 +99,6 @@ class AlumniNotificationsPlugin extends Xoops\Module\Plugin\PluginAbstract imple
         $ret[3]['item_name']      = 'lid';
         $ret[3]['allow_bookmark'] = 1;
 
-
         return $ret;
     }
 
@@ -131,7 +130,6 @@ class AlumniNotificationsPlugin extends Xoops\Module\Plugin\PluginAbstract imple
 
         return $ret;
     }
-
 
     /**
      * @param string $category

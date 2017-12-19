@@ -8,6 +8,7 @@
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
+
 /**
  * Alumni module for Xoops
  *
@@ -17,7 +18,7 @@
  * @since           2.6.x
  * @author          John Mordo (jlm69)
  */
- 
+
 use Xoops\Core\Request;
 
 //
@@ -38,27 +39,27 @@ if (!empty($_POST['submit'])) {
     //      if (!$xoops->security()->check()) {
     //         $xoops->redirect('javascript:history.go(-1)', 3, implode(',', $xoops->security()->getErrors()));
     //     }
-        
+
     $lid = Request::getInt('lid', 0);
     $lid = ($lid);
 
-    $body = Request::getString('body', '');
-    $sname = Request::getString('sname', '');
-    $semail = Request::getString('semail', '');
+    $body    = Request::getString('body', '');
+    $sname   = Request::getString('sname', '');
+    $semail  = Request::getString('semail', '');
     $listing = Request::getString('listing', '');
 
     $subject       = AlumniLocale::CONTACTALUMNI;
     $admin_subject = AlumniLocale::CONTACTADMIN;
 
-    $helper          = $xoops->getModuleHelper('alumni');
-    $module_id       = $helper->getModule()->getVar('mid');
-    $groups          = $xoops->isUser() ? $xoops->user->getGroups() : '3';
-    $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
-    $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
-    $listing_criteria       = new CriteriaCompo();
+    $helper           = $xoops->getModuleHelper('alumni');
+    $module_id        = $helper->getModule()->getVar('mid');
+    $groups           = $xoops->isUser() ? $xoops->user->getGroups() : '3';
+    $alumni_ids       = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
+    $listingHandler   = $xoops->getModuleHandler('listing', 'alumni');
+    $listing_criteria = new CriteriaCompo();
     $listing_criteria->add(new Criteria('lid', $lid, '='));
     $listing_criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));
-    $numrows     = $listingHandler->getCount($listing_criteria);
+    $numrows      = $listingHandler->getCount($listing_criteria);
     $listingArray = $listingHandler->getAll($listing_criteria);
     foreach (array_keys($listingArray) as $i) {
         $name      = $listingArray[$i]->getVar('name');
@@ -133,15 +134,15 @@ if (!empty($_POST['submit'])) {
     include __DIR__ . '/header.php';
     $xoops = Xoops::getInstance();
     Xoops::getInstance()->header();
-    $helper          = $xoops->getModuleHelper('alumni');
-    $module_id       = $helper->getModule()->getVar('mid');
-    $groups          = $xoops->isUser() ? $xoops->user->getGroups() : '3';
-    $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
-    $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
-    $listing_criteria       = new CriteriaCompo();
+    $helper           = $xoops->getModuleHelper('alumni');
+    $module_id        = $helper->getModule()->getVar('mid');
+    $groups           = $xoops->isUser() ? $xoops->user->getGroups() : '3';
+    $alumni_ids       = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
+    $listingHandler   = $xoops->getModuleHandler('listing', 'alumni');
+    $listing_criteria = new CriteriaCompo();
     $listing_criteria->add(new Criteria('lid', $lid, '='));
     $listing_criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));
-    $numrows     = $listingHandler->getCount($listing_criteria);
+    $numrows      = $listingHandler->getCount($listing_criteria);
     $listingArray = $listingHandler->getAll($listing_criteria);
     unset($listing_criteria);
     foreach (array_keys($listingArray) as $i) {
@@ -168,7 +169,7 @@ if (!empty($_POST['submit'])) {
         $sendform->addElement(new XoopsFormCaptcha());
     }
     $sendform->addElement(new XoopsFormLabel(AlumniLocale::YOUR_IP, '<img src="' . XOOPS_URL . '/modules/alumni/ip_image.php" alt=""><br>' . AlumniLocale::IP_LOGGED . ''));
-//    $sendform->addElement(new Xoops\Form\Hidden('security', $xoops->security()->createToken()));
+    //    $sendform->addElement(new Xoops\Form\Hidden('security', $xoops->security()->createToken()));
     $sendform->addElement(new XoopsFormHidden('listing', $listing), false);
     $sendform->addElement(new XoopsFormHidden('email', $email), false);
     $sendform->addElement(new XoopsFormHidden('lid', $lid), false);

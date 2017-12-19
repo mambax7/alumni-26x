@@ -21,12 +21,12 @@
 include __DIR__ . '/header.php';
 
 $moduleDirName = basename(__DIR__);
-$main_lang = '_MA_' . strtoupper($moduleDirName);
-$myts      = MyTextSanitizer::getInstance();
-$xoops     = Xoops::getInstance();
-$alumni    = Alumni::getInstance();
-$helper          = $xoops->getModuleHelper('alumni');
-$moduleId       = $helper->getModule()->getVar('mid');
+$main_lang     = '_MA_' . strtoupper($moduleDirName);
+$myts          = MyTextSanitizer::getInstance();
+$xoops         = Xoops::getInstance();
+$alumni        = Alumni::getInstance();
+$helper        = $xoops->getModuleHelper('alumni');
+$moduleId      = $helper->getModule()->getVar('mid');
 
 if (is_object($xoopsUser)) {
     $groups = $xoopsUser->getGroups();
@@ -81,9 +81,9 @@ $cat_banner = $xoops->getBanner();
 $xoops->tpl()->assign('cat_banner', $cat_banner);
 
 $cat_code_place = $xoops->getModuleConfig('' . $moduleDirName . '_code_place');
-$useExtraCode = $xoops->getModuleConfig('' . $moduleDirName . '_use_code');
-$useBanner     = $xoops->getModuleConfig('' . $moduleDirName . '_useBanner');
-$catExtraCode = $xoops->getModuleConfig('' . $moduleDirName . '_index_code');
+$useExtraCode   = $xoops->getModuleConfig('' . $moduleDirName . '_use_code');
+$useBanner      = $xoops->getModuleConfig('' . $moduleDirName . '_useBanner');
+$catExtraCode   = $xoops->getModuleConfig('' . $moduleDirName . '_index_code');
 $xoops->tpl()->assign('useExtraCode', $useExtraCode);
 $xoops->tpl()->assign('useBanner', $useBanner);
 $xoops->tpl()->assign('catExtraCode', '<html>' . $catExtraCode . '</html>');
@@ -91,14 +91,14 @@ $xoops->tpl()->assign('cat_code_place', $cat_code_place);
 
 $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
 
-$alumni    = Alumni::getInstance();
-$groups          = $xoops->isUser() ? $xoops->user->getGroups() : '3';
-$alumniIds      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $moduleId);
+$alumni      = Alumni::getInstance();
+$groups      = $xoops->isUser() ? $xoops->user->getGroups() : '3';
+$alumniIds   = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $moduleId);
 $catCriteria = new CriteriaCompo();
 $catCriteria->add(new Criteria('cid', $cid, '='));
 $catCriteria->add(new Criteria('cid', '(' . implode(', ', $alumniIds) . ')', 'IN'));
 $catCriteria->setOrder('' . $xoops->getModuleConfig('' . $moduleDirName . '_csortorder') . '');
-$numcat       = $categoriesHandler->getCount();
+$numcat        = $categoriesHandler->getCount();
 $categoryArray = $categoriesHandler->getAll($catCriteria);
 
 $catObj = $categoriesHandler->get($cid);
@@ -152,7 +152,7 @@ foreach (array_keys($categoryArray) as $i) {
         $subcatCriteria->add(new Criteria('pid', $cid, '='));
         $subcatCriteria->add(new Criteria('cid', '(' . implode(', ', $alumniIds) . ')', 'IN'));
         $subcatCriteria->setOrder('' . $xoops->getModuleConfig('' . $moduleDirName . '_csortorder') . '');
-        $numsubcat  = $categoriesHandler->getCount($subcatCriteria);
+        $numsubcat   = $categoriesHandler->getCount($subcatCriteria);
         $subcatArray = $categoriesHandler->getAll($subcatCriteria);
         unset($subcatCriteria);
         foreach (array_keys($subcatArray) as $j) {
@@ -160,7 +160,7 @@ foreach (array_keys($categoryArray) as $i) {
             $subcat_pid    = $subcatArray[$j]->getVar('pid');
             $sub_cat_title = $subcatArray[$j]->getVar('title', 'e');
 
-            $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
+            $listingHandler  = $xoops->getModuleHandler('listing', 'alumni');
             $listingCriteria = new CriteriaCompo();
             $listingCriteria->add(new Criteria('cid', $subcat_id, '='));
             $listingCriteria->add(new Criteria('valid', 1, '='));
@@ -195,8 +195,8 @@ foreach (array_keys($categoryArray) as $i) {
     $xoops->tpl()->assign('show_nav', false);
     $xoops->tpl()->assign('no_listings', AlumniLocale::NO_LISTINGS);
 
-    $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
-    $listingCriteria       = new CriteriaCompo();
+    $listingHandler  = $xoops->getModuleHandler('listing', 'alumni');
+    $listingCriteria = new CriteriaCompo();
     $listingCriteria->add(new Criteria('cid', $cid, '='));
     $listingCriteria->add(new Criteria('valid', 1, '='));
     $listingCriteria->add(new Criteria('cid', '(' . implode(', ', $alumniIds) . ')', 'IN'));

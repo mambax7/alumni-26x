@@ -17,10 +17,7 @@
  * @since           2.6.x
  * @author          John Mordo (jlm69)
  */
-$moduleDirName    = basename(__DIR__);
-
-
-
+$moduleDirName = basename(__DIR__);
 
 // ------------------- Informations ------------------- //
 $modversion = [
@@ -147,8 +144,8 @@ $modversion['blocks'][] = array(
     'options'     => 'date|10|25|0');
 */
 $modversion['blocks'][] = array(
-    'file'        => 'alumni.php',
-    'name'        => AlumniLocale::_BNAME'),
+    'file' => 'alumni.php',
+    'name' => AlumniLocale::_BNAME'),
     'description' => AlumniLocale::_BNAME_DESC'),
     'show_func'   => 'alumni_show',
     'edit_func'   => 'alumni_edit',
@@ -296,7 +293,7 @@ $modversion['config'][] = [
 
 // $xoopsModuleConfig['alumni_form_options'] - Use WYSIWYG Editors?
 
-$editors                                 = XoopsLists::getDirListAsArray(XOOPS_ROOT_PATH . '/class/xoopseditor');
+$editors = XoopsLists::getDirListAsArray(XOOPS_ROOT_PATH . '/class/xoopseditor');
 
 $modversion['config'][] = [
     'name'        => 'alumni_form_options',

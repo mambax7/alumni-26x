@@ -8,6 +8,7 @@
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
+
 /**
  * Alumni module for Xoops
  *
@@ -23,10 +24,10 @@ use Xoops\Core\Request;
 include __DIR__ . '/header.php';
 
 $moduleDirName = basename(__DIR__);
-$main_lang = '_MA_' . strtoupper($moduleDirName);
-$myts      = MyTextSanitizer::getInstance();
-$xoops     = Xoops::getInstance();
-$module_id = $xoops->module->getVar('mid');
+$main_lang     = '_MA_' . strtoupper($moduleDirName);
+$myts          = MyTextSanitizer::getInstance();
+$xoops         = Xoops::getInstance();
+$module_id     = $xoops->module->getVar('mid');
 
 if (is_object($xoops->user)) {
     $groups = $xoops->user->getGroups();
@@ -50,7 +51,7 @@ if (!$gpermHandler->checkRight('' . $moduleDirName . '_premium', $perm_itemid, $
     $prem_perm = '1';
 }
 
-    $alumni = Alumni::getInstance();
+$alumni = Alumni::getInstance();
 
 $gpermHandler = $xoops->getHandlerGroupPermission();
 
@@ -90,11 +91,11 @@ if ('1' == $xoops->getModuleConfig('' . $moduleDirName . '_offer_search')) {
 
     $categoriesHandler = $xoops->getModuleHandler('category', 'alumni');
 
-    $alumni    = Alumni::getInstance();
-    $helper          = $xoops->getModuleHelper('alumni');
-    $module_id       = $helper->getModule()->getVar('mid');
-    $groups          = $xoops->isUser() ? $xoops->user->getGroups() : '3';
-    $alumni_ids      = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
+    $alumni       = Alumni::getInstance();
+    $helper       = $xoops->getModuleHelper('alumni');
+    $module_id    = $helper->getModule()->getVar('mid');
+    $groups       = $xoops->isUser() ? $xoops->user->getGroups() : '3';
+    $alumni_ids   = $xoops->getHandlerGroupPermission()->getItemIds('alumni_view', $groups, $module_id);
     $cat_criteria = new CriteriaCompo();
     $cat_criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));
     $cat_criteria->setOrder('' . $xoops->getModuleConfig('' . $moduleDirName . '_csortorder') . '');
@@ -158,9 +159,9 @@ foreach (array_keys($cats) as $i) {
         } else {
             $cat_img = '';
         }
-        
+
         $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
-        $count_criteria         = new CriteriaCompo();
+        $count_criteria = new CriteriaCompo();
         $count_criteria->add(new Criteria('cid', $cats[$i]->getVar('cid'), '='));
         $count_criteria->add(new Criteria('valid', 1, '='));
         $count_criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));
@@ -180,8 +181,8 @@ foreach (array_keys($cats) as $i) {
 
     $count++;
 
-    $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
-    $listing_criteria       = new CriteriaCompo();
+    $listingHandler   = $xoops->getModuleHandler('listing', 'alumni');
+    $listing_criteria = new CriteriaCompo();
     $listing_criteria->add(new Criteria('cid', $cats[$i]->getVar('cid'), '='));
     $listing_criteria->add(new Criteria('valid', 1, '='));
     $listing_criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));
@@ -190,8 +191,8 @@ foreach (array_keys($cats) as $i) {
     if (count($all_subcats) > 0) {
         foreach (array_keys($all_subcats) as $k) {
             if (in_array($all_subcats[$k]->getVar('cid'), $alumni_ids)) {
-                $listingHandler = $xoops->getModuleHandler('listing', 'alumni');
-                $sub_count_criteria     = new CriteriaCompo();
+                $listingHandler     = $xoops->getModuleHandler('listing', 'alumni');
+                $sub_count_criteria = new CriteriaCompo();
                 $sub_count_criteria->add(new Criteria('cid', $all_subcats[$k]->getVar('cid'), '='));
                 $sub_count_criteria->add(new Criteria('valid', 1, '='));
                 $sub_count_criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN'));
@@ -259,7 +260,7 @@ $criteria->add(new Criteria('cid', '(' . implode(', ', $alumni_ids) . ')', 'IN')
 $criteria->setLimit($xoops->getModuleConfig('' . $moduleDirName . '_per_page'));
 $numrows = $listingHandler->getCount($criteria);
 
-$xoops->tpl()->assign('total_listings', AlumniLocale::THERE_ARE . ' ' .$numrows. ' ' . AlumniLocale::ALUMNI_LISTINGS . ' ' . AlumniLocale::IN . ' ' .$numcat. ' ' . AlumniLocale::CATEGORIES);
+$xoops->tpl()->assign('total_listings', AlumniLocale::THERE_ARE . ' ' . $numrows . ' ' . AlumniLocale::ALUMNI_LISTINGS . ' ' . AlumniLocale::IN . ' ' . $numcat . ' ' . AlumniLocale::CATEGORIES);
 $xoops->tpl()->assign('last_head', AlumniLocale::THE . ' ' . $xoops->getModuleConfig('' . $moduleDirName . '_newalumni') . ' ' . AlumniLocale::LASTADD);
 $xoops->tpl()->assign('last_head_name', AlumniLocale::NAME_2);
 $xoops->tpl()->assign('last_head_school', AlumniLocale::SCHOOL_2);
@@ -314,9 +315,9 @@ foreach (array_keys($listingArray) as $i) {
         }
     }
     $date = ($useroffset * 3600) + $date;
-    
-    $date       = XoopsLocale::formatTimestamp($date, 's');
-    
+
+    $date = XoopsLocale::formatTimestamp($date, 's');
+
     if ($xoops->user) {
         if ($xoops->user->isAdmin()) {
             $a_item['admin'] = "<a href='admin/alumni.php?op=edit_listing&amp;lid=$lid&amp;cid=$cid'><img src='images/modif.gif' border=0 alt=\"" . AlumniLocale::MODADMIN . '"></a>';
